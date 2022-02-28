@@ -20,8 +20,10 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,11 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    AngularFireModule.initializeApp(environment.firebase),
+    NgbModule,
+    
+
   ],
   providers: [
     ScreenTrackingService,UserTrackingService

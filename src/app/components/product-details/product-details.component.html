@@ -7,48 +7,51 @@
       <hr>
       <div class="row justify-content-center">
           <div class="col box">
-             <img src="https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/46/460242/1.jpg?2512"> 
+             <img [src]="product?.Image"> 
               <hr>
           </div>
           <div class="row justify-content-center">
               <!-- nameProd -->
-              <p class=" col  justify-content-start" >Name: Short Coat</p>
+              <p class=" col  justify-content-start" ><b>Name:</b> {{product?.Name}}</p>
               
           </div>
           <div class="row justify-content-center">
               <!-- description -->
-              <p class=" col  justify-content-start" >Description: LC Waikiki Boy Heavy Short Coat With Hood</p>
+              <p class=" col  justify-content-start" ><b>Description</b> {{product?.Description}}</p>
               
           </div>
           <div class="row justify-content-center">
             <!-- Quantity -->
-            <p class=" col  justify-content-start" >Quantity: 50 item in stock</p>
+            <p class=" col  justify-content-start" ><b>Quantity</b> {{product?.Quantity}}</p>
             
         </div>
         <div class="row justify-content-center">
             <!-- price -->
-            <p class=" col  justify-content-start" >Price: 50.00$</p>
+            <p class=" col  justify-content-start" ><b>Price</b> {{product?.Price}}</p>
             
         </div>
         <div class="row justify-content-center">
             <!-- category -->
-            <p class=" col  justify-content-start" >Category: Fashion</p>
+            <p class=" col  justify-content-start" ><b>Category</b> {{product?.Category}}</p>
             
         </div>
         <div class="row justify-content-center">
             <!-- size -->
-            <p class=" col  justify-content-start" >Avaliable Sizes: l,xl</p>
+            <p class=" col  justify-content-start" ><b>Sizes or Dimentions</b> {{product?.Size}} {{product?.Diemention}}</p>
             
         </div>
        
           <div class="row justify-content-center">
-              <div class=" col fs-6 justify-content-start" >
-                  <button type="button" routerLink="/Update/:pid" name="" id="" class="btn btn-dark btn-lg btn-block">Edit</button>
-              </div>
+              <!-- <div class=" col fs-6 justify-content-start" >
+                  <button type="button" [routerLink]="['/Update',(product.id)]" name="" id="" class="btn btn-dark btn-lg btn-block">Edit</button>
+              </div> -->
+              <div class=" col fs-6 justify-content-end" >
+                <button type="button" routerLink="/Products" name="" id="" class="btn btn-dark btn-lg btn-block">Back</button>
+            </div>
               
           </div>
           </div>
-          
+           
       </div>
        </div>
        
