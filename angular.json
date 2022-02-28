@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Seller:build:production",
+            "firebaseProject": "jumia-1ff31",
+            "firebaseHostingSite": "jumia-1ff31"
+          }
         }
       }
     }

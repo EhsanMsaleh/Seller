@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+    <div class="container-fluid">
+      <img style="width: 50px; border-radius: 100%;" src="assets/banner.jpg" class="img-fluid " alt="">
+     
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" routerLink="Home" routerLinkActive="active" >Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" routerLink="Add" routerLinkActive="active">Add Product</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link " aria-current="page"  routerLink="FormRegister" routerLinkActive="active">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" routerLink="FormLogin" routerLinkActive="active">LOGIN</a>
+          </li> -->
+         
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              My ...
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="Orders">Orders</a></li>
+              <li><a class="dropdown-item" routerLink="Selles">Selles</a></li>
+              <li><a class="dropdown-item" routerLink="Products">Products</a></li>
+              <li><hr></li>
+              <li><a class="dropdown-item" routerLink="Account">Account</a></li>
+            </ul>
+          </li>
+         
+        </ul>
+        
+      </div>
+      <button class="btn btn-danger" >LOGOUT</button>
+    </div>
+  </nav>
+  

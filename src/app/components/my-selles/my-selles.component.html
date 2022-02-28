@@ -1,0 +1,31 @@
+<div class="container">
+    <h5>My Daily Sales</h5>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            
+           
+            <th scope="col">Date</th>
+            <th scope="col">Sales</th>
+           
+           
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of Sales | async" >
+                <tr   
+                
+               
+                >
+                 
+                 
+                  <td>{{item.Date}}</td>
+                  <td>{{item.Sales}}</td>
+                 
+                </tr>
+              </ng-container>
+         
+        </tbody>
+      </table>
+    
+</div>
