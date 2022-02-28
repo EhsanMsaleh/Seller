@@ -9,7 +9,7 @@ import {ProductComponent} from './components/product/product.component';
 import {ProductDetailsComponent} from './components/product-details/product-details.component'
 import {MyProfileComponent} from './components/my-profile/my-profile.component';
 import{NotFoundPageComponent} from './components/not-found-page/not-found-page.component';
-import {OrderDetailsComponent} from './components/OrderDetails/OrderDetails.component'
+import {OrderDetailsComponent} from './components/OrderDetails/OrderDetails.component';
 const routes: Routes = [
   {path: '', component: MainPageComponent, children:[
    
@@ -23,6 +23,7 @@ const routes: Routes = [
      {path: 'Orders', component: MyOrderComponent },
      {path: 'Orders/:pid', component: OrderDetailsComponent },
      {path: 'Account', component: MyProfileComponent},
+     
   {path:'Add', component:ProductFormComponent},
   {path:'Update/:pid', component:ProductFormComponent},
  

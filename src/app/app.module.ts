@@ -20,8 +20,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { LoginComponent } from './components/login/login.component';
     ProductDetailsComponent,
     ProductFormComponent,
     NotFoundPageComponent,
-    RegisterComponent,
-    LoginComponent
+   
   ],
   imports: [
     BrowserModule,
