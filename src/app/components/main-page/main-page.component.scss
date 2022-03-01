@@ -2,7 +2,7 @@
 
 .data-card{
     border-radius: 12px;
-    @include colors(#FDB515,#ffffff);
+    @include colors(#FDB515,#fffbf2);
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
@@ -10,6 +10,7 @@
     margin:2% 3%;
     overflow: hidden;   
     font-size: 25px;
+    font-weight: bold;
 }
 
 .klam{

@@ -8,7 +8,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import {IProduct} from '../ViewModel/product';
 
 import { ISeller } from '../ViewModel/user';
-import {AngularFirestore, } from '@angular/fire/compat/firestore'
 import {AngularFireAction,} from '@angular/fire/compat/database'
 import * as fir from 'firebase/compat/app'
 @Injectable({ 
@@ -83,6 +82,9 @@ updateProd(Prod: IProduct) {
 searchByName(search:string)
 { 
  return this.db.collection<IProduct>('Products',(ref)=>ref.where('searchKey','array-contains',search).limit(5)).valueChanges();
+ //return this.db.collection<IProduct>('Products',(ref)=>ref.where('searchKey','array-contains',search).where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product).limit(5)).valueChanges();
+
+
 }
 
 }
