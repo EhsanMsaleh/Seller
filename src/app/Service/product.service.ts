@@ -8,7 +8,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import {IProduct} from '../ViewModel/product';
 
 import { ISeller } from '../ViewModel/user';
-import {AngularFirestore, } from '@angular/fire/compat/firestore'
 import {AngularFireAction,} from '@angular/fire/compat/database'
 import * as fir from 'firebase/compat/app'
 @Injectable({ 
