@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="input-group mb-3">
+  <div class="input-group sea mb-3">
     
     <input type="search"
      (keydown)="search()" [(ngModel)]="InputSearch"
@@ -24,7 +24,7 @@
             <ng-container *ngFor="let item of Products; index as i" >
                 <tr  
                  
-                [ngClass]="{'bg-warning':item.Quantity < 5}"
+                [ngClass]="{'bg-warning':item.Quantity! < 5}"
                 *ngIf="item.Quantity!=0"
                
                 > 

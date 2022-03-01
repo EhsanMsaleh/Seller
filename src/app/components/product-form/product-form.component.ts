@@ -54,7 +54,7 @@ export class ProductFormComponent implements OnInit {
     if(this.ActivatedRoute.snapshot.params['pid'])
     {  
       this.prodServ.getProdByID(this.ActivatedRoute.snapshot.params['pid']).subscribe(res => {
-       
+       this.NewProd=res
       console.log(this.NewProd)
       
     });
@@ -86,6 +86,8 @@ sea(name:string){
     
     if(this.ActivatedRoute.snapshot.params['pid'])
     { 
+      this.NewProd={...this.NewProd,searchKey:this.sea(this.NewProd.Name!)}
+
       this.prodServ.updateProd(this.NewProd).then(() => {
         form.reset();
         alert("Done")
@@ -93,20 +95,9 @@ sea(name:string){
       })
     }
     else{
-     var name = this.InputNameProd.toLowerCase();
-     var keyWords:string[]=[];
-     var words = name.split(' ');
-     words.forEach((word)=>{
-       var appendstring='';
-       var sp=word.split('');
-       sp.forEach((ch)=>{
-        appendstring +=ch;
-        keyWords.push(appendstring);
-       })
-     })
-     console.log(keyWords)
+    
      
-    this.NewProd={...this.NewProd,searchKey:this.sea(this.InputNameProd)}
+    this.NewProd={...this.NewProd,searchKey:this.sea(this.NewProd.Name!)}
       console.log(this.NewProd.searchKey);
       this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
     }
