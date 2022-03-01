@@ -1,0 +1,22 @@
+@import './src/styles.scss';
+
+.data-card{
+    border-radius: 12px;
+    @include colors(#FDB515,#ffffff);
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    margin:2% 3%;
+    overflow: hidden;   
+    font-size: 25px;
+}
+
+.klam{
+    background: none;
+
+}
+
+.data-card:hover{
+   box-shadow:  1px 6px 6px 0.2px rgb(148, 148, 148);
+}

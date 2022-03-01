@@ -21,9 +21,13 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { AngularFireModule } from '@angular/fire/compat';
+
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),

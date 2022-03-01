@@ -8,9 +8,11 @@ export interface IProduct {
     Diemention?:string,
     Category?:string,
     Price?:number,
+
     Rank?:number,
     Quantity?:number,
     SellerID?:string,
     searchKey?:string[]
+
   };
   
