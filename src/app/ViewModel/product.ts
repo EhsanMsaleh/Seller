@@ -1,4 +1,5 @@
 export interface IProduct {
+  
   id?: string;
     Name?: string,
     Description?:string,
@@ -7,8 +8,11 @@ export interface IProduct {
     Diemention?:string,
     Category?:string,
     Price?:number,
-    Rank?: number,
+
+    Rank?:number,
     Quantity?:number,
-    SellerID?:string
+    SellerID?:string,
+    searchKey?:string[]
+
   };
   
