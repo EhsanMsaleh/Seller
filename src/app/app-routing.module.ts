@@ -10,24 +10,26 @@ import {ProductDetailsComponent} from './components/product-details/product-deta
 import {MyProfileComponent} from './components/my-profile/my-profile.component';
 import{NotFoundPageComponent} from './components/not-found-page/not-found-page.component';
 import {OrderDetailsComponent} from './components/OrderDetails/OrderDetails.component';
+import{LoginComponent} from './components/Login/Login.component';
+import {AuthSellerGuard} from './Gaurds/auth-seller.guard';
 const routes: Routes = [
   {path: '', component: MainPageComponent, children:[
    
     
   ]},
    {path: '', redirectTo: '/Home', pathMatch: 'full'}, 
-    {path: 'Home', component:MainPageComponent },
-    {path: 'Products', component: ProductComponent},
-    {path: 'Products/:pid', component: ProductDetailsComponent},
-    {path: 'Selles', component: MySellesComponent },
-     {path: 'Orders', component: MyOrderComponent },
-     {path: 'Orders/:pid', component: OrderDetailsComponent },
-     {path: 'Account', component: MyProfileComponent},
+    {path: 'Home', component:MainPageComponent  },
+    {path: 'Products', component: ProductComponent },
+    {path: 'Products/:pid', component: ProductDetailsComponent },
+    {path: 'Selles', component: MySellesComponent , canActivate:[AuthSellerGuard] },
+     {path: 'Orders', component: MyOrderComponent , canActivate:[AuthSellerGuard] },
+     {path: 'Orders/:pid', component: OrderDetailsComponent  },
+     {path: 'Account', component: MyProfileComponent },
      
-  {path:'Add', component:ProductFormComponent},
-  {path:'Update/:pid', component:ProductFormComponent},
+  {path:'Add', component:ProductFormComponent },
+  {path:'Update/:pid', component:ProductFormComponent },
  
-
+  {path:'Login', component:LoginComponent},
    {path: '**', component:NotFoundPageComponent}
 ];
 
