@@ -49,10 +49,6 @@ searchProducts:IProduct[]=[]
       var filtered = this.Products.filter((e)=> e.Quantity == 30)
       console.log(filtered) 
     })
-    let o = this.prodServ.outOfStock()
-    console.log(
-      o
-    )
 
 
     /*  console.log(this.prodServ.getAllproduct().subscribe((res)=>{var res2 = res.data();
