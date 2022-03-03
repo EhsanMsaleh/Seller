@@ -30,7 +30,7 @@ searchProducts:IProduct[]=[]
   ngOnInit(): void {
 
     /* this.prodServ.getAllproduct().subscribe((res: IProduct[]) => {
- 
+
        this.Products = res;
      })*/
     /*this.prodServ.getAllproduct().subscribe((e)=>{
@@ -61,7 +61,7 @@ searchProducts:IProduct[]=[]
           )
       })*/
 
-  
+
   // editModal(prod: IProduct) {
   //   const modalRef = this.modal.open(EditBookComponent, {
   //     size: 'lg',
@@ -92,16 +92,16 @@ search(){
     this.prodServ.getAllproduct()
     this.prodServ.prod.subscribe((res) => {
    //3yzen n3ml if condition tw2f al push fil array lw fih nfs 3dd alproducts
-
+   this.Products=[];
 
      this.prods = res
+     console.log(res)
    //  if(this.Products.length != this.searchProducts.length){
-     //  this.Products=[];
+      //مع كل تغييره هنجيب ال all , نشوف لو مش موجود ال input نجيبه تاني products
+
        this.Products.push(this.prods);
     // }
-      
-     
-      
+
     })
 
 

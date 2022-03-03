@@ -1,16 +1,24 @@
+import { ICategory } from './../../ViewModel/category';
 import { Component, OnInit } from '@angular/core';
-
+import {AngularFirestore ,  } from '@angular/fire/compat/firestore';
+import {
+  Firestore, addDoc, collection, collectionData,
+  doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc
+} from '@angular/fire/firestore';
 import { IProduct } from '../../ViewModel/product';
 import { ProductService } from '../../Service/product.service';
+import {CategoryService} from '../../Service/category.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { format } from 'path';
+import * as firebase from 'firebase/compat';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
+  Category: ICategory[]=[]
   public prod:any;
   public NewProd: IProduct = {} as IProduct;
   public InputCat: string = '';
@@ -26,30 +34,42 @@ export class ProductFormComponent implements OnInit {
    constructor(
     private router: Router,
     private ActivatedRoute: ActivatedRoute,
-    private prodServ: ProductService
+    private prodServ: ProductService,
+    private db: AngularFirestore,
+    private firestore: Firestore,
+    private catServ:CategoryService
   ) {
 
       
    
-    this.NewProd = {
-      Name: this.InputNameProd,
-      Description: this.InputDescription,
-      Image: this.InputImgProd,
-      Size: this.InputSize,
-      Diemention: this.InputDiem,
-      Category: this.InputCat,
-      Price: this.InputPriceProd,
-      Rank: 0,
-      Quantity: this.InputQuantityProd,
-     // SellerID: 'users/ SZREo5iMzjFm2lC35dz3',
-      
-    };
+
+    // this.NewProd = {
+    //   Name: this.InputNameProd,
+    //   Description: this.InputDescription,
+    //   Image: this.InputImgProd,
+    //   Size: this.InputSize,
+    //   Diemention: this.InputDiem,
+    //   Category: this.InputCat,
+    //   Price: this.InputPriceProd,
+    //   Rank: 0,
+    //   Quantity: this.InputQuantityProd,
+    // //  SellerID: db.doc('users/' + firebase.auth().currentUser.uid)
+    //  // SellerID: 'users/GJdYZoixIgn7krJLNZWV',
+
+    // };
     
   }
 
   ngOnInit() {
-   
-    this.sea("jjjjgtfhgf")
+    this.catServ.getAllCategory()
+    this.catServ.Category.subscribe((e) => {
+
+      this.Category = e
+
+    
+      console.log(this.Category)
+    })
+    
 
     if(this.ActivatedRoute.snapshot.params['pid'])
     {  
@@ -96,10 +116,13 @@ sea(name:string){
     }
     else{
     
-     
-    this.NewProd={...this.NewProd,searchKey:this.sea(this.NewProd.Name!)}
-      console.log(this.NewProd.searchKey);
-      this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
+    // currentUser.uid=id
+   let currentUser="GJdYZoixIgn7krJLNZWV"
+  // this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0}
+  this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0,
+    SellerID:doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV') }
+      console.log(this.NewProd.SellerID);
+     this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
     }
     
 
