@@ -1,23 +1,28 @@
-import { Firestore, collectionData, collection,collectionGroup, where,query } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection,collectionGroup, where,query, getDocs } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import {ISeller} from '../ViewModel/user';
 import { timeStamp } from 'console';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAction } from '@angular/fire/compat/database';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SellerService {
-  Seller: Observable<ISeller[]>;
+  Seller!: Observable<ISeller[]>;
   User: Observable<ISeller[]>;
-
-  constructor(private firestore: Firestore) { 
+  Name= new BehaviorSubject('')
+  constructor(private firestore: Firestore, private db: AngularFirestore) { 
     const collectionseller:any = collection(firestore, 'users');
     this.Seller = collectionData(collectionseller);
-    this.User= collectionData(collectionseller);
+    const collectiongr = collection(firestore, 'users')
+    this.User= collectionData(collectiongr);
+    
   }
   
-
+  
 
  
   getAlluser(): Observable<ISeller[]>{
@@ -31,12 +36,44 @@ export class SellerService {
 
    // this.Seller = query(collectionseller,where("isSeller" , "==" ,"true" ));
    return this.Seller
-     
   }
+  getSellerData(){
+   /*const seller = this.db.collection<ISeller>('users').doc('GJdYZoixIgn7krJLNZWV').snapshotChanges();
+   seller.subscribe((d)=>{
+     let sellerData:any = d.payload.data().firstname
+     console.log(sellerData)
+     this.Name = sellerData 
+   })
+   console.log(this.Name)
+   return this.Name;*/
+
+    this.db.collection<ISeller>('users')
+     .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
+       var res2 =  res.data().firstname;
+
+       
+      this.Name.next( res2)
+      })
+      this.Name
+    return  this.Name
+}
+getdetails(){
+  this.db.collection<ISeller>('users')
+  .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
+    var res2 =  res.data().firstname;
+
+    
+   this.Name.next( res2)
+   })
+   this.Name
+ return  this.Name
+}
   getProdSeller(id:any)
   {
     const collectionseller:any = collectionGroup(this.firestore, 'Products')
     query(collectionseller,where("SellerID" , "==" ,id ));
   }
+
+  
 }
  
