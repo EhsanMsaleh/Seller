@@ -2,26 +2,29 @@
     <p class="fs-3 m-3">Add Product</p>
 <form  #prod="ngForm" (ngSubmit)="onSubmit(prod)" >
 <div class="form m-5">
-  <label for="basic-url" class="form-label">Product Name</label>
+  <label for="basic-url" class="form-label">Product Name in English</label>
 <div class="input-group mb-3">
   
-  <input #prdName="ngModel"  [(ngModel)]="NewProd.Name"  type="text" class="form-control" name="Name" placeholder="Enter Product Name"  required  pattern="" >
-
+  <input #prdName="ngModel"  [(ngModel)]="NewProd.Name"  type="text" class="form-control" name="Name" placeholder="Enter Product Name in English"  required  pattern="" >
+ 
 </div>
 <div class="alert alert-warning" [hidden]="prdName.valid || prdName.untouched" >
   <small *ngIf="prdName.errors?.['required']" > Name is required</small>
   
 </div>
 
-<!-- <label for="basic-url" class="form-label">Product ID</label>
+<label for="basic-url" class="form-label">Product Name in Arabic</label>
 <div class="input-group mb-3">
-  <input type="number"  class="form-control" min=1 name="pID" placeholder="Enter Product ID" required >
-</div>
-<div class="alert alert-warning" >
-  <small> ID is required</small>
-  <small > zero is unexaptable</small>
+  
+  <input #prdNameAr="ngModel"  [(ngModel)]="NewProd.NameAr"  type="text" class="form-control" name="NameAr" placeholder="Enter Product Name in Arabic"  required  pattern="" >
 
-</div> -->
+</div>
+<div class="alert alert-warning" [hidden]="prdNameAr.valid || prdNameAr.untouched" >
+  <small *ngIf="prdNameAr.errors?.['required']" > Name is required</small>
+  
+</div>
+
+
 <label for="basic-url" class="form-label">Product Quantity</label>
 <div class="input-group mb-3">
   <input  #prdQuantity="ngModel" min=5 [(ngModel)]="NewProd.Quantity" type="number"  class="form-control" name="Quantity"  placeholder="Enter Quantity" required>
@@ -57,24 +60,27 @@
   <input type="text" #prdDiem="ngModel"  [(ngModel)]="NewProd.Diemention" class="form-control" name="Diemention" placeholder="Avalible Dimentions" >
 </div>
 
-<label for="basic-url" class="form-label">Description</label>
+<label for="basic-url" class="form-label">Description in English</label>
 <div class="input-group mb-3">
-  <input type="text" #prdDes="ngModel"  [(ngModel)]="NewProd.Description" class="form-control" name="Description" placeholder="Enter Description" required>
+  <input type="text" #prdDes="ngModel"  [(ngModel)]="NewProd.Description" class="form-control" name="Description" placeholder="Enter Description in English" required>
 </div>
 <div class="alert alert-warning" [hidden]="prdDes.valid || prdDes.untouched" >
   <small *ngIf="prdDes.errors?.['required']" > Description is required</small>
 </div>
-<label for="basic-url" class="form-label">Product Category</label>
-<select class="form-control"  #prdCat="ngModel"  [(ngModel)]="NewProd.Category" name="Category" id=""  required >
 
- <option value="Fashion" >
-  Fashion
- </option>
- <option value="Home&Office" >
-  Home&Office
- </option>
- <option value="Phones&Tablets" >
-  Phones&Tablets
+<label for="basic-url" class="form-label">Description in Arabic</label>
+<div class="input-group mb-3">
+  <input type="text" #prdDesAr="ngModel"  [(ngModel)]="NewProd.DescriptionAr" class="form-control" name="DescriptionAr" placeholder="Enter Description in Arabic" required>
+</div>
+<div class="alert alert-warning" [hidden]="prdDesAr.valid || prdDesAr.untouched" >
+  <small *ngIf="prdDesAr.errors?.['required']" > Description is required</small>
+</div>
+
+<label for="basic-url" class="form-label">Product Category in English</label>
+<select class="form-control" #prdCat="ngModel"  name="Category" id="" [(ngModel)]="NewProd.Category" required >
+
+ <option *ngFor="let item of Category" [value]="item.name" >
+   {{item.name}}
  </option>
 
 </select>
@@ -82,6 +88,17 @@
   <small *ngIf="prdCat.errors?.['required']"> Category is required</small>
 </div>
 
+<label for="basic-url" class="form-label">Product Category in Arabic</label>
+<select class="form-control" #prdCat="ngModel"  name="CategoryAr" id="" [(ngModel)]="NewProd.CategoryAr" required >
+
+ <option *ngFor="let item of Category" [value]="item.NameAr" >
+   {{item.NameAr}}
+ </option>
+
+</select>
+<div class="alert alert-warning" [hidden]="prdCat.valid || prdCat.untouched">
+  <small *ngIf="prdCat.errors?.['required']"> Category is required</small>
+</div>
 <br><hr>
 <button type="submit" class="btn btn-dark"
 [disabled]="!prod.valid" [disabled]="prod.invalid"

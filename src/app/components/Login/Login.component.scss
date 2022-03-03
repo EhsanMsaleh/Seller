@@ -1,0 +1,50 @@
+.asideu{
+    padding: 60px;
+    margin: 30px;
+    align-items: center;
+}
+.containerall{
+    align-items: center;
+    width: 100%;
+   
+    align-content: center;
+    }
+
+    .btlogin
+{
+   background-color: rgb(246, 139, 30);
+   font-size:20px;
+   color: white;
+   font-family: 'Rubik', sans-serif;
+   border: none;
+   height: 55px;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -ms-border-radius: 5px;
+   -o-border-radius: 5px;
+   margin: 10px;
+
+}
+.btlogin:hover
+{
+    background-color:rgb(228, 129, 28);
+}
+.btlogfb
+{
+    background-color: rgb(64, 88, 138);
+    font-size:20px;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    border: none;
+    height: 55px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin: 10px;
+}
+.btlogfb{
+    background-color:rgb(52, 79, 136);
+}
