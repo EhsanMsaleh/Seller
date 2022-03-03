@@ -41,7 +41,7 @@ export class ProductFormComponent implements OnInit {
       Price: this.InputPriceProd,
       Rank: 0,
       Quantity: this.InputQuantityProd,
-      SellerID: 'users/ SZREo5iMzjFm2lC35dz3',
+     // SellerID: 'users/ SZREo5iMzjFm2lC35dz3',
       
     };
     

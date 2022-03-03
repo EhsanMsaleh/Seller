@@ -1,6 +1,6 @@
 import {
   Firestore, addDoc, collection, collectionData,
-  doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc
+  doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc, getDocs, query, getFirestore, getDoc
 } from '@angular/fire/firestore';
 import {AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
@@ -8,22 +8,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import {IProduct} from '../ViewModel/product';
 
 import { ISeller } from '../ViewModel/user';
-import {AngularFireAction,} from '@angular/fire/compat/database'
+import {AngularFireAction, AngularFireList,} from '@angular/fire/compat/database'
 import * as fir from 'firebase/compat/app'
+import { FirebaseApp, FirebaseAppModule, FirebaseApps } from '@angular/fire/app';
 @Injectable({ 
   providedIn: 'root'
 })
 export class ProductService {
   Product:Observable<IProduct[]>;
   User!:Observable<AngularFireAction<firebase.default.database.DataSnapshot>[]> ;
-  
+  Producty!:Observable<AngularFireAction<firebase.default.database.DataSnapshot>[]>
     prod= new  BehaviorSubject<IProduct>({});
-
+arr:[]=[]
   constructor(private firestore: Firestore, private db: AngularFirestore) { 
 
   }
 
-  
+
   getAllproduct(){
     /*const collectionseller:any = collection(this.firestore, 'Products');
 
@@ -46,12 +47,27 @@ export class ProductService {
        var res2 = res.data();
        res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
          this.prod.next(prd.data() as IProduct)
+         console.log(this.prod)
         })
        
       })
      })
 
   }
+
+  async outOfStock() {
+   /*const catRef = doc(this.firestore, 'users','GJdYZoixIgn7krJLNZWV')
+   const ref = await getDoc(catRef)*/
+    const q = collection(this.firestore, 'Products')
+/*const catRef = this.db.collection<ISeller>('users').doc('GJdYZoixIgn7krJLNZWV')
+const q = this.db.collection('products').doc().snapshotChanges()*/
+    const neededProd = collectionData(q) as Observable<IProduct>
+   // console.log(ref.ref)
+    console.log(q)
+    neededProd.subscribe(e=>console.log(e))
+    return neededProd
+  }
+ 
 //to try later
   // getBooks(): Observable<IBook[]> {
   //   const booksRef = collection(this.firestore, 'books');

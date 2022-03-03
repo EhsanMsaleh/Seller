@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Orders} from '../../ViewModel/orders'
 import {OrdersService} from '../../Service/orders.service';
+import { ISeller } from 'src/app/ViewModel/user';
 @Component({
   selector: 'app-my-order',
   templateUrl: './my-order.component.html',
@@ -9,11 +10,18 @@ import {OrdersService} from '../../Service/orders.service';
 })
 export class MyOrderComponent implements OnInit {
   Orders:Observable<Orders[]>;
-  constructor(orderServ:OrdersService) {
-    this.Orders=orderServ.getAllOrders();
-   }
+  constructor(private orderServ:OrdersService) {
+    //this.Orders=orderServ.getAllOrders();
+    
+  
+  }
 
   ngOnInit(): void {
+    
+this.orderServ.getAllOrders()
+this.orderServ.orderSeller.subscribe(e=>{let asData = e.SellerID.id;
+  console.log(asData)
+})
   }
 
 }
