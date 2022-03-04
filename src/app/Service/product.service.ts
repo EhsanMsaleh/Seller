@@ -43,7 +43,7 @@ arr:[]=[]
      */
      
      return this.db.collection<ISeller>('users')
-     .doc('SZREo5iMzjFm2lC35dz3').get().subscribe((res)=>{
+     .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
        var res2 = res.data();
        res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
          this.prod.next(prd.data() as IProduct)
