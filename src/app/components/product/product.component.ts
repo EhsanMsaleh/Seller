@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Service/product.service';
 import { IProduct } from './../../ViewModel/product';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Lang } from 'src/app/ViewModel/lang';
@@ -14,12 +14,12 @@ import { Lang } from 'src/app/ViewModel/lang';
 })
 export class ProductComponent implements OnInit {
 
-  
+  Product:Subscription;
 
   //Product:Observable<IProduct[]>;
   Products: IProduct[] = [];
   prods: IProduct;
-
+  ProductsMo: IProduct[] = [];
 searchProducts:IProduct[]=[]
 
   word = new Subject<string>()
@@ -43,11 +43,33 @@ searchProducts:IProduct[]=[]
         console.log(prd.payload.doc.data())
       })*/
 
+this.Product=this.prodServ.getAllproduct()
+.subscribe(
+// data=>{this.result=data}
+//this.prod.next(e); this.result=e; this.resarr.push(this.result);
+  data =>{   this.ProductsMo=data.map((el)=>{
+
+    return{
+      id:el.payload.doc.id,
+      ...(el.payload.doc.data() as IProduct)
+
+    }
+   
+  }); console.log(this.ProductsMo)
+    }
+    
+    )
+
     this.prodServ.getAllproduct()
 
     this.prodServ.prod.subscribe((e) => {
 
       this.prods = e
+
+
+console.log( this.prods)
+
+
       this.Products.push(this.prods)
       this.Products = this.searchProducts
       console.log(this.Products)
@@ -89,20 +111,20 @@ deleteprod(prod: IProduct) {
       console.log('delete successful'));
   }
 }
-
+//في حاجه غلط في السيررررررررررش
 search(){
   if (this.InputSearch === "") {
     this.prodServ.getAllproduct()
     this.prodServ.prod.subscribe((res) => {
    //3yzen n3ml if condition tw2f al push fil array lw fih nfs 3dd alproducts
-   this.Products=[];
+   this.ProductsMo=[];
 
      this.prods = res
      console.log(res)
    //  if(this.Products.length != this.searchProducts.length){
       //مع كل تغييره هنجيب ال all , نشوف لو مش موجود ال input نجيبه تاني products
 
-       this.Products.push(this.prods);
+       this.ProductsMo.push(this.prods);
     // }
 
     })
