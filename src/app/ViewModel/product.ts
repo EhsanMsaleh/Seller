@@ -1,8 +1,8 @@
 import { DocumentReference } from "@angular/fire/compat/firestore";
 
 export interface IProduct {
-  
-  id?: string;
+ 
+  id?: string,
     Name?: string,
     NameAr?:string,
     Description?:string,
@@ -17,7 +17,8 @@ export interface IProduct {
     Rank?:number,
     Quantity?:number,
     searchKey?:string[],
-
+    SellerID?:any,
+    
 
   };
   

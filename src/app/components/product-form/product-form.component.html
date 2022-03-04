@@ -16,12 +16,13 @@
 <label for="basic-url" class="form-label">Product Name in Arabic</label>
 <div class="input-group mb-3">
   
-  <input #prdNameAr="ngModel"  [(ngModel)]="NewProd.NameAr"  type="text" class="form-control" name="NameAr" placeholder="Enter Product Name in Arabic"  required  pattern="" >
+  <input #prdNameAr="ngModel" pattern="[1-9]*"  [(ngModel)]="NewProd.NameAr"  type="text" class="form-control" name="NameAr" placeholder="Enter Product Name in Arabic"  required  pattern="" >
 
 </div>
-<div class="alert alert-warning" [hidden]="prdNameAr.valid || prdNameAr.untouched" >
+<div class="alert alert-danger" [hidden]="prdNameAr.valid || prdNameAr.untouched" >
   <small *ngIf="prdNameAr.errors?.['required']" > Name is required</small>
-  
+  <small *ngIf="prdNameAr.errors?.['pattern']" > jgjhg</small>
+
 </div>
 
 

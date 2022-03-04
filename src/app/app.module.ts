@@ -23,7 +23,6 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { AngularFireModule } from '@angular/fire/compat';
 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -46,6 +45,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
