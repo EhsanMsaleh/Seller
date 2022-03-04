@@ -17,7 +17,7 @@ const routes: Routes = [
    
     
   ]},
-   {path: '', redirectTo: '/Home', pathMatch: 'full'}, 
+   {path: '', redirectTo: '/Login', pathMatch: 'full'}, 
     {path: 'Home', component:MainPageComponent  },
     {path: 'Products', component: ProductComponent },
     {path: 'Products/:pid', component: ProductDetailsComponent },

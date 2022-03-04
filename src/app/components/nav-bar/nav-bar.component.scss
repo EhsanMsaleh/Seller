@@ -1,0 +1,43 @@
+.btlogout
+{
+   background-color: rgb(246, 139, 30);
+   font-size:20px;
+   color: white;
+   font-family: 'Rubik', sans-serif;
+   border: none;
+   height: 55px;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -ms-border-radius: 5px;
+   -o-border-radius: 5px;
+   margin: 10px;
+
+}
+.btlogout:hover
+{
+    background-color:rgb(228, 129, 28);
+}
+/*NAV*/
+nav{
+    padding:30px;
+  
+  }
+  .log{
+   width: 138px;
+   height:auto;
+   top: 0;
+   margin-bottom:20px;
+  }
+  
+ .items{
+     color: rgb(246, 139, 30);
+     font-size: 20px;
+     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+     
+ }
+
+ .items:hover{
+    color: rgb(228, 129, 28);
+   
+}

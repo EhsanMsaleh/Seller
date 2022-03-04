@@ -18,10 +18,10 @@
             <th scope="col">Delete</th>
           </tr> 
         </thead>
-        <tbody *ngIf="Products">
+        <tbody *ngIf="ProductsMo">
           
            
-            <ng-container *ngFor="let item of Products; index as i" >
+            <ng-container *ngFor="let item of ProductsMo; index as i" >
                 <tr  
                  
                 [ngClass]="{'bg-warning':item.Quantity! < 5}"
