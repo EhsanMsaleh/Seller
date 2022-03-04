@@ -5,6 +5,7 @@ import { IProduct } from './../../ViewModel/product';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Lang } from 'src/app/ViewModel/lang';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +13,9 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+
   Product:Subscription;
+
   //Product:Observable<IProduct[]>;
   Products: IProduct[] = [];
   prods: IProduct;
@@ -25,6 +28,7 @@ searchProducts:IProduct[]=[]
 
   constructor(firestore: Firestore, private prodServ: ProductService) {
     // this.Product=prodServ.getAllproduct();
+  
   }
 
   ngOnInit(): void {
@@ -68,13 +72,8 @@ console.log( this.prods)
 
       this.Products.push(this.prods)
       this.Products = this.searchProducts
-      var filtered = this.Products.filter((e)=> e.Quantity == 30)
-      console.log(filtered) 
+      console.log(this.Products)
     })
-    let o = this.prodServ.outOfStock()
-    console.log(
-      o
-    )
 
 
     /*  console.log(this.prodServ.getAllproduct().subscribe((res)=>{var res2 = res.data();

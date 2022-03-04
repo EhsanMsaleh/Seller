@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/Service/product.service';
 import { SellerService } from 'src/app/Service/seller.service';
+import { Lang } from 'src/app/ViewModel/lang';
 import { IProduct } from 'src/app/ViewModel/product';
 import { ISeller } from 'src/app/ViewModel/user';
 
@@ -18,8 +19,40 @@ rejectAmount:number = 0
 sellerName:string=''
 outOfStock:IProduct[]=[] 
 rejected:IProduct[]=[] 
+lang:Lang[]
+langTry:{};
+think:string='';
   constructor( private prodServ: ProductService, private sellerServ: SellerService) { 
+    this.lang=[{
+        waitingEn:"waiting shipment",
+        waitingAr:"ينتظر الشحن",
+        shippedEn:"Orders Shipped",
+        shippedAr:"الطلبات المشحونة",
+        historyEn:"Orders History",
+        historyAr:"تاريخ الطلبات",
+        salesDEn:"Total Sales",
+         salesDAr:"إجمالى المبيعات",
+        revEn:"Total Revenue",
+         revAr:"إجمالى الأرباح",
+        saleHistEn:"Sales History",
+         salesHistAr:"تاريخ المبيعات",
+        activeEn:"Active Products",
+         activeAr:"المنتجات المفعلة",
+        outEn:"Out of Stock",
+         outAr:"نفذت كميتها",
+        cancelEn:"Cancelled Products",
+         cancelAr:"المنتجات الملغية",
 
+          salesEn:"My Sales",
+           salesAr:"المبيعات",
+          productsEn:"Products",
+           productsAr:"المنتجات"
+      
+      
+      }]
+      this.langTry={
+        box1:{arabic: 'try', eng:'catch'}
+      }
   }
   
   ngOnInit(): void {
@@ -49,7 +82,7 @@ rejected:IProduct[]=[]
 
     
     this.sellerServ.getSellerData().subscribe(prd =>this.sellerName = prd)
-  
+    this.think = this.lang[0].salesAr
   }
-
+ 
 }

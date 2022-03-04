@@ -121,10 +121,12 @@ sea(name:string){
    console.log(this.NewProd);
    console.log("---------------");
   // this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0}
-  this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0,
+/*  this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0,
     SellerID:doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV') }
+
     console.log(this.NewProd);
     // this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
+
     }
     
 

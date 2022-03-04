@@ -135,19 +135,6 @@ arr:[]=[]
     //  })
 
   }
-
-  async outOfStock() {
-   /*const catRef = doc(this.firestore, 'users','GJdYZoixIgn7krJLNZWV')
-   const ref = await getDoc(catRef)*/
-    const q = collection(this.firestore, 'Products')
-/*const catRef = this.db.collection<ISeller>('users').doc('GJdYZoixIgn7krJLNZWV')
-const q = this.db.collection('products').doc().snapshotChanges()*/
-    const neededProd = collectionData(q) as Observable<IProduct>
-   // console.log(ref.ref)
-    console.log(q)
-    neededProd.subscribe(e=>console.log(e))
-    return neededProd
-  }
  
 //to try later
   // getBooks(): Observable<IBook[]> {
