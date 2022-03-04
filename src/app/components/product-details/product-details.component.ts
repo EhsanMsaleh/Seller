@@ -5,6 +5,7 @@ import {ProductService} from '../../Service/product.service';
 import {IProduct} from './../../ViewModel/product';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductFormComponent } from '../product-form/product-form.component';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -15,7 +16,7 @@ prodId:any;
 product:any;
 
 
-  constructor( private modal: NgbModal,private prodServ:ProductService, private ActivatedRouteServ:ActivatedRoute, private router:Router) { }
+  constructor(private location: Location, private modal: NgbModal,private prodServ:ProductService, private ActivatedRouteServ:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     console.log(this.ActivatedRouteServ.snapshot.params['pid']);
@@ -38,5 +39,7 @@ product:any;
 
   //   modalRef.componentInstance.id = prod.id;
   // }
- 
+ back(){
+  this.location.back()
+ }
 }

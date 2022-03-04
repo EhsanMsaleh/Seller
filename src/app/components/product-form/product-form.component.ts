@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { format } from 'path';
 import * as firebase from 'firebase/compat';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -37,7 +38,8 @@ export class ProductFormComponent implements OnInit {
     private prodServ: ProductService,
     private db: AngularFirestore,
     private firestore: Firestore,
-    private catServ:CategoryService
+    private catServ:CategoryService,
+    private location: Location
   ) {
 
       
@@ -111,7 +113,7 @@ sea(name:string){
       this.prodServ.updateProd(this.NewProd).then(() => {
         form.reset();
         alert("Done")
-        this.router.navigate(['/Products']);
+        this.location.back();
       })
     }
     else{
@@ -125,7 +127,7 @@ sea(name:string){
     SellerID:doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV') }
 
     console.log(this.NewProd);
-    // this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
+    // this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())*/
 
     }
     

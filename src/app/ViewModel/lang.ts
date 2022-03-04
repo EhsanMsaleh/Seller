@@ -17,8 +17,8 @@ export interface Lang {
             activeAr:string,
             outEn:string,
             outAr:string,
-            cancelEn:string,
-             cancelAr:string,
+            sellEn:string,
+            sellAr:string
 
 
             salesEn:string,

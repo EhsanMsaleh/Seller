@@ -55,13 +55,9 @@ arr:[]=[]
       console.log(this.Product)
       return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges()
      */
-
-
       // }) 
       // console.log(this.Product)
       // return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges() 
-    
-     
     //  return this.db.collection<ISeller>('users')
     //  .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
     //    var res2 = res.data();
@@ -69,15 +65,10 @@ arr:[]=[]
     //      this.prod.next(prd.data() as IProduct)
     //      console.log(this.prod)
     //     })
-       
-
     //   })
     //   console.log(this.Product)
      // return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges()
      
-
-
-
     //try to get data from product collection by ref sellerid
     this.db.collection("Products").snapshotChanges()
   let sid=doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV')
@@ -101,9 +92,7 @@ arr:[]=[]
 //     console.log(this.resarr)
 //   })
 //     })
-    this.prodarr.next(this.resarr)
-    this.prodarr.value
-    console.log(this.prodarr.value , "jjjjj")
+
 
 
 // console.log(this.resarr)
@@ -141,6 +130,17 @@ arr:[]=[]
   //   const booksRef = collection(this.firestore, 'books');
   //   return collectionData(booksRef, { idField: 'id' }) as Observable<IBook[]>;
   // }
+
+
+  mainPageData(){
+    this.db.collection("Products").snapshotChanges()
+    let sid=doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV')
+    
+    const him =   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
+    console.log(him)
+
+    return him
+  }
   addNewprod(NewProd:IProduct)
   {
     const collectionsellerRef:any = collection(this.firestore, 'Products');

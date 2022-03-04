@@ -26,6 +26,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductsDetailedComponent } from './components/products-detailed/products-detailed.component';
+import { SellerHomeComponent } from './components/seller-home/seller-home.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductDetailsComponent,
     ProductFormComponent,
     NotFoundPageComponent,
+    ProductsDetailedComponent,
+    SellerHomeComponent,
    
   ],
   imports: [

@@ -13,7 +13,7 @@ export interface IProduct {
     Category?:string,
     CategoryAr?:string,
     Price?:number,
-    Accepted?:boolean,
+    isAccepted?:boolean,
     Rank?:number,
     Quantity?:number,
     searchKey?:string[],
