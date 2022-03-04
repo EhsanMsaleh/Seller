@@ -1,6 +1,6 @@
 import {
   Firestore, addDoc, collection, collectionData,
-  doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc
+  doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc, getDocs, query, getFirestore, getDoc
 } from '@angular/fire/firestore';
 import {AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
@@ -8,21 +8,32 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import {IProduct} from '../ViewModel/product';
 
 import { ISeller } from '../ViewModel/user';
-import {AngularFireAction,} from '@angular/fire/compat/database'
+import {AngularFireAction, AngularFireList,} from '@angular/fire/compat/database'
 import * as fir from 'firebase/compat/app'
+import { FirebaseApp, FirebaseAppModule, FirebaseApps } from '@angular/fire/app';
+
 @Injectable({
-  providedIn: 'root'
+
+
+
+
+ providedIn: 'root'
 })
 export class ProductService {
   Product:Observable<IProduct[]>;
  resarr:IProduct[]=[];
  result:IProduct;
   User!:Observable<AngularFireAction<firebase.default.database.DataSnapshot>[]> ;
+  prod= new  BehaviorSubject<IProduct>({});
+  prodarr= new  BehaviorSubject<IProduct[]>([]);
+  Producty!:Observable<AngularFireAction<firebase.default.database.DataSnapshot>[]>
+arr:[]=[]
+   
 
-    prod= new  BehaviorSubject<IProduct>({});
-    prodarr= new  BehaviorSubject<IProduct[]>([]);
+ 
+ 
+  constructor(private firestore: Firestore, private db: AngularFirestore) { 
 
-  constructor(private firestore: Firestore, private db: AngularFirestore) {
 
   }
 
@@ -39,10 +50,32 @@ export class ProductService {
         let gotProd:any =prd.payload.data().Product
       this.Product = gotProd.map(e=> e.Product_Id.id) as Observable<IProduct[]>;
       console.log(this.Product)
+
       })
       console.log(this.Product)
       return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges()
      */
+
+
+      // }) 
+      // console.log(this.Product)
+      // return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges() 
+    
+     
+    //  return this.db.collection<ISeller>('users')
+    //  .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
+    //    var res2 = res.data();
+    //    res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
+    //      this.prod.next(prd.data() as IProduct)
+    //      console.log(this.prod)
+    //     })
+       
+
+    //   })
+    //   console.log(this.Product)
+     // return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges()
+     
+
 
 
     //try to get data from product collection by ref sellerid
@@ -102,6 +135,20 @@ export class ProductService {
     //  })
 
   }
+
+  async outOfStock() {
+   /*const catRef = doc(this.firestore, 'users','GJdYZoixIgn7krJLNZWV')
+   const ref = await getDoc(catRef)*/
+    const q = collection(this.firestore, 'Products')
+/*const catRef = this.db.collection<ISeller>('users').doc('GJdYZoixIgn7krJLNZWV')
+const q = this.db.collection('products').doc().snapshotChanges()*/
+    const neededProd = collectionData(q) as Observable<IProduct>
+   // console.log(ref.ref)
+    console.log(q)
+    neededProd.subscribe(e=>console.log(e))
+    return neededProd
+  }
+ 
 //to try later
   // getBooks(): Observable<IBook[]> {
   //   const booksRef = collection(this.firestore, 'books');

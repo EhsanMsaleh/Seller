@@ -1,21 +1,63 @@
 import { Injectable } from '@angular/core';
 import{Orders} from '../ViewModel/orders';
 import { Firestore, collectionData, collection,collectionGroup, where,query } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-
+import { Observable, BehaviorSubject } from 'rxjs';
+import { IProduct } from '../ViewModel/product';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ISeller } from '../ViewModel/user';
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
   Order:Observable<Orders[]>;
-  constructor(private firestore: Firestore) {
+  //name:IProduct=''
+  
+  prodsId:IProduct[]=[]
+  arr:IProduct[]=[]
+
+  orderSeller= new  BehaviorSubject<IProduct>({});
+  ordrslr = new BehaviorSubject<ISeller>({})
+  constructor(private firestore: Firestore, private db: AngularFirestore) {
     const collectionseller:any = collection(firestore, 'Orders');
     this.Order = collectionData(collectionseller);
    }
 
-   getAllOrders(): Observable<Orders[]>{
-    const collectionseller:any = collection(this.firestore, 'Orders');
+   getAllOrders(){
+    /*const collectionseller:any = collection(this.firestore, 'Orders');
      this. Order = collectionData(collectionseller);
      return this. Order
-  }
+     
+     : Observable<Orders[]>
+     */
+
+    /* return this.db.collection<Orders>('Orders')
+     .doc('1CkOPEtNtUVewwzVA8Of').get().subscribe((res)=>{
+       var res2 = res.data();
+       res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
+        this.orderSeller.next(prd.data() as IProduct)
+       })
+
+    })
+     })*/
+
+     const q = collection(this.firestore, 'Orders')
+     const allOrders = collectionData(q) as Observable<Orders[]>
+    return  allOrders.subscribe(e=>e.map((e)=>{
+        e.Product.map((el)=>{
+        const hopa: any=  el.Product_Id.id.toString()
+        this.prodsId.push(hopa)
+        this.prodsId.map((e)=>{let prodID=e;
+        this.db.collection<IProduct>('Products').doc(`${prodID}`).get().subscribe(
+          (res)=>{var res2:any = res.data();
+            this.arr.push(res2)
+          res2.SellerID?.get().then((usr)=>{this.ordrslr.next(usr.data() as ISeller)
+            
+            });
+          console.log(this.ordrslr, res2.Name)
+        })})
+        })
+        }
+        //this.db.collection<IProduct>('Products').doc(
+        ))
+    }
 }

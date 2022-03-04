@@ -61,14 +61,22 @@ this.Product=this.prodServ.getAllproduct()
     this.prodServ.prod.subscribe((e) => {
 
       this.prods = e
+
+
 console.log( this.prods)
+
+
       this.Products.push(this.prods)
       this.Products = this.searchProducts
-      console.log(this.Products)
+      var filtered = this.Products.filter((e)=> e.Quantity == 30)
+      console.log(filtered) 
     })
+    let o = this.prodServ.outOfStock()
+    console.log(
+      o
+    )
 
-    this.searchProducts.pop()
-    this.Products.pop()
+
     /*  console.log(this.prodServ.getAllproduct().subscribe((res)=>{var res2 = res.data();
         console.log(res2)
         res2?.Product?.map(
@@ -120,9 +128,9 @@ search(){
        this.ProductsMo.push(this.prods);
     // }
 
-
-
     })
+
+
   }
   if (this.InputSearch != "") {
     //if(this.Products.length != this.searchProducts.length){

@@ -42,6 +42,7 @@ export class ProductFormComponent implements OnInit {
 
       
    
+
     // this.NewProd = {
     //   Name: this.InputNameProd,
     //   Description: this.InputDescription,
@@ -54,7 +55,7 @@ export class ProductFormComponent implements OnInit {
     //   Quantity: this.InputQuantityProd,
     // //  SellerID: db.doc('users/' + firebase.auth().currentUser.uid)
     //  // SellerID: 'users/GJdYZoixIgn7krJLNZWV',
-      
+
     // };
     
   }

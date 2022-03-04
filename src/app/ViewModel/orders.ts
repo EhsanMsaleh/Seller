@@ -1,3 +1,5 @@
+import { DocumentReference } from "@angular/fire/compat/firestore";
+
 export interface Orders {
     Total:number,
     buyer:string,
@@ -5,7 +7,7 @@ export interface Orders {
     status:boolean,
     Product:[
         {
-            Product_Id:string,
+            Product_Id:DocumentReference,
             Product_Quantity:number,
             Total_Price:number
         }

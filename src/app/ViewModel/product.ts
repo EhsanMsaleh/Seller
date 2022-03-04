@@ -13,12 +13,12 @@ export interface IProduct {
     Category?:string,
     CategoryAr?:string,
     Price?:number,
-
+    Accepted?:boolean,
     Rank?:number,
     Quantity?:number,
-    SellerID?:any,
     searchKey?:string[],
-   
+    SellerID?:any,
+    
 
   };
   
