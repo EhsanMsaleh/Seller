@@ -11,7 +11,7 @@ import { ISeller } from '../ViewModel/user';
 import {AngularFireAction, AngularFireList,} from '@angular/fire/compat/database'
 import * as fir from 'firebase/compat/app'
 import { FirebaseApp, FirebaseAppModule, FirebaseApps } from '@angular/fire/app';
-
+ 
 @Injectable({
 
 
