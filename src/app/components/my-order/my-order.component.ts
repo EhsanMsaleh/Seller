@@ -18,10 +18,10 @@ export class MyOrderComponent implements OnInit {
 
   ngOnInit(): void {
     
-//this.orderServ.getAllOrders()
-//this.orderServ.orderSeller.subscribe(e=>{let asData = e.SellerID.id;
- // console.log(asData)
-//})
+this.orderServ.getAllOrders()
+this.orderServ.orderSeller.subscribe(e=>{let asData = e.SellerID.id;
+  console.log(asData)
+})
   }
 
 }

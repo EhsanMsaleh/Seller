@@ -10,6 +10,7 @@ export interface Orders {
             Product_Id:DocumentReference,
             Product_Quantity:number,
             Total_Price:number
+            Seller_ID:string
         }
     ]
 }
