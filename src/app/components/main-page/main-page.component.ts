@@ -19,7 +19,6 @@ Products: Subscription
 prods: IProduct
 productsAmount:number = 0
 outOfStockAmount:number = 0
-rejectAmount:number = 0
 sellerName:string=''
 outOfStock:IProduct[]=[] 
 activeProd:IProduct[]=[]
@@ -37,7 +36,7 @@ myProds:string='';
 activProds:string='';
 outStock:string='';
 sellNow:string='';
-think:boolean=false
+langDet:boolean=false
 decide:string='';
   constructor( private prodServ: ProductService, private sellerServ: SellerService, private location: Location) { 
     this.lang={
@@ -67,9 +66,7 @@ decide:string='';
       
       
       }
-      this.langTry={
-        box1:{arabic: 'try', eng:'catch'}
-      }
+
   }
   
   ngOnInit(): void {
@@ -176,7 +173,7 @@ this.switchHandle()
 
 switchHandle(){
   if(this.decide == 'EN'){
-    this.think=!this.think
+    this.langDet=!this.langDet
     let styled = document.getElementsByTagName('div')
 this.mysales= this.lang.salesEn
     this.waitingShip=this.lang.waitingEn;
