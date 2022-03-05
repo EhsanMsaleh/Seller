@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { IProduct } from '../ViewModel/product';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ISeller } from '../ViewModel/user';
+import { Seller } from '../ViewModel/seller';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,7 @@ export class OrdersService {
   
   prodsId:IProduct[]=[]
   arr:IProduct[]=[]
-
+  loggedToken:string=''
   orderSeller= new  BehaviorSubject<IProduct>({});
   ordrslr = new BehaviorSubject<ISeller>({})
   constructor(private firestore: Firestore, private db: AngularFirestore) {
@@ -39,13 +40,22 @@ export class OrdersService {
 
     })
      })*/
-
+    this.loggedToken='CQ2voW1BMJjMI7FT6KLV'
      const q = collection(this.firestore, 'Orders')
+     
      const allOrders = collectionData(q) as Observable<Orders[]>
+  
     return  allOrders.subscribe(e=>e.map((e)=>{
-        e.Product.map((el)=>{
+       e.Product.map(e=>{let stat =e.Seller_ID
+        console.log(e.Seller_ID)
+      if(stat == this.loggedToken){
+       console.log(e.Product_Id.id)}
+      })
+       }))
+        /*.map((el)=>{
         const hopa: any=  el.Product_Id.id.toString()
         this.prodsId.push(hopa)
+        console.log(allOrders)
         this.prodsId.map((e)=>{let prodID=e;
         this.db.collection<IProduct>('Products').doc(`${prodID}`).get().subscribe(
           (res)=>{var res2:any = res.data();
@@ -58,6 +68,7 @@ export class OrdersService {
         })
         }
         //this.db.collection<IProduct>('Products').doc(
-        ))
-    }
+        ))*/
+    
+  }
 }
