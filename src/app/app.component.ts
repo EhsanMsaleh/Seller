@@ -30,11 +30,16 @@ export class AppComponent implements OnInit , OnDestroy{
       complete: () => {
         console.log("Finsihed!")
       }
+      
+      
     };
-   
+ 
   
     let getAds = this.Ads.displayAds(1);
     let adsSubscription=getAds.subscribe(observerAds);
     this.subscriptions.push(adsSubscription);
 
-  }}
+  }
+
+
+}

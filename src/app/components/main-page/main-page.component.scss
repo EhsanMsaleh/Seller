@@ -12,7 +12,11 @@
     font-size: 25px;
     font-weight: bold;
 }
+.det{
+    @include colors(#FDB515,#fffbf2);
+    text-decoration: none;
 
+}
 .klam{
     background: none;
 

@@ -11,6 +11,7 @@ import { LoginService } from '../../Service/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthSellerService } from '../../Service/authSeller.service';
 import{AuthService} from '../../Service/Auth/Auth.service';
+import { LoginLang } from './login-lang';
 @Component({
   selector: 'app-Login',
   templateUrl: './Login.component.html',
@@ -22,22 +23,81 @@ export class LoginComponent implements OnInit {
   public email:string="";
   public Password:string="";
   public ISuserlog:boolean=false;
+  langDet:boolean=false
+  loginLang:string='';
+  emailLang:string='';
+  passwordLang:string='';
+  lang:LoginLang;
+  decide:string='';
   constructor(
     private authseller: AuthSellerService,
     private fb: FormBuilder,
     private SellerService: LoginService ,
     private router: Router,
-    private as: AuthService
-  ) {}
+    private as: AuthService,
+
+ 
+  ) {
+    this.lang={
+      loginEn:"Login",
+      loginAr:"تسجيل الدخول",
+      emailEn:"Email ",
+      emailAr:"البريد الألكتروني",
+      passwordEn:"Password",
+      passwordAr:"الرقم السري",
+    }
+  }
 
   ngOnInit() {
     this.ISuserlog = this.authseller.IsUserLogged;
+    this.decide= localStorage.getItem('lang')
+   console.log(this.decide)
+    if(this.decide == null){
+      this.loginLang=this.lang.loginEn;
+  this.emailLang=this.lang.emailEn;
+  this.passwordLang=this.lang.passwordEn;
+    }
+    this.switchHandle()
   }
 
  
   login(email:string,pass:string)
   {
      this.authseller.login(email,pass)
+  }
+
+
+  switchHandle(){
+    if(this.decide == 'EN'){
+      this.langDet=!this.langDet
+      let styled = document.getElementsByTagName('div')
+      this.loginLang=this.lang.loginEn;
+      this.emailLang=this.lang.emailEn;
+      this.passwordLang=this.lang.passwordEn;
+
+      if(styled.length!=0){
+        for(let i=0; i<=styled.length; i++){
+          styled[i].style.direction='ltr'
+        }
+      }
+  
+      
+  
+  
+     } else if(this.decide == 'AR'){
+       let styled = document.getElementsByTagName('div')
+       this.loginLang=this.lang.loginAr;
+  this.emailLang=this.lang.emailAr;
+  this.passwordLang=this.lang.passwordAr;
+      
+       if(styled.length!=0){
+         for(let i=0; i<=styled.length; i++){
+           styled[i].style.direction='rtl'
+         }
+       }
+  
+  
+      }
   }
 
   // login(form: any) {
