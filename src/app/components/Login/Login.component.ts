@@ -6,6 +6,7 @@ import {
   Validators,
   FormArray,
 } from '@angular/forms';
+
 import { ISeller } from '../../ViewModel/user';
 import { LoginService } from '../../Service/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   passwordLang:string='';
   lang:LoginLang;
   decide:string='';
+  seller:any
   constructor(
     private authseller: AuthSellerService,
     private fb: FormBuilder,
@@ -61,9 +63,26 @@ export class LoginComponent implements OnInit {
   }
 
  
-  login(email:string,pass:string)
-  {
-     this.authseller.login(email,pass)
+  login(form:any)
+  { let data= form.value;
+    return this.as.login(data.Email, data.Password).subscribe(()=>{
+      if(this.as.Seller){
+        let id=this.as.userID;
+        let email=this.as.userEmail;
+        localStorage.setItem('id',JSON.stringify(id))
+        this.authseller.getSellerById().subscribe((e)=>{
+          e.map((e)=>{this.seller=e})
+         })
+        
+        this.router.navigate(['/Home']);
+        }else
+        {
+          this.errorMes=this.as.errorMsg;
+
+        }
+     
+    })
+    
   }
 
 

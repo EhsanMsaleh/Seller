@@ -17,7 +17,7 @@ export class OrdersService {
   arr:IProduct[]=[]
   loggedToken:string=''
   orderSeller= new  BehaviorSubject<IProduct>({});
-  ordrslr = new BehaviorSubject<ISeller>({})
+ // ordrslr = new BehaviorSubject<ISeller>({})
   constructor(private firestore: Firestore, private db: AngularFirestore) {
     const collectionseller:any = collection(firestore, 'Orders');
     this.Order = collectionData(collectionseller);
@@ -40,6 +40,7 @@ export class OrdersService {
 
     })
      })*/
+
     this.loggedToken='CQ2voW1BMJjMI7FT6KLV'
      const q = collection(this.firestore, 'Orders')
      
@@ -71,4 +72,5 @@ export class OrdersService {
         ))*/
     
   }
+
 }

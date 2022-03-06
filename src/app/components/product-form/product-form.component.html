@@ -5,10 +5,11 @@
   <label for="basic-url" class="form-label">Product Name in English</label>
 <div class="input-group mb-3">
   
-  <input #prdName="ngModel"  [(ngModel)]="NewProd.Name"  type="text" class="form-control" name="Name" placeholder="Enter Product Name in English"  required  pattern="" >
+  <input #prdName="ngModel" pattern='[A-Za-z]{3,}'
+    [(ngModel)]="NewProd.Name"  type="text" class="form-control" name="Name" placeholder="Enter Product Name in English"  required  pattern="" >
  
 </div>
-<div class="alert alert-warning" [hidden]="prdName.valid || prdName.untouched" >
+<div class="alert alert-danger" [hidden]="prdName.valid || prdName.untouched" >
   <small *ngIf="prdName.errors?.['required']" > Name is required</small>
   
 </div>
@@ -16,7 +17,7 @@
 <label for="basic-url" class="form-label">Product Name in Arabic</label>
 <div class="input-group mb-3">
   
-  <input #prdNameAr="ngModel" pattern="[1-9]*"  [(ngModel)]="NewProd.NameAr"  type="text" class="form-control" name="NameAr" placeholder="Enter Product Name in Arabic"  required  pattern="" >
+  <input #prdNameAr="ngModel" pattern=""  [(ngModel)]="NewProd.NameAr"  type="text" class="form-control" name="NameAr" placeholder="Enter Product Name in Arabic"  required  pattern="" >
 
 </div>
 <div class="alert alert-danger" [hidden]="prdNameAr.valid || prdNameAr.untouched" >
@@ -30,7 +31,7 @@
 <div class="input-group mb-3">
   <input  #prdQuantity="ngModel" min=5 [(ngModel)]="NewProd.Quantity" type="number"  class="form-control" name="Quantity"  placeholder="Enter Quantity" required>
 </div>
-<div class="alert alert-warning" [hidden]="prdQuantity.valid || prdQuantity.untouched" >
+<div class="alert alert-danger" [hidden]="prdQuantity.valid || prdQuantity.untouched" >
   <small *ngIf="prdQuantity.errors?.['required']" > Quantity is required</small>
   
   <small *ngIf="prdQuantity.errors?.['min']" > the minimam Quantity is 5 </small>
@@ -39,7 +40,7 @@
 <div class="input-group mb-3">
   <input type="number"  #prdPrice="ngModel"  [(ngModel)]="NewProd.Price" class="form-control" min=1 name="Price" placeholder="Enter Price" required >
 </div>
-<div class="alert alert-warning" [hidden]="prdPrice.valid || prdPrice.untouched">
+<div class="alert alert-danger" [hidden]="prdPrice.valid || prdPrice.untouched">
   <small *ngIf="prdPrice.errors?.['required']"> Price is required</small>
   <small *ngIf="prdPrice.errors?.['min']" > zero is unexaptable</small>
 
@@ -48,7 +49,7 @@
 <div class="input-group mb-3">
   <input type="text" #prdImg="ngModel"  [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder="Enter Link Image" required>
 </div>
-<div class="alert alert-warning" [hidden]="prdImg.valid || prdImg.untouched" >
+<div class="alert alert-danger" [hidden]="prdImg.valid || prdImg.untouched" >
   <small *ngIf="prdImg.errors?.['required']"> Image is required</small>
 </div>
 <label for="basic-url" class="form-label">Avalible Sizes</label>
@@ -65,7 +66,7 @@
 <div class="input-group mb-3">
   <input type="text" #prdDes="ngModel"  [(ngModel)]="NewProd.Description" class="form-control" name="Description" placeholder="Enter Description in English" required>
 </div>
-<div class="alert alert-warning" [hidden]="prdDes.valid || prdDes.untouched" >
+<div class="alert alert-danger" [hidden]="prdDes.valid || prdDes.untouched" >
   <small *ngIf="prdDes.errors?.['required']" > Description is required</small>
 </div>
 
@@ -73,7 +74,7 @@
 <div class="input-group mb-3">
   <input type="text" #prdDesAr="ngModel"  [(ngModel)]="NewProd.DescriptionAr" class="form-control" name="DescriptionAr" placeholder="Enter Description in Arabic" required>
 </div>
-<div class="alert alert-warning" [hidden]="prdDesAr.valid || prdDesAr.untouched" >
+<div class="alert alert-danger" [hidden]="prdDesAr.valid || prdDesAr.untouched" >
   <small *ngIf="prdDesAr.errors?.['required']" > Description is required</small>
 </div>
 
@@ -85,7 +86,7 @@
  </option>
 
 </select>
-<div class="alert alert-warning" [hidden]="prdCat.valid || prdCat.untouched">
+<div class="alert alert-danger" [hidden]="prdCat.valid || prdCat.untouched">
   <small *ngIf="prdCat.errors?.['required']"> Category is required</small>
 </div>
 
@@ -97,7 +98,7 @@
  </option>
 
 </select>
-<div class="alert alert-warning" [hidden]="prdCat.valid || prdCat.untouched">
+<div class="alert alert-danger" [hidden]="prdCat.valid || prdCat.untouched">
   <small *ngIf="prdCat.errors?.['required']"> Category is required</small>
 </div>
 <br><hr>

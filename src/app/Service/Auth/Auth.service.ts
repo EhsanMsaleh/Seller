@@ -30,6 +30,8 @@ constructor(private auth: AngularFireAuth) {
 }
 async Logout() {
   await this.auth.signOut();
+localStorage.removeItem('id')
+
   console.log(this.Seller);
 }
 

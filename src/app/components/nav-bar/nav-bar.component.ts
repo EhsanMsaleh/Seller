@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthSellerService} from '../../Service/authSeller.service'
+import { authInstanceFactory } from '@angular/fire/auth/auth.module';
+import { Router } from '@angular/router';
+import { AuthErrorCodes } from 'firebase/auth';
+import { AuthService } from 'src/app/Service/Auth/Auth.service';
 import { NavLang } from './nav-lang';
 @Component({
   selector: 'app-nav-bar',
@@ -21,7 +24,12 @@ langDet:boolean=false
   prodsLang:string='';
   loginLang:string='';
   logoutLang:string='';
-  constructor(authSeller:AuthSellerService) { 
+  accountLang:string='';
+  constructor(
+   private authSel:AuthService,
+   private router:Router
+    ) { 
+    
     this.lang={
      
       homeEn:"Home",
@@ -31,18 +39,27 @@ langDet:boolean=false
       prodsEn:"Products",
       loginEn:"Login",
       logoutEn:"Logout",
+      accountEn:'Account',
       homeAr:"الرئيسية",
       addprodAr:"إضافة منتج",
       orderAr:"الطلبات",
       salesAr:"المبيعات",
       prodsAr:"المنتجات",
       loginAr:"تسجيل الدخول",
-      logoutAr:"تسجيل الخروج"
+      logoutAr:"تسجيل الخروج",
+      accountAr:'حسابي'
     }
 
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('id'))
+    {
+      this.IsUserLog=true
+    }
+    else
+    {this.IsUserLog=false}
+   
     this.decide= localStorage.getItem('lang')
    console.log(this.decide)
     if(this.decide == null){
@@ -53,6 +70,7 @@ langDet:boolean=false
     this.prodsLang=this.lang.prodsEn;
     this.loginLang=this.lang.loginEn;
      this.logoutLang=this.lang.logoutEn;
+     this.accountLang=this.lang.accountEn;
     }
     this.switchHandle()
   
@@ -61,6 +79,9 @@ langDet:boolean=false
 
   logout()
   {
+   this.authSel.Logout();
+   this.router.navigateByUrl('/Login')
+
    
   }
   switch(){
@@ -103,6 +124,7 @@ langDet:boolean=false
     this.prodsLang=this.lang.prodsEn;
     this.loginLang=this.lang.loginEn;
      this.logoutLang=this.lang.logoutEn;
+     this.accountLang=this.lang.accountEn;
 
       if(styled.length!=0){
         for(let i=0; i<=styled.length; i++){
@@ -122,6 +144,7 @@ langDet:boolean=false
      this.prodsLang=this.lang.prodsAr;
      this.loginLang=this.lang.loginAr;
       this.logoutLang=this.lang.logoutAr;
+      this.accountLang=this.lang.accountAr;
       
        if(styled.length!=0){
          for(let i=0; i<=styled.length; i++){
