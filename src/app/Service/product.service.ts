@@ -44,7 +44,31 @@ arr:[]=[]
       
     //try to get data from product collection by ref sellerid
     this.db.collection("Products").snapshotChanges()
-    let id=this.sellerServ.getSellerId()
+
+  let sid=doc(this.firestore,'Seller','Q14GIMGalzdzZuXBTtFql0WxjTh1')
+  console.log(sid)
+  return   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
+
+
+   // const allprods= collectionData(p) as Observable<IProduct[]>
+//    let sid=doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV')
+//     let res = this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid))
+// .snapshotChanges()
+// .subscribe(
+// // data=>{this.result=data}
+// //this.prod.next(e); this.result=e; this.resarr.push(this.result);
+//   data =>{   this.resarr=data.map((el)=>{
+
+//     return{
+//       id:el.payload.doc.id,
+//       ...(el.payload.doc.data())
+
+//     }
+//     console.log(this.resarr)
+//   })
+//     })
+
+
 
   let sid=doc(this.firestore,'Seller',id)
   return   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()

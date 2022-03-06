@@ -5,30 +5,27 @@
           <tr>
             
             <th scope="col">Buyer</th>
-            <th scope="col">Total</th>
-
+            <th scope="col">ProductName</th>
             <th scope="col">Date</th>
             <th scope="col">status</th>
-           <th scope="col">Arrived</th>
-           <th scope="col">Details</th>
+           
+           <th scope="col">Total</th>
           </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let item of Orders | async" >
-                <tr   
-                
-               
-                >
+            <ng-container  >
+                <tr>
+            
+                   <td *ngFor="let buyer of buyers">{{buyer}}</td>
                  
-                <td>{{item.buyer}}</td>
-                <td>{{item.Total}}</td>
-                  <td>{{item.date}}</td>
-                  <td>{{item.status}}</td>
+                
+                <td>{{prices}}</td>
+                  <td></td>
+                  <td></td>
                  <td>
                      <button type="button" name="" id="" class="btn btn-dark btn-lg ">Arrived</button>
                  </td>
                  <td>
-                  <button type="button" routerLink="/Orders/:pid" name="" id="" class="btn btn-success btn-lg ">Details</button>
               </td>
                 </tr>
               </ng-container>
