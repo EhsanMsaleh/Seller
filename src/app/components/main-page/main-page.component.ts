@@ -48,6 +48,7 @@ export class MainPageComponent implements OnInit {
   sales: number = 0
   price: number = 0
   prices: number[] = []
+  name:string=''
   constructor(private prodServ: ProductService, private sellerServ: SellerService, private location: Location, private orderServ: OrdersService) {
     this.lang = {
       waitingEn: "waiting shipment",
@@ -66,17 +67,13 @@ export class MainPageComponent implements OnInit {
       activeAr: "المنتجات المفعلة",
       outEn: "Out of Stock",
       outAr: "نفذت كميتها",
-
       sellEn: "sell Now",
       sellAr: "ابدأ البيع",
       salesEn: "My Sales",
       salesAr: "المبيعات",
       productsEn: "Products",
       productsAr: "المنتجات"
-
-
     }
-
   }
 
   ngOnInit(): void {
@@ -142,9 +139,6 @@ export class MainPageComponent implements OnInit {
     })*/
    
 
-
-
-
     console.log(this.sales)
 
     this.Products = this.prodServ.getAllproduct()
@@ -171,7 +165,14 @@ export class MainPageComponent implements OnInit {
             */
           this.Product.map((e) => {
             this.prods = e
-
+            if(this.decide == 'Ar'){
+              this.name=e.NameAr
+              console.log(this.name)
+            } else if(this.decide == "En"){
+              this.name = e.Name
+              console.log(this.name)
+            }
+              
             if (this.prods.Quantity != 0) {
               this.activeProd.push(this.prods)
               console.log(this.prods)
