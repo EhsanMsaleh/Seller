@@ -6,12 +6,13 @@ import {AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {IProduct} from '../ViewModel/product';
+import { AuthSellerService } from 'src/app/Service/authSeller.service';
 
 import { ISeller } from '../ViewModel/user';
 import {AngularFireAction, AngularFireList,} from '@angular/fire/compat/database'
 import * as fir from 'firebase/compat/app'
 import { FirebaseApp, FirebaseAppModule, FirebaseApps } from '@angular/fire/app';
-
+ 
 @Injectable({
 
 
@@ -32,45 +33,18 @@ arr:[]=[]
 
  
  
-  constructor(private firestore: Firestore, private db: AngularFirestore) { 
+  constructor(private firestore: Firestore, private db: AngularFirestore,private sellerServ: AuthSellerService) { 
 
 
   }
 
 
   getAllproduct(){
-    /*const collectionseller:any = collection(this.firestore, 'Products');
-
-     this. Product = collectionData(collectionseller,{idField:'id'}) as Observable<IProduct[]>;
-     return this. Product
-
-    const user =this.db.collection<ISeller>('users').doc('SZREo5iMzjFm2lC35dz3').snapshotChanges()
-
-        user.subscribe((prd)=>{
-        let gotProd:any =prd.payload.data().Product
-      this.Product = gotProd.map(e=> e.Product_Id.id) as Observable<IProduct[]>;
-      console.log(this.Product)
-
-      })
-      console.log(this.Product)
-      return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges()
-     */
-      // }) 
-      // console.log(this.Product)
-      // return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges() 
-    //  return this.db.collection<ISeller>('users')
-    //  .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
-    //    var res2 = res.data();
-    //    res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
-    //      this.prod.next(prd.data() as IProduct)
-    //      console.log(this.prod)
-    //     })
-    //   })
-    //   console.log(this.Product)
-     // return this.db.collection<IProduct>('Products', (ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product)).snapshotChanges()
-     
+   
+      
     //try to get data from product collection by ref sellerid
     this.db.collection("Products").snapshotChanges()
+
   let sid=doc(this.firestore,'Seller','Q14GIMGalzdzZuXBTtFql0WxjTh1')
   console.log(sid)
   return   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
@@ -96,46 +70,21 @@ arr:[]=[]
 
 
 
-// console.log(this.resarr)
+  let sid=doc(this.firestore,'Seller',id)
+  return   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
 
-//return res
 
-  //   allprods.subscribe(e=>{e.map((e)=>{
-
-  //    if(e.SellerID=doc(this.firestore,'users','SZREo5iMzjFm2lC35dz3'))
-
-  //    {
-  //      this.db.collection<IProduct>('Products').doc(e.id).get()
-  //    .subscribe((res)=>{var res2 = res.data();
-  //    console.log(res2)
-  //   })
-  // }
-  //   })})
-  //   console.log()
-    //////////////////
-
-    //  return this.db.collection<ISeller>('users')
-    //  .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
-    //    var res2 = res.data();
-    //    res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
-    //      this.prod.next(prd.data() as IProduct)
-    //     })
-
-    //   })
-    //  })
+  
+   
 
   }
- 
-//to try later
-  // getBooks(): Observable<IBook[]> {
-  //   const booksRef = collection(this.firestore, 'books');
-  //   return collectionData(booksRef, { idField: 'id' }) as Observable<IBook[]>;
-  // }
+
 
 
   mainPageData(){
     this.db.collection("Products").snapshotChanges()
-    let sid=doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV')
+    let id=this.sellerServ.getSellerId()
+    let sid=doc(this.firestore,'Seller',id)
     
     const him =   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
     console.log(him)

@@ -4,37 +4,38 @@
     <aside class="col-lg-10 col-sm-10 col-md-10 ">
 
       <h5 class="fw-bold">{{loginLang}}</h5>
-      <form class="form needs-validation" 
+      <form class="form needs-validation" #form="ngForm" (ngSubmit)="login(form)"
        novalidate>
         <div class="col-11 mb-3 mt-3 ">
           <input type="email" class="form-control border-3" 
-          (ngModel)="email" 
-          id="email" placeholder={{emailLang}} name="email"
+        #Email="ngModel" ngModel
+          id="email" placeholder={{emailLang}} name="Email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
            required>
-           <!-- <div [hidden]="email.untouched" class="text-danger">
-            <span [hidden]="!email.errors?.['required']"
+           <div [hidden]="Email.untouched" class="text-danger">
+            <span [hidden]="!Email.errors?.['required']"
               >email is required.</span
             >
-            <span [hidden]="!email.errors?.['pattern']">Not valid</span>
-          </div> -->
+            <span [hidden]="!Email.errors?.['pattern']">Not valid</span>
+          </div> 
         </div>
         <div class="col-11 mb-3">
           <input type="password" class="form-control border-3" 
-          (ngModel)="Password" 
-          id="pwd" placeholder={{passwordLang}} name="pswd" required>
+           ngModel #Password="ngModel"
+          id="pwd" placeholder={{passwordLang}} name="Password" required>
           <div class="invalid-feedback">
             Please provide right password.
           </div>
         </div>
-        <!-- <div class="form-check mb-3">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="remember"> Remember me
-          </label>
-        </div> -->
+        <div [hidden]="Password.untouched" class="text-danger">
+          <span [hidden]="!Password.errors?.['required']"
+            >Password is required.</span
+          >
+          <span [hidden]="!Password.errors?.['pattern']">Not valid</span>
+        </div> 
         <div class=" containerall" >
         <button class="col-10 btlogin" type="submit"  
-        (click)="login(email,Password)"
+        [disabled]="form.invalid"
         ><i  class="fas fa-envelope"></i> {{loginLang}}</button>
         <!-- <button class="col-10 btlogfb" type="submit" ><i class="fab fa-facebook-square"></i> LOGIN WITH FACEBOOK</button> -->
       </div>

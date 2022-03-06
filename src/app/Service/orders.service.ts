@@ -19,6 +19,7 @@ export class OrdersService {
   loggedToken:string=''
   quant:number=0
   orderSeller= new  BehaviorSubject<IProduct>({});
+
   orderBuyer = new BehaviorSubject<string>('')
   pending= new BehaviorSubject<number>(0)
   delivered= new BehaviorSubject<number>(1)
@@ -31,6 +32,7 @@ export class OrdersService {
   deliver:boolean;
   pend:boolean
   quantity = new BehaviorSubject<number>(0)
+
   constructor(private firestore: Firestore, private db: AngularFirestore) {
     const collectionseller:any = collection(firestore, 'Orders');
     this.Order = collectionData(collectionseller);
@@ -146,7 +148,9 @@ export class OrdersService {
 
     })
      })*/
+
     this.loggedToken='Q14GIMGalzdzZuXBTtFql0WxjTh1'
+
      const q = collection(this.firestore, 'Orders')
      
      const allOrders = collectionData(q) as Observable<Orders[]>
@@ -200,4 +204,5 @@ export class OrdersService {
         ))*/
     
   }
+
 }

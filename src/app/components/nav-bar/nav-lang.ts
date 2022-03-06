@@ -6,11 +6,13 @@ export interface NavLang {
     prodsEn:string,
     loginEn:string,
     logoutEn:string,
+    accountEn:string,
     homeAr:string,
     addprodAr:string,
     orderAr:string,
     salesAr:string,
     prodsAr:string,
     loginAr:string,
-    logoutAr:string
+    logoutAr:string,
+    accountAr:string
 }
