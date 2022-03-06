@@ -71,7 +71,8 @@ arr:[]=[]
      
     //try to get data from product collection by ref sellerid
     this.db.collection("Products").snapshotChanges()
-  let sid=doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV')
+  let sid=doc(this.firestore,'Seller','Q14GIMGalzdzZuXBTtFql0WxjTh1')
+  console.log(sid)
   return   this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
 
 
