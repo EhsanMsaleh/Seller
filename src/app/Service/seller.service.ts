@@ -1,6 +1,7 @@
 import { Firestore, collectionData, collection,collectionGroup, where,query, getDocs } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthSellerService } from 'src/app/Service/authSeller.service';
 
 import {ISeller} from '../ViewModel/user';
 import { timeStamp } from 'console';
@@ -14,11 +15,11 @@ export class SellerService {
   Seller!: Observable<ISeller[]>;
   User: Observable<ISeller[]>;
   Name= new BehaviorSubject('')
-  constructor(private firestore: Firestore, private db: AngularFirestore) { 
-    const collectionseller:any = collection(firestore, 'users');
+  constructor(private firestore: Firestore, private db: AngularFirestore, private sellerServ: AuthSellerService) { 
+    const collectionseller:any = collection(firestore, 'Seller');
     this.Seller = collectionData(collectionseller);
-    const collectiongr = collection(firestore, 'users')
-    this.User= collectionData(collectiongr);
+    const collectiongr = collection(firestore, 'Seller')
+   // this.User= collectionData(collectiongr);
     
   }
   
@@ -46,10 +47,10 @@ export class SellerService {
    })
    console.log(this.Name)
    return this.Name;*/
-
-    this.db.collection<ISeller>('users')
-     .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
-       var res2 =  res.data().firstname;
+let id=this.sellerServ.getSellerId()
+    this.db.collection<ISeller>('Seller')
+     .doc(id).get().subscribe((res)=>{
+       var res2 =  res.data().FirstName;
 
        
       this.Name.next( res2)
@@ -58,9 +59,10 @@ export class SellerService {
     return  this.Name
 }
 getdetails(){
-  this.db.collection<ISeller>('users')
-  .doc('GJdYZoixIgn7krJLNZWV').get().subscribe((res)=>{
-    var res2 =  res.data().firstname;
+  let id=this.sellerServ.getSellerId()
+  this.db.collection<ISeller>('Seller')
+  .doc(id).get().subscribe((res)=>{
+    var res2 =  res.data().FirstName;
 
     
    this.Name.next( res2)

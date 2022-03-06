@@ -16,7 +16,7 @@ export class OrdersService {
   arr:IProduct[]=[]
 
   orderSeller= new  BehaviorSubject<IProduct>({});
-  ordrslr = new BehaviorSubject<ISeller>({})
+ // ordrslr = new BehaviorSubject<ISeller>({})
   constructor(private firestore: Firestore, private db: AngularFirestore) {
     const collectionseller:any = collection(firestore, 'Orders');
     this.Order = collectionData(collectionseller);
@@ -40,24 +40,24 @@ export class OrdersService {
     })
      })*/
 
-     const q = collection(this.firestore, 'Orders')
-     const allOrders = collectionData(q) as Observable<Orders[]>
-    return  allOrders.subscribe(e=>e.map((e)=>{
-        e.Product.map((el)=>{
-        const hopa: any=  el.Product_Id.id.toString()
-        this.prodsId.push(hopa)
-        this.prodsId.map((e)=>{let prodID=e;
-        this.db.collection<IProduct>('Products').doc(`${prodID}`).get().subscribe(
-          (res)=>{var res2:any = res.data();
-            this.arr.push(res2)
-          res2.SellerID?.get().then((usr)=>{this.ordrslr.next(usr.data() as ISeller)
+    //  const q = collection(this.firestore, 'Orders')
+    //  const allOrders = collectionData(q) as Observable<Orders[]>
+    // return  allOrders.subscribe(e=>e.map((e)=>{
+    //     e.Product.map((el)=>{
+    //     const hopa: any=  el.Product_Id.id.toString()
+    //     this.prodsId.push(hopa)
+    //     this.prodsId.map((e)=>{let prodID=e;
+    //     this.db.collection<IProduct>('Products').doc(`${prodID}`).get().subscribe(
+    //       (res)=>{var res2:any = res.data();
+    //         this.arr.push(res2)
+    //       res2.SellerID?.get().then((usr)=>{this.ordrslr.next(usr.data() as ISeller)
             
-            });
-          console.log(this.ordrslr, res2.Name)
-        })})
-        })
-        }
-        //this.db.collection<IProduct>('Products').doc(
-        ))
+    //         });
+    //       console.log(this.ordrslr, res2.Name)
+    //     })})
+    //     })
+    //     }
+    //     //this.db.collection<IProduct>('Products').doc(
+    //     ))
     }
 }

@@ -6,6 +6,8 @@ import {
   doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc
 } from '@angular/fire/firestore';
 import { IProduct } from '../../ViewModel/product';
+import { AuthSellerService } from 'src/app/Service/authSeller.service';
+
 import { ProductService } from '../../Service/product.service';
 import {CategoryService} from '../../Service/category.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -32,6 +34,7 @@ export class ProductFormComponent implements OnInit {
   public InputSize: string = '';
   public InputDiem: string = '';
  public searchKey!:string[];
+ seller:any;
    constructor(
     private router: Router,
     private ActivatedRoute: ActivatedRoute,
@@ -39,7 +42,8 @@ export class ProductFormComponent implements OnInit {
     private db: AngularFirestore,
     private firestore: Firestore,
     private catServ:CategoryService,
-    private location: Location
+    private location: Location,
+    private sellerServ: AuthSellerService
   ) {
 
       
@@ -70,7 +74,7 @@ export class ProductFormComponent implements OnInit {
 
     
       console.log(this.Category)
-    })
+    }) 
     
 
     if(this.ActivatedRoute.snapshot.params['pid'])
@@ -118,17 +122,20 @@ sea(name:string){
     }
     else{
     
-    // currentUser.uid=id
-   let currentUser="GJdYZoixIgn7krJLNZWV"
-   console.log(this.NewProd);
-   console.log("---------------");
-  // this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0}
-/*  this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0,
-    SellerID:doc(this.firestore,'users','GJdYZoixIgn7krJLNZWV') }
+      this.sellerServ.getSellerById().subscribe((e)=>{
+        e.map((e)=>{this.seller=e})
+       })
+
+   let currentSeller=this.sellerServ.getSellerId()
+   
+  this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0,
+    SellerID:doc(this.firestore,'Seller',currentSeller) }
 
     console.log(this.NewProd);
-    // this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())*/
-
+   // this.seller.Products.push({Product_Id:doc(this.firestore,'Products',this.NewProd.id)})
+     this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
+     this.seller.Products.push({Product_Id:doc(this.firestore,'Products',this.NewProd.id)})
+//نحط هنا ال id في product[] في ال seller
     }
     
 

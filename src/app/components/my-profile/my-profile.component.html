@@ -1,6 +1,6 @@
 <div class="containerall">
   <div class="container">
-      
+    <!-- <p>{{this.seller | json}}</p> -->
     <div class="row align-items-start">
       <div class="col fs-4">Account Overview</div>
     </div>
@@ -13,11 +13,11 @@
             <hr>
         </div>
         <div class="row justify-content-center">
-            <p class=" col  justify-content-start" >Ehsan Mohamed</p>
+            <p class=" col  justify-content-start" >{{this.seller.FirstName}} {{this.seller.LastName}}</p>
             
         </div>
         <div class="row justify-content-center">
-            <p class=" col  justify-content-start" >ehsan@mo.com</p>
+            <p class=" col  justify-content-start" >{{this.seller.Email}}</p>
             
         </div>
         <div class="row justify-content-center">
@@ -60,7 +60,7 @@
                 <hr>
             </div>
             <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Active Products: 5</p>
+                <p class=" col  justify-content-start" >Active Products: {{this.seller.products}}</p>
                 
             </div>
             <div class="row justify-content-center">
