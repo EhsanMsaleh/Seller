@@ -1,6 +1,7 @@
 import { DocumentReference } from "@angular/fire/compat/firestore"
 
 export interface Seller {
+
     CompanyName: string,
     Email:string,
     FirstName:string,

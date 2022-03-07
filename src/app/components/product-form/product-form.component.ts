@@ -33,7 +33,7 @@ export class ProductFormComponent implements OnInit {
   public InputDescription: string = '';
   public InputSize: string = '';
   public InputDiem: string = '';
- public searchKey!:string[];
+ public searchKey!:string[]; 
  seller:any;
    constructor(
     private router: Router,
@@ -123,18 +123,21 @@ sea(name:string){
     else{
     
       this.sellerServ.getSellerById().subscribe((e)=>{
-        e.map((e)=>{this.seller=e})
-       })
+       this.seller=e
+       }) 
 
    let currentSeller=this.sellerServ.getSellerId()
-   
-  this.NewProd={...this.NewProd,searchKey:{...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)},Rank:0,
+   let seaarr:string[];
+   seaarr=this.sea(this.NewProd.Name!).concat(this.sea(this.NewProd.NameAr!))
+  //  {...this.sea(this.NewProd.Name!),...this.sea(this.NewProd.NameAr!)}
+  this.NewProd={...this.NewProd,searchKey:seaarr,Rank:0,
     SellerID:doc(this.firestore,'Seller',currentSeller) }
 
-    console.log(this.NewProd);
+    
    // this.seller.Products.push({Product_Id:doc(this.firestore,'Products',this.NewProd.id)})
      this.prodServ.addNewprod(this.NewProd).then(()=>form.reset())
      this.seller.Products.push({Product_Id:doc(this.firestore,'Products',this.NewProd.id)})
+     console.log(this.NewProd,"----",this.NewProd.id);
 //نحط هنا ال id في product[] في ال seller
     }
     

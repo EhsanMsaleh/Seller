@@ -14,6 +14,8 @@ import{LoginComponent} from './components/Login/Login.component';
 import {AuthSellerGuard} from './Gaurds/auth-seller.guard';
 import { ProductsDetailedComponent } from './components/products-detailed/products-detailed.component';
 import { SellerHomeComponent } from './components/seller-home/seller-home.component';
+import { NotActiveComponent } from './components/NotActive/NotActive.component';
+import { Seller_FormComponent } from './components/Seller_Form/Seller_Form.component';
 const routes: Routes = [
   {path: '', component: LoginComponent, children:[
    
@@ -29,8 +31,9 @@ const routes: Routes = [
      {path: 'Account', component: MyProfileComponent ,canActivate:[AuthSellerGuard]},
      {path: 'detailed', component: ProductsDetailedComponent,canActivate:[AuthSellerGuard]},
   {path:'Add', component:ProductFormComponent,canActivate:[AuthSellerGuard] },
+  {path:'SellerUpdate',component:Seller_FormComponent,canActivate:[AuthSellerGuard]},
   {path:'Update/:pid', component:ProductFormComponent,canActivate:[AuthSellerGuard] },
- 
+ {path:'NewSeller', component:NotActiveComponent},
   {path:'Login', component:LoginComponent},
   {path:'main', component:SellerHomeComponent,canActivate:[AuthSellerGuard]},
    {path: '**', component:NotFoundPageComponent}

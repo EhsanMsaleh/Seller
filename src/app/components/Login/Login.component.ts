@@ -6,13 +6,13 @@ import {
   Validators,
   FormArray,
 } from '@angular/forms';
-
 import { ISeller } from '../../ViewModel/user';
 import { LoginService } from '../../Service/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthSellerService } from '../../Service/authSeller.service';
 import{AuthService} from '../../Service/Auth/Auth.service';
 import { LoginLang } from './login-lang';
+import {SellerService} from '../../Service/seller.service';
 @Component({
   selector: 'app-Login',
   templateUrl: './Login.component.html',
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     private SellerService: LoginService ,
     private router: Router,
     private as: AuthService,
-
+private sellerserv:SellerService
  
   ) {
     this.lang={
@@ -67,14 +67,22 @@ export class LoginComponent implements OnInit {
   { let data= form.value;
     return this.as.login(data.Email, data.Password).subscribe(()=>{
       if(this.as.Seller){
-        let id=this.as.userID;
-        let email=this.as.userEmail;
-        localStorage.setItem('id',JSON.stringify(id))
-        this.authseller.getSellerById().subscribe((e)=>{
-          e.map((e)=>{this.seller=e})
-         })
-        
-        this.router.navigate(['/Home']);
+       
+       this.sellerserv.checkSeller(this.as.userID).subscribe((e)=>{
+         if(e.length>0)
+         {
+          let id=this.as.userID;
+          let email=this.as.userEmail;
+          localStorage.setItem('id',JSON.stringify(id))
+         
+          this.router.navigate(['/Home']);
+          window.location.reload()
+         }
+         else if(e.length=0){
+          alert('you are not a seller , please sign up in jumia website to be one !!!')
+         }
+       })
+       
         }else
         {
           this.errorMes=this.as.errorMsg;
