@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Lang } from 'src/app/ViewModel/lang';
+import { ProdLang } from './prod-lang';
 
 @Component({ 
   selector: 'app-product',
@@ -13,6 +14,20 @@ import { Lang } from 'src/app/ViewModel/lang';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+
+  lang:ProdLang
+  langDet:boolean=false
+  decide:string=''
+  searche:string=""
+    name:string=""
+    quant:string=""
+    price:string=""
+    img:string=""
+    dets:string=""
+    edit:string=""
+    delete:String=""
+
+
 
   Product:Subscription;
 
@@ -28,11 +43,44 @@ searchProducts:IProduct[]=[]
 
   constructor(firestore: Firestore, private prodServ: ProductService) {
     // this.Product=prodServ.getAllproduct();
-  
+    this.lang={
+      searchEn:"search by Product Name",
+      nameEn:"Name",
+      quantEn:"Quantity",
+      priceEn:"Price",
+      imgEn:"Image",
+      detsEn:"Details",
+      editEn:"Edit",
+      deleteEn:"delete",
+      searchAr:"بحث بأسم المنتج",
+      nameAr:"الأسم",
+      quantAr:"الكمية",
+      priceAr:"السعر",
+      imgAr:"الصورة",
+      detsAr:"تفاصيل",
+      editAr:"تعديل",
+      deleteAr:"حذف",
+    }
   }
 
   ngOnInit(): void {
 
+
+    this.decide = localStorage.getItem('lang')
+    console.log(this.decide)
+    if (this.decide == null) {
+      this.searche=this.lang.searchEn
+    this.name=this.lang.nameEn
+    this.quant=this.lang.quantEn
+    this.price=this.lang.priceEn
+    this.img=this.lang.imgEn
+    this.dets=this.lang.detsEn
+    this.edit=this.lang.editEn
+    this.delete=this.lang.deleteEn
+
+    }
+
+    
     /* this.prodServ.getAllproduct().subscribe((res: IProduct[]) => {
 
        this.Products = res;
@@ -101,7 +149,7 @@ console.log( this.prods)
     })
 
   })
-
+    this.switchHandle()
   }
 
 
@@ -140,4 +188,43 @@ search(){
   }
 
 }
+
+
+
+switchHandle() {
+  if (this.decide == 'EN') {
+    this.langDet = !this.langDet
+    let styled = document.getElementsByTagName('div')
+    this.searche=this.lang.searchEn
+    this.name=this.lang.nameEn
+    this.quant=this.lang.quantEn
+    this.price=this.lang.priceEn
+    this.img=this.lang.imgEn
+    this.dets=this.lang.detsEn
+    this.edit=this.lang.editEn
+    this.delete=this.lang.deleteEn
+    if (styled.length != 0) {
+      for (let i = 0; i <= styled.length; i++) {
+        styled[i].style.direction = 'ltr'
+      }
+    }
+  } else if (this.decide == 'AR') {
+    let styled = document.getElementsByTagName('div')
+    this.searche=this.lang.searchAr
+    this.name=this.lang.nameAr
+    this.quant=this.lang.quantAr
+    this.price=this.lang.priceAr
+    this.img=this.lang.imgAr
+    this.dets=this.lang.detsAr
+    this.edit=this.lang.editAr
+    this.delete=this.lang.deleteAr
+    if (styled.length != 0) {
+      for (let i = 0; i <= styled.length; i++) {
+        styled[i].style.direction = 'rtl'
+      }
+    }
+  }
+}
+
+
 }

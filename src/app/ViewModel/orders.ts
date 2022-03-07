@@ -11,6 +11,7 @@ export interface Orders {
             Product_Quntity?:number,
             Total_Price?:number
             Seller_ID?:string
+            notRecieved?:boolean
         }
     ]
 }

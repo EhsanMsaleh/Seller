@@ -13,23 +13,32 @@
           </tr>
         </thead>
         <tbody>
-            <ng-container  >
+       <!-- <td [ngIf]="this.decide == 'Ar'">{{order.prodNameAr}}</td>--> <ng-container *ngFor="let order of arrOorders">
                 <tr>
-            
-                   <td *ngFor="let buyer of buyers">{{buyer}}</td>
-                 
+              
+                    <td>{{order.buyer}}</td>
+         
+                   <ng-template [ngIf]="this.decide == 'EN'">
+                        <td>{{order.prodName}}  </td>
+                   </ng-template>
+                   <ng-template [ngIf]="this.decide == 'AR'">
+                     <td>{{order.prodNameAr}}  </td>
+                  </ng-template>
+                    
+                    
+                    <td>{{order.date}}</td>
+                    <td>{{order.status}}</td>
                 
-                <td>{{prices}}</td>
-                  <td></td>
-                  <td></td>
-                 <td>
-                     <button type="button" name="" id="" class="btn btn-dark btn-lg ">Arrived</button>
-                 </td>
-                 <td>
-              </td>
+                    <ng-template [ngIf]="this.decide == 'EN'">
+                     <td>{{order.total}} EGP</td>
+                 </ng-template>
+                 <ng-template [ngIf]="this.decide == 'AR'">
+                  <td>ج.م {{order.total}} </td>
+                </ng-template>
+                 
                 </tr>
               </ng-container>
-         
+
         </tbody>
       </table>
     

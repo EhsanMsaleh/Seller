@@ -2,8 +2,8 @@
 
   export interface ISeller {
      
-      FirstName?:string,
-      LastName?:string,
+      firstname?:string,
+      lastname?:string,
      CompanyName?:string,
       Email?:string,
       Rate:number,

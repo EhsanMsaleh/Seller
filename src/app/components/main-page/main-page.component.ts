@@ -6,6 +6,7 @@ import { OrdersService } from 'src/app/Service/orders.service';
 import { ProductService } from 'src/app/Service/product.service';
 import { SellerService } from 'src/app/Service/seller.service';
 import { Lang } from 'src/app/ViewModel/lang';
+import { OrderData } from 'src/app/ViewModel/order-data';
 import { IProduct } from 'src/app/ViewModel/product';
 import { ISeller } from 'src/app/ViewModel/user';
 
@@ -15,14 +16,18 @@ import { ISeller } from 'src/app/ViewModel/user';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
+  public IsUserLog:boolean=false;
   Product: IProduct[] = []
   Products: Subscription
-  prods: IProduct
+  prods: IProduct  
   productsAmount: number = 0
   outOfStockAmount: number = 0
   sellerName: string = ''
   outOfStock: IProduct[] = []
   activeProd: IProduct[] = []
+arrOrders: OrderData[]=[]
+pendOrders: OrderData[]=[]
+delOrders: OrderData[]=[]
 
   lang: Lang
   langTry: {};
@@ -76,9 +81,18 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+ async ngOnInit() {
     /*this.sellerServ.getSellerData().subscribe((r)=>this.sellerName = r)
     console.log(this.sellerName)*/
+    if(localStorage.getItem('id'))
+    {
+      this.IsUserLog=true
+    }
+    else
+    {this.IsUserLog=false}
+
+
+
     this.decide = localStorage.getItem('lang')
     console.log(this.decide)
     if (this.decide == null) {
@@ -96,12 +110,19 @@ export class MainPageComponent implements OnInit {
     }
 
     /**/
-    this.orderServ.getBuyerName()
-    this.orderServ.getAllOrders()
-    this.orderServ.delivered.subscribe(e => {this.delivered.push(e);
+      
+    await this.getSales()
+    this.sales=0
+   // this.orderServ.arrOorders.subscribe(e=>{
+     
+ 
+    //console.log(e)})
+
+
+    /*this.orderServ.delivered.subscribe(e => {this.delivered.push(0);
     console.log(this.delivered, 'delivered')})
     
-    this.orderServ.pending.subscribe(e => this.pending.push(e))
+    this.orderServ.pending.subscribe(e => this.pending.push(1))
     console.log(this.delivered, this.pending)
     this.orderServ.price.subscribe((e) => {
       
@@ -136,11 +157,11 @@ export class MainPageComponent implements OnInit {
       
       this.outOfStockAmount = this.outOfStock.length
       this.rejectAmount = this.rejected.length
-    })*/
+    })
    
 
     console.log(this.sales)
-
+*/
     this.Products = this.prodServ.getAllproduct()
       .subscribe(
         // data=>{this.result=data}
@@ -192,12 +213,54 @@ export class MainPageComponent implements OnInit {
 
           this.prices.map(e=>console.log(e))
         })
+   
     this.switchHandle()
-
 
   }
   //)}
+  async getSales(){
 
+    this.orderServ.getAllOrders()
+    this.orderServ.ordersdata.subscribe(e=>
+      {                 
+        /**orders data  */
+          this.arrOrders.push(e)
+        this.totalOrders = this.arrOrders.length
+        let pending =this.arrOrders.filter(e=>e.status==false)
+        let arrived = this.arrOrders.filter(e=>e.status == true)
+             
+            this.prices.push(e.total)
+             this.pendingNo = pending.length
+             this.deliverNo = arrived.length
+        console.log(typeof(e.total))
+          if(typeof(e.total) == 'number')
+            {
+              
+              this.sales+=e.total
+              this.revenue=this.sales*0.9
+            }
+
+            }) 
+            this.arrOrders.pop()
+            this.prices.pop()
+             this.prices.map(e=>
+             { 
+       console.log(e)
+     this.price=e
+       
+      console.log(this.sales)}
+    )
+           console.log(this.prices)
+
+
+     /*   this.prices.map(e=>
+       {   this.sales+=e
+          this.revenue=this.sales*0.9
+          console.log(e, "rottern here")
+        }
+          
+          )*/
+  }
   switchHandle() {
     if (this.decide == 'EN') {
       this.langDet = !this.langDet

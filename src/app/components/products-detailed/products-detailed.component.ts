@@ -7,19 +7,32 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Lang } from 'src/app/ViewModel/lang';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProdsDetLang } from './prods-det-lang';
+
 @Component({
   selector: 'app-products-detailed',
   templateUrl: './products-detailed.component.html',
   styleUrls: ['./products-detailed.component.scss']
 })
 export class ProductsDetailedComponent implements OnInit {
+ lang:ProdsDetLang
+ langDet:boolean=false
+ decide:string=''
+ searche:string=""
+   name:string=""
+   quant:string=""
+   price:string=""
+   img:string=""
+   dets:string=""
+   edit:string=""
+   delete:String=""
 
   Product:Subscription;
 
   //Product:Observable<IProduct[]>;
   outOfStock:IProduct[]=[] 
 activeProd:IProduct[]=[]
-
+  
   Products: Subscription
   prods: IProduct
   ProductsMo: IProduct[] = [];
@@ -29,9 +42,27 @@ activeProd:IProduct[]=[]
   wordStr = this.word.asObservable()
   public InputSearch: string = "";
 startState:boolean=true;
-  constructor(firestore: Firestore, private prodServ: ProductService, private ActivatedRouteServ:ActivatedRoute, private router:Router) {
+  constructor(firestore: Firestore, private prodServ: ProductService, private ActivatedRouteServ:ActivatedRoute, private router:Router)
+   {
     // this.Product=prodServ.getAllproduct();
-  
+    this.lang={
+      searchEn:"search by Product Name",
+    nameEn:"Name",
+    quantEn:"Quantity",
+    priceEn:"Price",
+    imgEn:"Image",
+    detsEn:"Details",
+    editEn:"Edit",
+    deleteEn:"delete",
+    searchAr:"بحث بأسم المنتج",
+    nameAr:"الأسم",
+    quantAr:"الكمية",
+    priceAr:"السعر",
+    imgAr:"الصورة",
+    detsAr:"تفاصيل",
+    editAr:"تعديل",
+    deleteAr:"حذف",
+    }
   }
 
   ngOnInit(): void {
@@ -46,7 +77,7 @@ startState:boolean=true;
         //this.Products= prd.payload.doc.data()
         console.log(prd.payload.doc.data())
       })*/
-
+      
       this.prodServ.getAllproduct()
       /*this.prodServ.prod.subscribe((e)=>{
         this.prods=e
@@ -132,7 +163,7 @@ startState:boolean=true;
     })
 
   })
-
+  this.switchHandle()
   }
 
 
@@ -141,6 +172,8 @@ deleteprod(prod: IProduct) {
     this.prodServ.deleteProd(prod).then(() =>
       console.log('delete successful'));
   }
+
+
 }
 //في حاجه غلط في السيررررررررررش
 search(){
@@ -170,6 +203,42 @@ search(){
   //  }
   }
 
+}
+
+
+switchHandle() {
+  if (this.decide == 'EN') {
+    this.langDet = !this.langDet
+    let styled = document.getElementsByTagName('div')
+    this.searche=this.lang.searchEn
+    this.name=this.lang.nameEn
+    this.quant=this.lang.quantEn
+    this.price=this.lang.priceEn
+    this.img=this.lang.imgEn
+    this.dets=this.lang.detsEn
+    this.edit=this.lang.editEn
+    this.delete=this.lang.deleteEn
+    if (styled.length != 0) {
+      for (let i = 0; i <= styled.length; i++) {
+        styled[i].style.direction = 'ltr'
+      }
+    }
+  } else if (this.decide == 'AR') {
+    let styled = document.getElementsByTagName('div')
+    this.searche=this.lang.searchAr
+    this.name=this.lang.nameAr
+    this.quant=this.lang.quantAr
+    this.price=this.lang.priceAr
+    this.img=this.lang.imgAr
+    this.dets=this.lang.detsAr
+    this.edit=this.lang.editAr
+    this.delete=this.lang.deleteAr
+    if (styled.length != 0) {
+      for (let i = 0; i <= styled.length; i++) {
+        styled[i].style.direction = 'rtl'
+      }
+    }
+  }
 }
 }
 

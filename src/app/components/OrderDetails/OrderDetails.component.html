@@ -1,81 +1,45 @@
- <div class="">
-  <div class="container">
-      
-    <div class="row align-items-start">
-      <div class="col fs-4">Order Details</div>
-    </div>
-    <hr>
-    <div class="row justify-content-center">
-        
-        <div class="row justify-content-center">
-            
-            <p class=" col  justify-content-start" >Buyer: buyer id</p>
-            
-        </div>
-        <div class="row justify-content-center">
-           
-            <p class=" col  justify-content-start" >Total: 2525$</p>
-            
-        </div>
-        <div class="row justify-content-center">
-         
-          <p class=" col  justify-content-start" >Date: 10/10/2021</p>
+<div class="container">
+  <h5>Orders</h5>
+  <table class="table table-hover">
+      <thead>
+        <tr>
           
-      </div>
-      <div class="row justify-content-center">
-        
-          <p class=" col  justify-content-start" >State: not arrived</p>
-          
-      </div>
-      <div class="row justify-content-center">
-        <h6>products</h6>
+          <th scope="col">Buyer</th>
+          <th scope="col">ProductName</th>
+          <th scope="col">Date</th>
+          <th scope="col">status</th>
          
-          <!-- <table class="table table-hover">
-            <thead>
+         <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+   <ng-container *ngFor="let order of orders">
               <tr>
-                
-                <th scope="col">Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-                <th scope="col">Image</th>
-                <th scope="col">Details</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let item of Product | async" >
-
-                    <tr   
-                    
-                    >
-                     
-                      <td>{{item.Name}}</td>
-                      <td  >{{item.Quantity}}</td>
-                      <td>{{item.Price}}</td>
-                      <td class="imgcontainer"><img class="image"  src="{{item.Image}}" alt="{{item.Name}}"></td>
-                      <td>
-                        <button type="button" routerLink="/Products/:pid" class="btn btn-success">Details</button>
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                      </td>
-                    </tr>
-                  </ng-container>
-             
-            </tbody>
-          </table> -->
-          
-      </div>
-      
-     
-        <div class="row justify-content-center">
-            <div class=" col fs-6 justify-content-start" >
-                <!-- <button type="button" routerLink="Orders" name="" id="" class="btn btn-dark btn-lg btn-block">back</button> -->
-            </div>
             
-        </div>
-        </div>
-        
-    </div>
-     </div>
-      
+                  <td>{{order.buyer}}</td>
+       
+                 <ng-template [ngIf]="this.decide == 'EN'">
+                      <td>{{order.prodName}}  </td>
+                 </ng-template>
+                 <ng-template [ngIf]="this.decide == 'AR'">
+                   <td>{{order.prodNameAr}}  </td>
+                </ng-template>
+                  
+                  
+                  <td>{{order.date}}</td>
+                  <td>{{order.status}}</td>
+              
+                  <ng-template [ngIf]="this.decide == 'EN'">
+                   <td>{{order.total}} EGP</td>
+               </ng-template>
+               <ng-template [ngIf]="this.decide == 'AR'">
+                <td>ج.م {{order.total}} </td>
+              </ng-template>
+               
+              </tr>
+            </ng-container>
+
+      </tbody>
+    </table>
+  
+</div>

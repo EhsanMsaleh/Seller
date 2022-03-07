@@ -11,9 +11,7 @@ export class MyProfileComponent implements OnInit {
 seller:any;
   constructor(private sellerServ:AuthSellerService) {
     
-    this.sellerServ.getSellerById().subscribe((e)=>{
-     e.map((e)=>{this.seller=e})
-    })
+    
   }
 
   ngOnInit(): void {
@@ -22,7 +20,9 @@ seller:any;
   //   this.seller=this.sellerServ.getSellerById(id)
   //   //this.sellerServ.getSellerById(id).subscribe((data)=>{this.seller=data})
   // console.log(this.seller)
-  
+  this.sellerServ.getSellerById().subscribe((e)=>{
+     e.map((e)=>{this.seller=e})
+    })
   }
 
 }
