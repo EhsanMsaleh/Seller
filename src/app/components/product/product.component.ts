@@ -55,7 +55,7 @@ this.Product=this.prodServ.getAllproduct()
 
     }
    
-  }); console.log(this.ProductsMo)
+  }); //console.log(this.ProductsMo)
     }
     
     )
@@ -67,12 +67,12 @@ this.Product=this.prodServ.getAllproduct()
       this.prods = e
 
 
-console.log( this.prods)
+//console.log( this.prods)
 
 
-      this.Products.push(this.prods)
-      this.Products = this.searchProducts
-      console.log(this.Products)
+      this.ProductsMo.push(this.prods)
+      this.ProductsMo= this.searchProducts
+    //  console.log(this.ProductsMo)
     })
 
 
@@ -96,8 +96,8 @@ console.log( this.prods)
 
     this.wordStr.subscribe((res) => {
     this.prodServ.searchByName(res).subscribe((res) => {
-      this.Products = res;
-      console.log(res)
+      this.ProductsMo = res;
+      console.log(this.ProductsMo)
     })
 
   })

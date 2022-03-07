@@ -33,6 +33,7 @@ async Logout() {
 localStorage.removeItem('id')
 
   console.log(this.Seller);
+  
 }
 
 }

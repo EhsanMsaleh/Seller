@@ -7,7 +7,7 @@ import {ISeller} from '../ViewModel/user';
 import { timeStamp } from 'console';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAction } from '@angular/fire/compat/database';
-
+import * as fir from 'firebase/compat/app';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,15 +26,16 @@ export class SellerService {
   
 
  
-  getAlluser(): Observable<ISeller[]>{
+  getAlluser(): Observable<any[]>{
     const collectionseller:any = collection(this.firestore, 'users');
-     this. User = collectionData(collectionseller);
+     this. User = collectionData(collectionseller)
      return this. User
   }
 
   getAllseller():Observable<ISeller[]>{
-     const collectionseller:any = collectionGroup(this.firestore, 'users')
-
+    const coll= this.db.collection<ISeller>('Seller').valueChanges()
+     const collectionseller:any = collectionGroup(this.firestore, 'Seller')
+     this.Seller = collectionData(collectionseller)
    // this.Seller = query(collectionseller,where("isSeller" , "==" ,"true" ));
    return this.Seller
   }
@@ -76,6 +77,10 @@ getdetails(){
     query(collectionseller,where("SellerID" , "==" ,id ));
   }
 
-  
+  checkSeller(id:string)
+  {
+    //fir to see ids
+  return  this.db.collection('Seller' , ref=>ref.where(fir.default.firestore.FieldPath.documentId(), '==' , id)).valueChanges();
+  }
 }
  

@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Navigation, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthSellerService } from 'src/app/Service/authSeller.service';
 import { ProductService } from 'src/app/Service/product.service';
 import { SellerService } from 'src/app/Service/seller.service';
 import { Lang } from 'src/app/ViewModel/lang';
@@ -16,6 +17,7 @@ import { ISeller } from 'src/app/ViewModel/user';
 export class MainPageComponent implements OnInit {
 Product: IProduct[]=[]
 Products: Subscription
+Seller:ISeller;
 prods: IProduct
 productsAmount:number = 0
 outOfStockAmount:number = 0
@@ -38,7 +40,8 @@ outStock:string='';
 sellNow:string='';
 langDet:boolean=false
 decide:string='';
-  constructor( private prodServ: ProductService, private sellerServ: SellerService, private location: Location) { 
+  constructor(  private router: Router,
+    private sellerServa:AuthSellerService, private prodServ: ProductService, private sellerServ: SellerService, private location: Location) { 
     this.lang={
         waitingEn:"waiting shipment",
         waitingAr:"ينتظر الشحن",
@@ -70,6 +73,16 @@ decide:string='';
   }
   
   ngOnInit(): void {
+
+    this.sellerServa.getSellerById().subscribe((e)=>{
+      console.log(e)
+    
+     if(this.Seller.IsNew==true)
+     {
+      this.router.navigate(['/NewSeller']);
+
+     }
+     })
     /*this.sellerServ.getSellerData().subscribe((r)=>this.sellerName = r)
     console.log(this.sellerName)*/
 this.decide= localStorage.getItem('lang')
