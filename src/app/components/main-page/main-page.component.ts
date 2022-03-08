@@ -2,7 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Navigation, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { AuthSellerService } from 'src/app/Service/authSeller.service';
+
 import { OrdersService } from 'src/app/Service/orders.service';
+
 import { ProductService } from 'src/app/Service/product.service';
 import { SellerService } from 'src/app/Service/seller.service';
 import { Lang } from 'src/app/ViewModel/lang';
@@ -16,7 +20,9 @@ import { ISeller } from 'src/app/ViewModel/user';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
+
   public IsUserLog:boolean=false;
+
   Product: IProduct[] = []
   Products: Subscription
   prods: IProduct  
@@ -79,9 +85,22 @@ delOrders: OrderData[]=[]
       productsEn: "Products",
       productsAr: "المنتجات"
     }
+
   }
 
- async ngOnInit() {
+
+  ngOnInit(): void {
+
+    this.sellerServa.getSellerById().subscribe((e)=>{
+      console.log(e)
+    
+     if(this.Seller.IsNew==true)
+     {
+      this.router.navigate(['/NewSeller']);
+
+     }
+     })
+
     /*this.sellerServ.getSellerData().subscribe((r)=>this.sellerName = r)
     console.log(this.sellerName)*/
     if(localStorage.getItem('id'))
