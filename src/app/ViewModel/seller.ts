@@ -2,6 +2,7 @@ import { DocumentReference } from "@angular/fire/compat/firestore"
 
 export interface Seller {
 
+
     CompanyName: string,
     Email:string,
     FirstName:string,
@@ -15,24 +16,25 @@ export interface Seller {
         {BulNo: string,
         City:string,
         Street:string,}
+
     ],
-    Orders:[
-        {Date:Date,
-        Product:DocumentReference,
-        Quantity:number,
-        UserName:string,
+    Orders?:[
+        {Date?:Date,
+        Product?:DocumentReference,
+        Quantity?:number,
+        UserName?:string,
         }
     ],
-    Payment:[
+    Payment?:[
         {
-            CVV:string,
-            CardHolderName:string,
-            CreditCard: string,
+            CVV?:string,
+            CardHolderName?:string,
+            CreditCard?: string,
         }
     ],
-    Products:[
+    Products?:[
         {
-            Product_Id:DocumentReference
+            Product_Id?:DocumentReference
         }
     ]
 

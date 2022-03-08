@@ -32,7 +32,7 @@ getloggedStatus(): Observable<boolean>
     return this.IslogSub.asObservable();
   }
   getSellerId(){
-  return  localStorage.getItem('id')
+  return  localStorage.getItem('id').replace(/"/g, '')
   }
   // getSellerById(id:string): Observable<ISeller>{
 

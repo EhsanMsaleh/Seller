@@ -2,12 +2,54 @@
     <div class="container">
         
       <div class="row align-items-start">
-        <div class="col fs-4">Product Details</div>
+        <div class="col fs-4">{{prodDets}}</div>
       </div>
       <hr>
       <div class="row justify-content-center">
           <div class="col box justify-content-start">
              <img [src]="product?.Image"> 
+
+              <hr>
+          </div>
+          <div class="row justify-content-center">
+              <!-- nameProd -->
+              <p class=" col  justify-content-start" ><b>{{name}}</b> {{product?.Name}}</p>
+              
+          </div>
+          <div class="row justify-content-center">
+              <!-- description -->
+              <p class=" col  justify-content-start" ><b>{{description}}</b> {{product?.Description}}</p>
+              
+          </div>
+          <div class="row justify-content-center">
+            <!-- Quantity -->
+            <p class=" col  justify-content-start" ><b>{{quant}}</b> {{product?.Quantity}}</p>
+            
+        </div>
+        <div class="row justify-content-center">
+            <!-- price -->
+            <p class=" col  justify-content-start" ><b>{{price}}</b> {{product?.Price}}</p>
+            
+        </div>
+        <div class="row justify-content-center">
+            <!-- category -->
+            <p class=" col  justify-content-start"><b>{{cat}}</b> {{product?.Category}}</p>
+            
+        </div>
+        <div class="row justify-content-center">
+            <!-- size -->
+            <p class=" col  justify-content-start" ><b>{{sizeDim}}</b> {{product?.Size}} {{product?.Diemention}}</p>
+            
+        </div>
+       
+          <div class="row justify-content-center">
+              <!-- <div class=" col fs-6 justify-content-start" >
+                  <button type="button" [routerLink]="['/Update',(product.id)]" name="" id="" class="btn btn-dark btn-lg btn-block">Edit</button>
+              </div> -->
+              <div class=" col fs-6 justify-content-end" >
+                <button type="button" (click)="back()" name="" id="" class="btn btn-dark btn-lg btn-block">{{backe}}</button>
+            </div>
+
               
           </div>
           <div class="col justify-content-end">

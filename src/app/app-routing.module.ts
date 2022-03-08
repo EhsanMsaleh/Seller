@@ -30,6 +30,7 @@ const routes: Routes = [
      {path: 'Orders/:pid', component: OrderDetailsComponent ,canActivate:[AuthSellerGuard] },
      {path: 'Account', component: MyProfileComponent ,canActivate:[AuthSellerGuard]},
      {path: 'detailed', component: ProductsDetailedComponent,canActivate:[AuthSellerGuard]},
+     //{path:'order', component:OrderDetailsComponent,canActivate:[AuthSellerGuard]},
   {path:'Add', component:ProductFormComponent,canActivate:[AuthSellerGuard] },
   {path:'SellerUpdate',component:Seller_FormComponent,canActivate:[AuthSellerGuard]},
   {path:'Update/:pid', component:ProductFormComponent,canActivate:[AuthSellerGuard] },

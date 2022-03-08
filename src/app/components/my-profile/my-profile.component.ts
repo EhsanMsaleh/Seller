@@ -11,9 +11,8 @@ import { Router } from '@angular/router';
 export class MyProfileComponent implements OnInit {
 seller:ISeller;
   constructor(private sellerServ:AuthSellerService,private router: Router,
-    ) {
-    
-  }  
+    ) {  }
+
 
   ngOnInit(): void {
     
@@ -26,7 +25,8 @@ seller:ISeller;
   //   this.seller=this.sellerServ.getSellerById(id)
   //   //this.sellerServ.getSellerById(id).subscribe((data)=>{this.seller=data})
   // console.log(this.seller)
-   
+
+
   }
 
   

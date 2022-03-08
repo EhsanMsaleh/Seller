@@ -3,19 +3,19 @@
     
     <input type="search"
      (keydown)="search()" [(ngModel)]="InputSearch"
-      class="form-control" placeholder="Search By Name ..." aria-label="search" aria-describedby="basic-addon1">
+      class="form-control" placeholder={{searche}} aria-label="search" aria-describedby="basic-addon1">
   </div>
     <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Image</th>
-            <th scope="col">Details</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col">{{name}}</th>
+            <th scope="col">{{quant}}</th>
+            <th scope="col">{{price}}</th>
+            <th scope="col">{{img}}</th>
+            <th scope="col">{{dets}}</th>
+            <th scope="col">{{edit}}</th>
+            <th scope="col">{{delete}}</th>
           </tr> 
         </thead>
         <tbody *ngIf="ProductsMo">
@@ -34,13 +34,13 @@
                   <td>{{item.Price}}</td>
                   <td class="imgcontainer"><img class="image"  src="{{item.Image}}" alt="{{item.Name}}"></td>
                   <td>
-                    <button type="button" [routerLink]="['/Products',(item.id)]" class="btn btn-success">Details</button>
+                    <button type="button" [routerLink]="['/Products',(item.id)]" class="btn btn-success">{{dets}}</button>
                   </td>
                   <td>
-                    <button type="button" [routerLink]="['/Update',(item.id)]" class="btn btn-warning">Edit</button>
+                    <button type="button" [routerLink]="['/Update',(item.id)]" class="btn btn-warning">{{edit}}</button>
                   </td>
                   <td>
-                    <button type="button" (click)="deleteprod(item)" class="btn btn-danger">Delete</button>
+                    <button type="button" (click)="deleteprod(item)" class="btn btn-danger">{{delete}}</button>
                   </td>
                 </tr>
               </ng-container>

@@ -25,8 +25,10 @@ export class SellerService {
   
   
 
+
  
   getAlluser(): Observable<any[]>{
+
     const collectionseller:any = collection(this.firestore, 'users');
      this. User = collectionData(collectionseller)
      return this. User
@@ -51,7 +53,7 @@ export class SellerService {
 let id=this.sellerServ.getSellerId()
     this.db.collection<ISeller>('Seller')
      .doc(id).get().subscribe((res)=>{
-       var res2 =  res.data().FirstName;
+       var res2 =  res.data().firstname;
 
        
       this.Name.next( res2)
@@ -63,7 +65,7 @@ getdetails(){
   let id=this.sellerServ.getSellerId()
   this.db.collection<ISeller>('Seller')
   .doc(id).get().subscribe((res)=>{
-    var res2 =  res.data().FirstName;
+    var res2 =  res.data().firstname;
 
     
    this.Name.next( res2)
