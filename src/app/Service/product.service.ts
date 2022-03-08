@@ -66,7 +66,7 @@ arr:[]=[]
     console.log(him)
 
     return him
-  }
+  } 
   addNewprod(NewProd:IProduct)
   {
     const collectionsellerRef:any = collection(this.firestore, 'Products');
@@ -92,7 +92,8 @@ updateProd(Prod: IProduct) {
 searchByName(search:string)
 {
  //return this.db.collection<IProduct>('Products',(ref)=>ref.where('searchKey','array-contains',search).limit(5)).valueChanges();
- return this.db.collection<IProduct>('Products',(ref)=>ref.where(fir.default.firestore.FieldPath.documentId(), 'in',this.Product).where('searchKey','array-contains',search).limit(5)).valueChanges();
+ return this.db.collection<IProduct>('Products',(ref)=>ref.where(fir.default.firestore.FieldPath.documentId(),
+  'in',this.Product).where('searchKey','array-contains',search).limit(5)).valueChanges();
 
 
 }

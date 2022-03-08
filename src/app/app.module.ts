@@ -28,10 +28,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsDetailedComponent } from './components/products-detailed/products-detailed.component';
 import { SellerHomeComponent } from './components/seller-home/seller-home.component';
-
+import{Seller_FormComponent} from './components/Seller_Form/Seller_Form.component';
 @NgModule({
   declarations: [
     AppComponent,
+    Seller_FormComponent,
     LoginComponent,
     MainPageComponent,
     MyOrderComponent,

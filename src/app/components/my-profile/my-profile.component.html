@@ -1,6 +1,6 @@
 <div class="containerall">
   <div class="container">
-    <!-- <p>{{this.seller | json}}</p> -->
+     
     <div class="row align-items-start">
       <div class="col fs-4">Account Overview</div>
     </div>
@@ -8,121 +8,47 @@
     <div class="row justify-content-center">
         <div class="col box">
             <div class="row justify-content-center">
-            <p class=" col fs-6 justify-content-start" >ACCOUNT DETAILS</p>
+            <p class=" col-7 fs-6 justify-content-start" >ACCOUNT DETAILS</p>
             <div class="col"><!--icon--></div>
             <hr>
         </div>
         <div class="row justify-content-center">
-            <p class=" col  justify-content-start" >{{this.seller.FirstName}} {{this.seller.LastName}}</p>
+            <p class=" col  justify-content-start" >Name: {{seller.FirstName}} {{seller.LastName}}</p>
             
         </div>
         <div class="row justify-content-center">
-            <p class=" col  justify-content-start" >{{this.seller.Email}}</p>
+            <p class=" col  justify-content-start" >Email: {{seller.Email}}</p>
             
         </div>
+        <div class="row justify-content-center">
+          <p class=" col  justify-content-start" >Active:  {{seller.IsActive}}</p>
+          
+      </div>
+      <div class="row justify-content-center">
+        <p class=" col  justify-content-start" ></p>
+        
+    </div>
+    <div class="row justify-content-center">
+      <p class=" col  justify-content-start" >Company Name: {{seller.CompanyName}}</p>
+      
+  </div>
+  <div class="row justify-content-center">
+    <p class=" col  justify-content-start" >Phone Number: {{seller.Phone}}</p>
+    
+</div>
+<div class="row justify-content-center">
+  <p class=" col  justify-content-start" >Rate: {{seller.Rate}}</p>
+  
+</div>
         <div class="row justify-content-center">
             <div class=" col fs-6 justify-content-start" >
-            <a>CHANGE PASSWORD</a>
+              <button type="button" name="" id="" class="btn link" [routerLink]="['/SellerUpdate']">CHANGE</button>
             </div>
             
         </div>
         </div>
-        <div class="col box">
-           
-            <div class="row justify-content-center">
-                <p class=" col fs-6 justify-content-start" >STATE</p>
-                <div class="col"><!--icon--></div>
-                <hr>
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Following: 5</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Followers: 2</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <div class=" col fs-6 justify-content-start" >
-                <a>Change Privacy</a>
-                </div>
-                
-            </div>
-        
-      </div>
+      
     </div>
-      <br>
-      <div class="row justify-content-center">
-        <div class="col box">
-            <div class="row justify-content-center">
-                <p class=" col fs-6 justify-content-start" >MY PRODUCT</p>
-                <div class="col"><!--icon--></div>
-                <hr>
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Active Products: {{this.seller.products}}</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >products waiting approval: 2</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Cancelled products: 5</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col fs-6 justify-content-start" >Sell Now</p>
-                <div class="col"><!--icon--></div>
-               
-            </div>
-       
-        </div>
-        <div class="col box">
-            <div class="row justify-content-center">
-                <p class=" col fs-6 justify-content-start" >MY SALES</p>
-                <div class="col"><!--icon--></div>
-                <hr>
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >waiting shipment: 5</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Orders shipped: 2</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >pending refund or replacement: 5</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >sales history: 2</p>
-                
-            </div>
-        </div>
-      </div>
-      <br>
-      <div class="row justify-content-center">
-       
-        <div class="col box">
-            <div class="col">
-                <div class="row justify-content-center">
-                <p class=" col fs-6 justify-content-start" >MY PURCHASES</p>
-                <div class="col"><!--icon--></div>
-                <hr>
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Purchase History</p>
-                
-            </div>
-            <div class="row justify-content-center">
-                <p class=" col  justify-content-start" >Pending Purchases</p>
-                
-            </div>
-           
-            </div>
-        </div>
-      </div>
+     
   </div>
 </div>

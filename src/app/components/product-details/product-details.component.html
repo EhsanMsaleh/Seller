@@ -6,8 +6,9 @@
       </div>
       <hr>
       <div class="row justify-content-center">
-          <div class="col box">
+          <div class="col box justify-content-start">
              <img [src]="product?.Image"> 
+
               <hr>
           </div>
           <div class="row justify-content-center">
@@ -48,9 +49,52 @@
               <div class=" col fs-6 justify-content-end" >
                 <button type="button" (click)="back()" name="" id="" class="btn btn-dark btn-lg btn-block">{{backe}}</button>
             </div>
+
               
           </div>
-          </div>
+          <div class="col justify-content-end">
+           <br>
+            <div>
+             <!-- nameProd -->
+             <p class=" col justify-content-start" ><b>Name:</b> {{product?.Name}}</p>
+             
+         </div>
+         <div class="row justify-content-center">
+             <!-- description -->
+             <p class=" col  justify-content-start" ><b>Description</b> {{product?.Description}}</p>
+             
+         </div>
+         <div class="row justify-content-center">
+           <!-- Quantity -->
+           <p class=" col  justify-content-start" ><b>Quantity</b> {{product?.Quantity}}</p>
+           
+       </div>
+       <div class="row justify-content-center">
+           <!-- price -->
+           <p class=" col  justify-content-start" ><b>Price</b> {{product?.Price}}</p>
+           
+       </div>
+       <div class="row justify-content-center">
+           <!-- category -->
+           <p class=" col  justify-content-start" ><b>Category</b> {{product?.Category}}</p>
+           
+       </div>
+       <div class="row justify-content-center">
+           <!-- size -->
+           <p class=" col  justify-content-start" ><b>Sizes or Dimentions</b> {{product?.Size}} {{product?.Diemention}}</p>
+           
+       </div>
+      
+         <div class="row justify-content-center">
+           
+             <div class=" col fs-6 justify-content-end" >
+               <button type="button" (click)="back()" name="" id="" class="btn btn-dark btn-lg btn-block">Back</button>
+           </div>
+             
+         </div>
+         </div>
+          <hr>
+         
            
       </div>
        </div>

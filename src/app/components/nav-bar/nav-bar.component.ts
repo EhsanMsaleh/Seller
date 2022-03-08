@@ -81,6 +81,7 @@ langDet:boolean=false
   {
    this.authSel.Logout();
    this.router.navigateByUrl('/Login')
+   window.location.reload()
 
    
   }

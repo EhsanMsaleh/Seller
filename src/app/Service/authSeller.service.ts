@@ -35,21 +35,24 @@ getloggedStatus(): Observable<boolean>
   return  localStorage.getItem('id').replace(/"/g, '')
   }
   // getSellerById(id:string): Observable<ISeller>{
-    
+
   //    return this.db.collection<ISeller>('Seller').doc(id).valueChanges()
-     
+
   // }
   getSellerById(){
     let id = localStorage.getItem('id');
-    // const ProdDocRef = doc(this.firestore, `Seller/${id}`)
-    // return docData(ProdDocRef, { idField: 'id' }) as Observable<ISeller>;
-   // let id = localStorage.getItem('id');
-  // return  this.db.collection<ISeller>('Seller').valueChanges()
-  const collectionseller:any = collection(this.firestore, 'Seller');
-    return collectionData(collectionseller);
-     
-   
-   
+    // const ProdDocRef = doc(this.firestore, 'Seller/'+id)
+    // return docData(ProdDocRef, { idField: id }) as Observable<ISeller>;
+    return this.db.collection<ISeller>('Seller').doc(JSON.parse(id)).valueChanges()
+  
+
   }
 
-}
+  updateSeller(seller: ISeller) {
+    let idl = localStorage.getItem('id');
+let id= JSON.parse(idl)
+    const ProdDocRef = doc(this.firestore, `Seller/${id}`);
+    return setDoc(ProdDocRef, seller);
+  }
+
+} 
