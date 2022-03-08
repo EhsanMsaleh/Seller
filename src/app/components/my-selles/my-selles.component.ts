@@ -14,18 +14,44 @@ import { OrderData } from 'src/app/ViewModel/order-data';
 export class MySellesComponent implements OnInit {
   Sales:Observable<Sales[]>;
   sales:Sales
+  salesData:Sales[]=[]
   salesArr:OrderData[]=[]
-  dateArr:string[]
+  dateArr:string[]=[]
   saled:number=0
   tot:OrderData[]=[]
-  date:string
+  date:string=''
   constructor(salesServ:SalesService, private orderServ: OrdersService) {
    // this.Sales=salesServ.getAllSales()
    }
 
   async ngOnInit() {
      // await this.groupBy(list, keyGetter)
-      await this.wait()
+      //await this.wait()
+      this.orderServ.getAllOrders()
+     
+      this.orderServ.ordersdata.subscribe(e=>
+        { 
+          if(typeof(e.date)== 'string'){
+            this.dateArr.push(e.date)
+          }
+          console.log(this.dateArr)
+          let saled = 0
+          this.dateArr.map(e=>{
+            this.date=e
+            /*this.orderServ.ordersdata.subscribe(e=>{
+              if(this.date == e.date && e.total!=0){
+                  saled += e.total
+                }
+                console.log(saled, this.date)
+              })*/
+            })
+            let salesDay: Sales = {Date: this.date, Sales: e.total }
+            this.salesData.push(salesDay)
+         
+          console.log(this.salesData)
+          
+          
+        })
   }
 
   async wait(){

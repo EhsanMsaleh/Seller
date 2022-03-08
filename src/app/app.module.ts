@@ -44,7 +44,6 @@ import { SellerHomeComponent } from './components/seller-home/seller-home.compon
     NotFoundPageComponent,
     ProductsDetailedComponent,
     SellerHomeComponent,
-   
   ],
   imports: [
     BrowserModule,
@@ -57,6 +56,7 @@ import { SellerHomeComponent } from './components/seller-home/seller-home.compon
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
+    
     provideFirestore(() => getFirestore()),
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),

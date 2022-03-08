@@ -39,7 +39,7 @@ export class OrdersService {
   
   orderSeller:string = ''
   orderBuyer :string = ''
-  pending : boolean =false
+  pending : string =''
   delivered: boolean=true;
   deliverStat:boolean;
   orderDate :string = ''
@@ -261,7 +261,7 @@ export class OrdersService {
       e.Product.map(e=>{
         /**quantity */
         let quant = e.Product_Quntity
-        let pend = e.notRecieved
+        let pend = e.deliveredstatus
         let stat =e.Seller_ID
         
       if( this.loggedToken==stat ){
@@ -310,7 +310,7 @@ export class OrdersService {
                 prodNameAr: this.prodNameAr,
                  buyer: name,
                   total:this.price,
-                   status: pend }
+                   deliveredstatus: pend }
             this.ordersdata.next(data)
           })
          })  

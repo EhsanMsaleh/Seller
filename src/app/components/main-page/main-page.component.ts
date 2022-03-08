@@ -226,13 +226,17 @@ delOrders: OrderData[]=[]
         /**orders data  */
           this.arrOrders.push(e)
         this.totalOrders = this.arrOrders.length
-        let pending =this.arrOrders.filter(e=>e.status==false)
-        let arrived = this.arrOrders.filter(e=>e.status == true)
+        let pending =this.arrOrders.filter(e=>e.deliveredstatus=='pending')
+        let arrived = this.arrOrders.filter(e=>e.deliveredstatus == 'delivered' )
+             this.arrOrders.filter(e=>e.deliveredstatus == 'shipping' ).map(
+               e=> arrived.push(e)
+             )
              
+            
             this.prices.push(e.total)
              this.pendingNo = pending.length
              this.deliverNo = arrived.length
-        console.log(typeof(e.total))
+
           if(typeof(e.total) == 'number')
             {
               

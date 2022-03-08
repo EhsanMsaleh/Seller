@@ -5,5 +5,5 @@ export interface OrderData {
     prodNameAr?:string,
     buyer?:string,
     total?:number,
-    status?:boolean
+    deliveredstatus?:string
 }

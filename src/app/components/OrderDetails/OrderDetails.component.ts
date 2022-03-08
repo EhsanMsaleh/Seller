@@ -44,13 +44,13 @@ export class OrderDetailsComponent implements OnInit {
       {  
     if(this.ActivatedRouteServ.queryParams['_value'].type == 'shipped'){
  
-      if(e.status=false){
+      if(e.deliveredstatus='pending'){
         this.orders.push(e)
         console.log(this.arrOorders)
       }
     } else if(this.ActivatedRouteServ.queryParams['_value'].type == 'pending')
       {
-        if(e.status=true){
+        if(e.deliveredstatus='delivered'){
 
           this.orders.push(e)
           console.log(this.arrOorders)
