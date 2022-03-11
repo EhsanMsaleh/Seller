@@ -39,7 +39,7 @@ export class OrdersService {
   
   orderSeller:string = ''
   orderBuyer :string = ''
-  pending : boolean =false
+  pending : string =''
   delivered: boolean=true;
   deliverStat:boolean;
   orderDate :string = ''
@@ -52,7 +52,8 @@ export class OrdersService {
   quantity:number = 0
   data:OrderData;
   sales:Sales
-  salesData = new BehaviorSubject<Sales>({})
+  salesData:Sales[] =[] 
+  salesDataArr = new BehaviorSubject<Sales[]>([{}])
   ordersdata  = new BehaviorSubject<OrderData>({})
   constructor(private firestore: Firestore, private db: AngularFirestore, private sellerServ: AuthSellerService) {
     const collectionseller:any = collection(firestore, 'Orders');
@@ -261,7 +262,7 @@ export class OrdersService {
       e.Product.map(e=>{
         /**quantity */
         let quant = e.Product_Quntity
-        let pend = e.notRecieved
+        let pend = e.deliveredstatus
         let stat =e.Seller_ID
         
       if( this.loggedToken==stat ){
@@ -302,7 +303,8 @@ export class OrdersService {
             this.prodName=d2.Name
             this.prodNameAr=d2.NameAr
             console.log(this.pend)
-        
+          
+            
             let data: OrderData = {
               date: date,
               quantity: quant,
@@ -310,13 +312,16 @@ export class OrdersService {
                 prodNameAr: this.prodNameAr,
                  buyer: name,
                   total:this.price,
-                   status: pend }
-            this.ordersdata.next(data)
-          })
-         })  
+                   deliveredstatus: pend }
+                   this.ordersdata.next(data)
+                  })
+                  //console.log(this.ordersdata)
+                })  
+         
+                
         }
       })
-       }))
+    }))
         /*.map((el)=>{
         const hopa: any=  el.Product_Id.id.toString()
         this.prodsId.push(hopa)

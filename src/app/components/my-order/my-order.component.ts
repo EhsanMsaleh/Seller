@@ -70,7 +70,7 @@ export class MyOrderComponent implements OnInit {
     
        
       this.arrOorders.push(e)
-    
+
     
     
     

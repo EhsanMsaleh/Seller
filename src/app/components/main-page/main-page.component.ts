@@ -12,8 +12,9 @@ import { SellerService } from 'src/app/Service/seller.service';
 import { Lang } from 'src/app/ViewModel/lang';
 import { OrderData } from 'src/app/ViewModel/order-data';
 import { IProduct } from 'src/app/ViewModel/product';
+import { Seller } from 'src/app/ViewModel/seller';
 import { ISeller } from 'src/app/ViewModel/user';
-
+import {MatTableDataSource} from '@angular/material/table'
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -60,7 +61,8 @@ delOrders: OrderData[]=[]
   price: number = 0
   prices: number[] = []
   name:string=''
-  constructor(private prodServ: ProductService, private sellerServ: SellerService, private location: Location, private orderServ: OrdersService) {
+  Seller:ISeller
+  constructor(private prodServ: ProductService,private sellerServa: AuthSellerService ,private sellerServ: SellerService, private location: Location, private orderServ: OrdersService, private router: Router) {
     this.lang = {
       waitingEn: "waiting shipment",
       waitingAr: "ينتظر الشحن",
@@ -89,16 +91,12 @@ delOrders: OrderData[]=[]
   }
 
 
-  ngOnInit(): void {
+ async ngOnInit() {
 
     this.sellerServa.getSellerById().subscribe((e)=>{
       console.log(e)
+        this.Seller = e
     
-     if(this.Seller.IsNew==true)
-     {
-      this.router.navigate(['/NewSeller']);
-
-     }
      })
 
     /*this.sellerServ.getSellerData().subscribe((r)=>this.sellerName = r)
@@ -245,13 +243,17 @@ delOrders: OrderData[]=[]
         /**orders data  */
           this.arrOrders.push(e)
         this.totalOrders = this.arrOrders.length
-        let pending =this.arrOrders.filter(e=>e.status==false)
-        let arrived = this.arrOrders.filter(e=>e.status == true)
+        let pending =this.arrOrders.filter(e=>e.deliveredstatus=='pending')
+        let arrived = this.arrOrders.filter(e=>e.deliveredstatus == 'delivered' )
+             this.arrOrders.filter(e=>e.deliveredstatus == 'shipping' ).map(
+               e=> arrived.push(e)
+             )
              
+            
             this.prices.push(e.total)
              this.pendingNo = pending.length
              this.deliverNo = arrived.length
-        console.log(typeof(e.total))
+
           if(typeof(e.total) == 'number')
             {
               

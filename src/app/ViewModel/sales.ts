@@ -1,6 +1,6 @@
 export interface Sales {
    
-    Date?:string,
+    salesDate?:string,
    Sales?:number
     
 }

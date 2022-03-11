@@ -29,6 +29,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsDetailedComponent } from './components/products-detailed/products-detailed.component';
 import { SellerHomeComponent } from './components/seller-home/seller-home.component';
 import{Seller_FormComponent} from './components/Seller_Form/Seller_Form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormField } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CdkColumnDef } from '@angular/cdk/table'
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +50,7 @@ import{Seller_FormComponent} from './components/Seller_Form/Seller_Form.componen
     NotFoundPageComponent,
     ProductsDetailedComponent,
     SellerHomeComponent,
-   
+    
   ],
   imports: [
     BrowserModule,
@@ -58,16 +63,19 @@ import{Seller_FormComponent} from './components/Seller_Form/Seller_Form.componen
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
+    MatTableModule,
+    MatFormFieldModule,
     provideFirestore(() => getFirestore()),
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
     AngularFireModule.initializeApp(environment.firebase),
     NgbModule,
+    BrowserAnimationsModule,
     
 
   ],
   providers: [
-    ScreenTrackingService,UserTrackingService
+    ScreenTrackingService,UserTrackingService,CdkColumnDef
   ],
   bootstrap: [AppComponent]
 })
