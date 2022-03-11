@@ -23,7 +23,7 @@ export class ProductsDetailedComponent implements OnInit {
    quant:string=""
    price:string=""
    img:string=""
-   dets:string=""
+   dets:string="" 
    edit:string=""
    delete:String=""
 
@@ -33,7 +33,7 @@ export class ProductsDetailedComponent implements OnInit {
   outOfStock:IProduct[]=[] 
 activeProd:IProduct[]=[]
   
-  Products: Subscription
+  Products: Subscription 
   prods: IProduct
   ProductsMo: IProduct[] = [];
   searchProducts:IProduct[]=[]
@@ -163,6 +163,21 @@ startState:boolean=true;
     })
 
   })
+
+  this.decide = localStorage.getItem('lang')
+  console.log(this.decide)
+  if (this.decide == null) {
+    this.searche=this.lang.searchEn
+  this.name=this.lang.nameEn
+  this.quant=this.lang.quantEn
+  this.price=this.lang.priceEn
+  this.img=this.lang.imgEn
+  this.dets=this.lang.detsEn
+  this.edit=this.lang.editEn
+  this.delete=this.lang.deleteEn
+
+  }
+
   this.switchHandle()
   }
 
@@ -213,7 +228,7 @@ switchHandle() {
     this.searche=this.lang.searchEn
     this.name=this.lang.nameEn
     this.quant=this.lang.quantEn
-    this.price=this.lang.priceEn
+    this.price=this.lang.priceEn 
     this.img=this.lang.imgEn
     this.dets=this.lang.detsEn
     this.edit=this.lang.editEn

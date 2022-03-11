@@ -16,7 +16,7 @@ import { ProdLang } from './prod-lang';
 export class ProductComponent implements OnInit {
 
   lang:ProdLang
-  langDet:boolean=false
+  langDet:boolean=false 
   decide:string=''
   searche:string=""
     name:string=""

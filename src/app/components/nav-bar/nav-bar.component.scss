@@ -5,7 +5,7 @@
    color: white;
    font-family: 'Rubik', sans-serif;
    border: none;
-   height: 55px;
+   height: 50px;
    border-radius: 5px;
    -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
@@ -18,9 +18,31 @@
 {
     background-color:rgb(228, 129, 28);
 }
+.btsw{
+    background-color: rgb(246, 139, 30);
+    font-size:15px;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    border: none;
+    height: 33px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin: 10px;
+ 
+}
+.btsw:hover{
+    background-color:rgb(228, 129, 28);
+}
 /*NAV*/
 nav{
-    padding:30px;
+    
+   margin: 25px;
+   padding: 15px;
+    align-items: center;
+   border-bottom: rgb(228, 129, 28) 1px solid;
   
   }
   .log{

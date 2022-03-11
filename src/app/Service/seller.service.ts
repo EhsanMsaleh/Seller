@@ -2,8 +2,8 @@ import { Firestore, collectionData, collection,collectionGroup, where,query, get
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthSellerService } from 'src/app/Service/authSeller.service';
+import {Seller} from '../ViewModel/seller';
 
-import {ISeller} from '../ViewModel/user';
 import { timeStamp } from 'console';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAction } from '@angular/fire/compat/database';
@@ -12,8 +12,8 @@ import * as fir from 'firebase/compat/app';
   providedIn: 'root'
 })
 export class SellerService {
-  Seller!: Observable<ISeller[]>;
-  User: Observable<ISeller[]>;
+  Seller!: Observable<Seller[]>;
+  User: Observable<Seller[]>;
   Name= new BehaviorSubject('')
   constructor(private firestore: Firestore, private db: AngularFirestore, private sellerServ: AuthSellerService) { 
     const collectionseller:any = collection(firestore, 'Seller');
@@ -34,8 +34,8 @@ export class SellerService {
      return this. User
   }
 
-  getAllseller():Observable<ISeller[]>{
-    const coll= this.db.collection<ISeller>('Seller').valueChanges()
+  getAllseller():Observable<Seller[]>{
+    const coll= this.db.collection<Seller>('Seller').valueChanges()
      const collectionseller:any = collectionGroup(this.firestore, 'Seller')
      this.Seller = collectionData(collectionseller)
    // this.Seller = query(collectionseller,where("isSeller" , "==" ,"true" ));
@@ -51,9 +51,9 @@ export class SellerService {
    console.log(this.Name)
    return this.Name;*/
 let id=this.sellerServ.getSellerId()
-    this.db.collection<ISeller>('Seller')
+    this.db.collection<Seller>('Seller')
      .doc(id).get().subscribe((res)=>{
-       var res2 =  res.data().firstname;
+       var res2 =  res.data().FirstName;
 
        
       this.Name.next( res2)
@@ -63,9 +63,9 @@ let id=this.sellerServ.getSellerId()
 }
 getdetails(){
   let id=this.sellerServ.getSellerId()
-  this.db.collection<ISeller>('Seller')
+  this.db.collection<Seller>('Seller')
   .doc(id).get().subscribe((res)=>{
-    var res2 =  res.data().firstname;
+    var res2 =  res.data().FirstName;
 
     
    this.Name.next( res2)

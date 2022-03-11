@@ -91,9 +91,10 @@ updateProd(Prod: IProduct) {
 
 searchByName(search:string)
 {
+  let idl = localStorage.getItem('id');
+  let id= JSON.parse(idl)
  //return this.db.collection<IProduct>('Products',(ref)=>ref.where('searchKey','array-contains',search).limit(5)).valueChanges();
- return this.db.collection<IProduct>('Products',(ref)=>ref.where(fir.default.firestore.FieldPath.documentId(),
-  'in',this.Product).where('searchKey','array-contains',search).limit(5)).valueChanges();
+ return this.db.collection<IProduct>('Products',(ref)=>ref.where('SellerID','==',id).where('searchKey','array-contains',search).limit(5)).valueChanges();
 
 
 }

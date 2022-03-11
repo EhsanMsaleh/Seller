@@ -1,9 +1,12 @@
 <div class="container">
-    <h5>My Daily Sales</h5>
-    <div class="row">
-      <input type="text"  placeholder="enter Date">
+    <h5 class="title">{{dailysalles}}</h5>
+    
+    <div class="input-group sea mb-3">
+    
+      <input type="search"
+      
+        class="form-control" placeholder={{searchplace}} aria-label="search" aria-describedby="basic-addon1">
     </div>
-
    <!-- <mat-table [dataSource]="data">
       <mat-header-row matColumnDef="Date">
         <mat-header-cell *matHeaderCellDef>
@@ -26,8 +29,8 @@
           <tr>
             
            
-            <th  scope="col">Date</th>
-            <th  scope="col">Sales</th>
+            <th  scope="col">{{datelang}}</th>
+            <th  scope="col">{{saleslang}}</th>
            
            
           </tr>
