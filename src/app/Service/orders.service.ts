@@ -52,7 +52,8 @@ export class OrdersService {
   quantity:number = 0
   data:OrderData;
   sales:Sales
-  salesData = new BehaviorSubject<Sales>({})
+  salesData:Sales[] =[] 
+  salesDataArr = new BehaviorSubject<Sales[]>([{}])
   ordersdata  = new BehaviorSubject<OrderData>({})
   constructor(private firestore: Firestore, private db: AngularFirestore, private sellerServ: AuthSellerService) {
     const collectionseller:any = collection(firestore, 'Orders');
@@ -302,7 +303,8 @@ export class OrdersService {
             this.prodName=d2.Name
             this.prodNameAr=d2.NameAr
             console.log(this.pend)
-        
+          
+            
             let data: OrderData = {
               date: date,
               quantity: quant,
@@ -311,12 +313,15 @@ export class OrdersService {
                  buyer: name,
                   total:this.price,
                    deliveredstatus: pend }
-            this.ordersdata.next(data)
-          })
-         })  
+                   this.ordersdata.next(data)
+                  })
+                  //console.log(this.ordersdata)
+                })  
+         
+                
         }
       })
-       }))
+    }))
         /*.map((el)=>{
         const hopa: any=  el.Product_Id.id.toString()
         this.prodsId.push(hopa)

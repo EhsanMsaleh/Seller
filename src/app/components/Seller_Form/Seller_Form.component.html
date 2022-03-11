@@ -8,7 +8,7 @@
       <form class="form needs-validation row g-3"  #Seller="ngForm" (ngSubmit)="Update(Seller)"   >
         <div class="col-md-12 col-lg-12 col-sm-12">
           <input 
-         [(ngModel)]="currSell.FirstName"
+         [(ngModel)]="currSell.firstname"
             name="FirstName"
             #FirstName="ngModel"
             type="text"
@@ -29,7 +29,7 @@
         <div class="col-md-12 col-lg-12 col-sm-12">
           <input
             name="LastName"
-          [(ngModel)]="currSell.LastName"
+          [(ngModel)]="currSell.lastname"
           #LastName="ngModel"
             type="text"
             class="form-control border-3"

@@ -1,23 +1,45 @@
 <div class="container">
     <h5>My Daily Sales</h5>
-    <table class="table table-hover">
+    <div class="row">
+      <input type="text"  placeholder="enter Date">
+    </div>
+
+   <!-- <mat-table [dataSource]="data">
+      <mat-header-row matColumnDef="Date">
+        <mat-header-cell *matHeaderCellDef>
+        Date(keyup)="fffl($any($event.target).value)"
+      </mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.Date}}</mat-cell>
+    </mat-header-row>
+      <mat-header-row matColumnDef="Sale">
+        <mat-header-cell *matHeaderCellDef>
+        Sales
+      </mat-header-cell>
+      <mat-cell  *matCellDef="let item">{{item.Sales}}</mat-cell>
+      </mat-header-row>
+      <mat-footer-row>
+        <mat-footer-cell *matFooterCellDef="footer end">end</mat-footer-cell>
+      </mat-footer-row>
+    </mat-table>-->
+    <table  class="table table-hover">
         <thead>
           <tr>
             
            
-            <th scope="col">Date</th>
-            <th scope="col">Sales</th>
+            <th  scope="col">Date</th>
+            <th  scope="col">Sales</th>
            
            
           </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let item of salesData" >
-                <tr ng- >
-                 
-                 
-                  <td>{{item.Date}}</td>
-                  <td>{{item.Sales}}</td>
+            <ng-container *ngFor="let item of total" >
+
+              
+                <tr >
+
+                  <td >{{item.salesDate}}</td>
+                  <td >{{item.Sales}}</td>
                  
                 </tr>
               </ng-container>
