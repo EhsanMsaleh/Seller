@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormField } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CdkColumnDef } from '@angular/cdk/table'
+import { CdkColumnDef } from '@angular/cdk/table';
 @NgModule({
   declarations: [
     AppComponent,

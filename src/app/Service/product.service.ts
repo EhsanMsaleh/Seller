@@ -93,8 +93,14 @@ searchByName(search:string)
 {
   let idl = localStorage.getItem('id');
   let id= JSON.parse(idl)
+  let sid=doc(this.firestore,'Seller',id)
+  this.db.collection<IProduct>('Products', ref => ref.where('SellerID', '==', sid)).snapshotChanges()
+  .subscribe((e)=>{console.log(e)} )
+// this.db.collection<IProduct>('Products',(ref)=>ref.where('SellerID','==',`/Seller/${id}`)).valueChanges()
+// .subscribe((e)=>{console.log(e)})
  //return this.db.collection<IProduct>('Products',(ref)=>ref.where('searchKey','array-contains',search).limit(5)).valueChanges();
- return this.db.collection<IProduct>('Products',(ref)=>ref.where('SellerID','==',id).where('searchKey','array-contains',search).limit(5)).valueChanges();
+ return this.db.collection<IProduct>('Products',(ref)=>ref.where('SellerID', '==', sid)
+ .where('searchKey','array-contains',search).limit(5)).valueChanges();
 
 
 }
