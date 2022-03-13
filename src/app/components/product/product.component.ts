@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Lang } from 'src/app/ViewModel/lang';
 import { ProdLang } from './prod-lang';
-
+ 
 @Component({ 
   selector: 'app-product',
   templateUrl: './product.component.html',
