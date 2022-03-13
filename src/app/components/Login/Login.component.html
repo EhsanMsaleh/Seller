@@ -3,10 +3,10 @@
    
     <aside class="col-lg-10 col-sm-10 col-md-10 ">
 
-      <h5 class="fw-bold">{{loginLang}}</h5>
+      <h5 class="fw-bold title">{{loginLang}}</h5>
       <form class="form needs-validation" #form="ngForm" (ngSubmit)="login(form)"
        novalidate>
-        <div class="col-11 mb-3 mt-3 ">
+        <div class="col-lg-10 col-sm-12 col-md-10 mb-3 mt-3 ">
           <input type="email" class="form-control border-3" 
         #Email="ngModel" ngModel
           id="email" placeholder={{emailLang}} name="Email"
@@ -19,7 +19,7 @@
             <span [hidden]="!Email.errors?.['pattern']">Not valid</span>
           </div> 
         </div>
-        <div class="col-11 mb-3">
+        <div class="col-lg-10 col-sm-12 col-md-10 mb-3 mt-3 ">
           <input type="password" class="form-control border-3" 
            ngModel #Password="ngModel"
           id="pwd" placeholder={{passwordLang}} name="Password" required>
@@ -34,7 +34,7 @@
           <span [hidden]="!Password.errors?.['pattern']">Not valid</span>
         </div> 
         <div class=" containerall" >
-        <button class="col-10 btlogin" type="submit"  
+        <button class="col-lg-2 col-sm-10 col-md-3 mb-3 mt-3 btlogin" type="submit"  
         [disabled]="form.invalid"
         ><i  class="fas fa-envelope"></i> {{loginLang}}</button>
         <!-- <button class="col-10 btlogfb" type="submit" ><i class="fab fa-facebook-square"></i> LOGIN WITH FACEBOOK</button> -->

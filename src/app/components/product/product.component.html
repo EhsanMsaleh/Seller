@@ -29,7 +29,12 @@
                
                 > 
                  <td>{{ i+1 }}</td>
-                  <td>{{item.Name}}</td>
+                 <ng-template [ngIf]="this.decide == 'EN'">
+                  <td>{{item.Name}}  </td>
+             </ng-template>
+             <ng-template [ngIf]="this.decide == 'AR'">
+              <td>{{item.NameAr}}  </td>
+         </ng-template>
                   <td  >{{item.Quantity}}</td>
                   <td>{{item.Price}}</td>
                   <td class="imgcontainer"><img class="image"  src="{{item.Image}}" alt="{{item.Name}}"></td>

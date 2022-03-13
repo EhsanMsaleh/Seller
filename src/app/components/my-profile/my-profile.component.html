@@ -2,26 +2,26 @@
   <div class="container">
      
     <div class="row align-items-start">
-      <div class="col fs-4">Account Overview</div>
+      <div class="col fs-4">{{accover}}</div>
     </div>
     <hr>
     <div class="row justify-content-center">
         <div class="col box">
             <div class="row justify-content-center">
-            <p class=" col-7 fs-6 justify-content-start" >ACCOUNT DETAILS</p>
+            <p class=" col-7 fs-6 justify-content-start" >{{accdet}}</p>
             <div class="col"><!--icon--></div>
             <hr>
         </div>
         <div class="row justify-content-center">
-            <p class=" col  justify-content-start" >Name: {{seller.firstname}} {{seller.lastname}}</p>
+            <p class=" col  justify-content-start colums" ><b>{{name}}:</b> {{seller.FirstName}} {{seller.LastName}}</p>
             
         </div>
         <div class="row justify-content-center">
-            <p class=" col  justify-content-start" >Email: {{seller.Email}}</p>
+            <p class=" col  justify-content-start colums" ><b>{{email}}:</b> {{seller.Email}}</p>
             
         </div>
         <div class="row justify-content-center">
-          <p class=" col  justify-content-start" >Active:  {{seller.IsActive}}</p>
+          <p class=" col  justify-content-start colums" ><b>{{Active}}:</b>  {{seller.IsActive}}</p>
           
       </div>
       <div class="row justify-content-center">
@@ -29,20 +29,20 @@
         
     </div>
     <div class="row justify-content-center">
-      <p class=" col  justify-content-start" >Company Name: {{seller.CompanyName}}</p>
+      <p class=" col  justify-content-start colums" ><b>{{CompanyName}}:</b> {{seller.CompanyName}}</p>
       
   </div>
   <div class="row justify-content-center">
-    <p class=" col  justify-content-start" >Phone Number: {{seller.Phone}}</p>
+    <p class=" col  justify-content-start colums" ><b>{{Phone}}:</b> {{seller.Phone}}</p>
     
 </div>
 <div class="row justify-content-center">
-  <p class=" col  justify-content-start" >Rate: {{seller.Rate}}</p>
+  <p class=" col  justify-content-start colums" ><b>{{rate}}:</b> {{seller.Rate}}</p>
   
 </div>
         <div class="row justify-content-center">
             <div class=" col fs-6 justify-content-start" >
-              <button type="button" name="" id="" class="btn link" [routerLink]="['/SellerUpdate']">CHANGE</button>
+              <button type="button" name="" id="" class="btn link" [routerLink]="['/SellerUpdate']">{{change}}</button>
             </div>
             
         </div>

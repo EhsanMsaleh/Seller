@@ -22,7 +22,6 @@
 </div>
 <div class="alert alert-danger" [hidden]="prdNameAr.valid || prdNameAr.untouched" >
   <small *ngIf="prdNameAr.errors?.['required']" > Name is required</small>
-  <small *ngIf="prdNameAr.errors?.['pattern']" > jgjhg</small>
 
 </div>
 
@@ -47,7 +46,8 @@
 </div>
 <label for="basic-url" class="form-label">{{prodLink}}</label>
 <div class="input-group mb-3">
-  <input type="text" #prdImg="ngModel"  [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder={{enterLink}} required>
+  <!-- <input type="text" #prdImg="ngModel"  [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder={{enterLink}} required> -->
+  <input (change)="onFileSelected($event)" type="file" #prdImg="ngModel" accept="image/*" [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder="Enter Link Image" required>
 </div>
 <div class="alert alert-danger" [hidden]="prdImg.valid || prdImg.untouched" >
   <small *ngIf="prdImg.errors?.['required']"> Image is required</small>

@@ -5,6 +5,7 @@ import {OrdersService} from '../../Service/orders.service';
 import { ISeller } from 'src/app/ViewModel/user';
 import { parse } from 'path';
 import { OrderData } from 'src/app/ViewModel/order-data';
+import{OrderLang} from './order-lang'
 @Component({
   selector: 'app-my-order',
   templateUrl: './my-order.component.html',
@@ -27,13 +28,50 @@ export class MyOrderComponent implements OnInit {
   arrOorders:OrderData[] = []
   orders2 = new BehaviorSubject<OrderData[]>([])
   decide:string=''
+  lang: OrderLang;
+  order:string
+  buyer:string
+  prodname:string
+  date:string
+  status:string
+  totallang:string
+langDet:boolean=false 
+
   constructor(private orderServ:OrdersService) {
+    this.lang={
+      orderEN:'Order',
+      buyerEN:'Buyer',
+      prodnameEN:'Product Name',
+      dateEN:'Date',
+      statusEN:'Status',
+      totalEN:'Total',
+  
+      orderAR:'طلبات',
+      buyerAR:'المشتري',
+      prodnameAR:'اسم المنتج',
+      dateAR:'التاريخ',
+      statusAR:'الحالة',
+      totalAR:'المجموع',
+
+    }
     //this.Orders=orderServ.getAllOrders();
     }
   
     async ngOnInit() {
+      await this.getOrdersData()
     this.decide = localStorage.getItem('lang')
-    await this.getOrdersData()
+    
+    console.log(this.decide)
+    if (this.decide == null) {
+      this.order=this.lang.orderEN
+      this.buyer=this.lang.buyerEN
+      this.date=this.lang.dateEN
+      this.prodname=this.lang.prodnameEN
+      this.totallang=this.lang.totalEN
+      this.status=this.lang.statusEN
+    }
+    this.switchHandle()
+    
 
   
     /*this.orderServ.orderDate.subscribe(e=>this.dates.push(e))
@@ -82,6 +120,35 @@ export class MyOrderComponent implements OnInit {
   console.log(this.arrOorders)
 
   }
-
+  switchHandle() {
+    if (this.decide == 'EN') {
+      this.langDet = !this.langDet
+      let styled = document.getElementsByTagName('div')
+      this.order=this.lang.orderEN
+      this.buyer=this.lang.buyerEN
+      this.date=this.lang.dateEN
+      this.prodname=this.lang.prodnameEN
+      this.totallang=this.lang.totalEN
+      this.status=this.lang.statusEN
+      if (styled.length != 0) {
+        for (let i = 0; i <= styled.length; i++) {
+          styled[i].style.direction = 'ltr'
+        }
+      }
+    } else if (this.decide == 'AR') {
+      let styled = document.getElementsByTagName('div')
+      this.order=this.lang.orderAR
+      this.buyer=this.lang.buyerAR
+      this.date=this.lang.dateAR
+      this.prodname=this.lang.prodnameAR
+      this.totallang=this.lang.totalAR
+      this.status=this.lang.statusAR
+      if (styled.length != 0) {
+        for (let i = 0; i <= styled.length; i++) {
+          styled[i].style.direction = 'rtl'
+        }
+      }
+    }
+  }
 
 }

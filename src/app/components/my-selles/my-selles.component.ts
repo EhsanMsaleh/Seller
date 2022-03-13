@@ -9,6 +9,7 @@ import { OrderData } from 'src/app/ViewModel/order-data';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormField } from '@angular/material/form-field';
 import { map } from '@firebase/util';
+import{SalesLang} from './sales-lang'
 @Component({
   selector: 'app-my-selles',
   templateUrl: './my-selles.component.html',
@@ -29,11 +30,39 @@ export class MySellesComponent implements OnInit {
   saled:number=0
   total:Sales[]=[]
   date:string=''
+  decide:string=''
+  lang: SalesLang;
+  dailysalles:string
+  datelang:string
+  saleslang:string
+  langDet:boolean=false 
+  searchplace:string
+
   constructor(salesServ:SalesService, private orderServ: OrdersService) {
+    this.lang={
+      dailysallesAR:'مبيعاتي اليومية',
+    dateAR:'التاريخ',
+    salesAR:'المبيعات',
+    dailysallesEN:'My Daily Sales',
+    dateEN:'Date',
+    salesEN:'Sales',
+    searchplaceEN:'Enter Date',
+    searchplaceAR:'ادخل التاريخ',
+
+    }
    // this.Sales=salesServ.getAllSales()
    }
 
   async ngOnInit() {
+    this.decide = localStorage.getItem('lang')
+    console.log(this.decide)
+    if (this.decide == null) {
+      this.dailysalles=this.lang.dailysallesEN
+      this.datelang=this.lang.dateEN
+      this.saleslang=this.lang.salesEN
+      this.searchplace=this.lang.searchplaceEN
+    }
+    this.switchHandle()
      // await this.groupBy(list, keyGetter)
       
       this.orderServ.getAllOrders()
@@ -208,5 +237,30 @@ export class MySellesComponent implements OnInit {
     }
   }*/
   
-  
+  switchHandle() {
+    if (this.decide == 'EN') {
+      this.langDet = !this.langDet
+      let styled = document.getElementsByTagName('div')
+      this.dailysalles=this.lang.dailysallesEN
+      this.datelang=this.lang.dateEN
+      this.saleslang=this.lang.salesEN
+      this.searchplace=this.lang.searchplaceEN
+      if (styled.length != 0) {
+        for (let i = 0; i <= styled.length; i++) {
+          styled[i].style.direction = 'ltr'
+        }
+      }
+    } else if (this.decide == 'AR') {
+      let styled = document.getElementsByTagName('div')
+      this.dailysalles=this.lang.dailysallesAR
+      this.datelang=this.lang.dateAR
+      this.saleslang=this.lang.salesAR
+      this.searchplace=this.lang.searchplaceAR
+      if (styled.length != 0) {
+        for (let i = 0; i <= styled.length; i++) {
+          styled[i].style.direction = 'rtl'
+        }
+      }
+    }
+  }
 }

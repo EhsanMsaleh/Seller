@@ -4,17 +4,17 @@
      
      
 
-      <h5 class="fw-bold">Create Account to be a Seller</h5>
+      <h5 class=" fs-4">{{header}}</h5>
       <form class="form needs-validation row g-3"  #Seller="ngForm" (ngSubmit)="Update(Seller)"   >
         <div class="col-md-12 col-lg-12 col-sm-12">
           <input 
-         [(ngModel)]="currSell.firstname"
+         [(ngModel)]="currSell.FirstName"
             name="FirstName"
             #FirstName="ngModel"
             type="text"
             class="form-control border-3"
             id="inputFname"
-            placeholder="Enter Your First Name"
+            placeholder={{enterfn}}
             required
           />
           <div class="col-md-12 col-lg-12 col-sm-12 alert alert-danger" [hidden]="FirstName?.valid || FirstName?.untouched">
@@ -29,12 +29,12 @@
         <div class="col-md-12 col-lg-12 col-sm-12">
           <input
             name="LastName"
-          [(ngModel)]="currSell.lastname"
+          [(ngModel)]="currSell.LastName"
           #LastName="ngModel"
             type="text"
             class="form-control border-3"
             id="inputLname"
-            placeholder="Enter your Last Name"
+            placeholder={{enterln}}
             required
           />
           <div class="col-md-12 col-lg-12 col-sm-12 alert alert-danger" [hidden]="LastName?.valid || LastName?.untouched">
@@ -55,7 +55,7 @@
             type="text"
             class="form-control border-3"
             id="inputCname"
-            placeholder="Enter Company Name"
+            placeholder={{entercn}}
             required
           />
           <div class="col-md-12 col-lg-12 col-sm-12 alert alert-danger" [hidden]="CompanyName?.valid || CompanyName?.untouched">
@@ -79,7 +79,7 @@
             #Phone="ngModel"
             type="tel"
             class="form-control border-3"
-            placeholder="Enter your Phone Number"
+            placeholder={{enterph}}
             required
           />
           <div class="col-md-12 col-lg-12 col-sm-12 alert alert-danger" [hidden]="Phone?.valid || Phone?.untouched">
@@ -93,34 +93,18 @@
         </div>
         
        
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck1" />
-            <label class="form-check-label" for="gridCheck1">
-              I accept the
-              <a style="color: rgb(246, 139, 30)">Terms & conditions</a>
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" />
-            <label class="form-check-label" for="gridCheck" checked>
-              I want to receive Jumia Newsletters with the best deals and offers
-            </label>
-          </div>
-        </div>
+       
 
         <button
         [disabled]="Seller.invalid"
           class="col-12 btlogin text-white"
           type="submit"
-         
         >
-          Update Account
+         {{buttonlang}}
         </button>
 
         
       </form>
-     
     </div>
   </div>
 </div>

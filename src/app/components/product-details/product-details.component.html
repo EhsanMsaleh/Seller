@@ -1,3 +1,4 @@
+
 <div class="containerall">
     <div class="container">
         
@@ -8,87 +9,58 @@
       <div class="row justify-content-center">
           <div class="col box justify-content-start">
              <img [src]="product?.Image"> 
-
-              <hr>
-          </div>
-          <div class="row justify-content-center">
-              <!-- nameProd -->
-              <p class=" col  justify-content-start" ><b>{{name}}</b> {{product?.Name}}</p>
-              
-          </div>
-          <div class="row justify-content-center">
-              <!-- description -->
-              <p class=" col  justify-content-start" ><b>{{description}}</b> {{product?.Description}}</p>
-              
-          </div>
-          <div class="row justify-content-center">
-            <!-- Quantity -->
-            <p class=" col  justify-content-start" ><b>{{quant}}</b> {{product?.Quantity}}</p>
-            
-        </div>
-        <div class="row justify-content-center">
-            <!-- price -->
-            <p class=" col  justify-content-start" ><b>{{price}}</b> {{product?.Price}}</p>
-            
-        </div>
-        <div class="row justify-content-center">
-            <!-- category -->
-            <p class=" col  justify-content-start"><b>{{cat}}</b> {{product?.Category}}</p>
-            
-        </div>
-        <div class="row justify-content-center">
-            <!-- size -->
-            <p class=" col  justify-content-start" ><b>{{sizeDim}}</b> {{product?.Size}} {{product?.Diemention}}</p>
-            
-        </div>
-       
-          <div class="row justify-content-center">
-              <!-- <div class=" col fs-6 justify-content-start" >
-                  <button type="button" [routerLink]="['/Update',(product.id)]" name="" id="" class="btn btn-dark btn-lg btn-block">Edit</button>
-              </div> -->
-              <div class=" col fs-6 justify-content-end" >
-                <button type="button" (click)="back()" name="" id="" class="btn btn-dark btn-lg btn-block">{{backe}}</button>
-            </div>
-
               
           </div>
           <div class="col justify-content-end">
            <br>
             <div>
              <!-- nameProd -->
-             <p class=" col justify-content-start" ><b>Name:</b> {{product?.Name}}</p>
+             <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'EN'">
+                <b>{{name}}</b> {{product?.Name}}
+           </ng-template>
+           <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'AR'">
+            <b>{{name}}</b> {{product?.NameAr}}
+       </ng-template>
              
          </div>
          <div class="row justify-content-center">
              <!-- description -->
-             <p class=" col  justify-content-start" ><b>Description</b> {{product?.Description}}</p>
+             <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'EN'">
+                <b>{{description}}</b> {{product?.Description}}
+           </ng-template>
+           <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'AR'">
+            <b>{{description}}</b> {{product?.DescriptionAr}}
+       </ng-template>
              
          </div>
          <div class="row justify-content-center">
            <!-- Quantity -->
-           <p class=" col  justify-content-start" ><b>Quantity</b> {{product?.Quantity}}</p>
+           <p class=" col  justify-content-start" ><b>{{quant}}</b> {{product?.Quantity}}</p>
            
        </div>
        <div class="row justify-content-center">
            <!-- price -->
-           <p class=" col  justify-content-start" ><b>Price</b> {{product?.Price}}</p>
+           <p class=" col  justify-content-start" ><b>{{price}}</b> {{product?.Price}}</p>
            
        </div>
        <div class="row justify-content-center">
            <!-- category -->
-           <p class=" col  justify-content-start" ><b>Category</b> {{product?.Category}}</p>
+           <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'EN'">
+            <b>{{cat}}</b> {{product?.Category}}       </ng-template>
+       <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'AR'">
+        <b>{{cat}}</b> {{product?.CategoryAr}}   </ng-template>
            
        </div>
        <div class="row justify-content-center">
            <!-- size -->
-           <p class=" col  justify-content-start" ><b>Sizes or Dimentions</b> {{product?.Size}} {{product?.Diemention}}</p>
+           <p class=" col  justify-content-start" ><b>{{sizeDim}}</b> {{product?.Size}} {{product?.Diemention}}</p>
            
        </div>
       
          <div class="row justify-content-center">
            
              <div class=" col fs-6 justify-content-end" >
-               <button type="button" (click)="back()" name="" id="" class="btn btn-dark btn-lg btn-block">Back</button>
+               <button type="button" (click)="back()" name="" id="" class="btn btn-dark btn-lg btn-block">{{backe}}</button>
            </div>
              
          </div>
