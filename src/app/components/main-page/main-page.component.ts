@@ -100,13 +100,20 @@ delOrders: OrderData[]=[]
   let time = date.getHours()
   console.log(time)
 
-  if (0<= time|| time <=12){
-    this.greet = "Good Morning, "
-  } else if(12<= time|| time <=4){
+  if (0<= time && time <12){
+
+      this.greet = "Good Morning, "
+
+  } else if(12<= time && time <16){
+    
     this.greet = "Good Afternoon, "
-  }else if(4<= time|| time <24){
+    
+  }else if( 16<= time && time <24){
+   
       this.greet="Good Evening, "
-  }
+  
+    }
+  
       this.nameServ.getSeller().subscribe(e=>{
         this.name = e.payload.data().FirstName
       })
@@ -257,9 +264,12 @@ delOrders: OrderData[]=[]
 
     this.orderServ.getAllOrders()
     this.orderServ.ordersdata.subscribe(e=>
-      {                 
+      {              
         /**orders data  */
+        if(e.date!= null){
           this.arrOrders.push(e)
+      
+        }
         this.totalOrders = this.arrOrders.length
         let pending =this.arrOrders.filter(e=>e.deliveredstatus=='pending')
         let arrived = this.arrOrders.filter(e=>e.deliveredstatus == 'delivered' )
