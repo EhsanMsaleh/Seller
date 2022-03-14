@@ -63,7 +63,9 @@ delOrders: OrderData[]=[]
   prices: number[] = []
   name:string=''
   Seller:ISeller
-
+  morning:string=''
+  after:string=''
+  evening:string=''
   greet:string=""
   constructor(private prodServ: ProductService,private sellerServa: AuthSellerService ,private sellerServ: SellerService, private location: Location, private orderServ: OrdersService, private nameServ: LoginService) {
     this.lang = {
@@ -88,14 +90,39 @@ delOrders: OrderData[]=[]
       salesEn: "My Sales",
       salesAr: "المبيعات",
       productsEn: "Products",
-      productsAr: "المنتجات"
+      productsAr: "المنتجات",
+      morningAr:"صباح الخير، ",
+      morningEn:"Good Morning, ",
+      afterAr:"صباح الخير، ",
+      afterEn:"Good Afternoon, ",
+      eveningAr:"مساء الخير، ",
+      eveningEn:"Good Evening, ",
     }
 
   }
 
 
  async ngOnInit() {
-
+ this.decide = localStorage.getItem('lang')
+    console.log(this.decide)
+    if (this.decide == null) {
+      this.mysales = this.lang.salesEn
+      this.waitingShip = this.lang.waitingEn;
+      this.trdersShipped = this.lang.shippedEn;
+      this.trderHistory = this.lang.historyEn;
+      this.totalSales = this.lang.salesEn;
+      this.totalRevenue = this.lang.revEn;
+      this.salesHistory = this.lang.saleHistEn;
+      this.myProds = this.lang.productsEn;
+      this.activProds = this.lang.activeEn;
+      this.outStock = this.lang.outEn;
+      this.sellNow = this.lang.sellEn;
+      this.morning=this.lang.morningEn
+      this.after = this.lang.afterEn
+      this.evening = this.lang.eveningEn
+      
+    }
+    
   let date=new Date()
   let time = date.getHours()
   console.log(time)
@@ -109,9 +136,9 @@ delOrders: OrderData[]=[]
     this.greet = "Good Afternoon, "
     
   }else if( 16<= time && time <24){
-   
-      this.greet="Good Evening, "
   
+     this.greet="Good Evening, "
+ 
     }
   
       this.nameServ.getSeller().subscribe(e=>{
@@ -134,75 +161,13 @@ delOrders: OrderData[]=[]
 
 
 
-    this.decide = localStorage.getItem('lang')
-    console.log(this.decide)
-    if (this.decide == null) {
-      this.mysales = this.lang.salesEn
-      this.waitingShip = this.lang.waitingEn;
-      this.trdersShipped = this.lang.shippedEn;
-      this.trderHistory = this.lang.historyEn;
-      this.totalSales = this.lang.salesEn;
-      this.totalRevenue = this.lang.revEn;
-      this.salesHistory = this.lang.saleHistEn;
-      this.myProds = this.lang.productsEn;
-      this.activProds = this.lang.activeEn;
-      this.outStock = this.lang.outEn;
-      this.sellNow = this.lang.sellEn;
-    }
+   
 
     /**/
       
     await this.getSales()
     this.sales=0
-   // this.orderServ.arrOorders.subscribe(e=>{
-     
- 
-    //console.log(e)})
-
-
-    /*this.orderServ.delivered.subscribe(e => {this.delivered.push(0);
-    console.log(this.delivered, 'delivered')})
-    
-    this.orderServ.pending.subscribe(e => this.pending.push(1))
-    console.log(this.delivered, this.pending)
-    this.orderServ.price.subscribe((e) => {
-      
-      this.price = e;
-      this.prices.push(this.price);
-      console.log(this.prices)
-      this.sales = this.prices.reduce((a,b)=>a+b,0)
-      this.revenue = this.sales*0.9
-      })
-    this.deliverNo = this.delivered.length;
-    this.pendingNo = this.pending.length
-    this.totalOrders = this.deliverNo + this.pendingNo
-
-    console.log(this.pendingNo, this.pending)
-
-    this.prodServ.getAllproduct()
-    /*this.prodServ.prod.subscribe((e)=>{
-      this.prods=e
-      console.log(this.prods)
-     if(this.prods.Quantity!=0 && this.prods.Accepted == true){
-        this.Product.push(this.prods)
-      } else if(this.prods.Quantity==0 && this.prods.Accepted == true){
-        this.outOfStock.push(this.prods)
-      } else if(this.prods.Accepted == false){
-        this.rejected.push(this.prods);
-      }
-      
-      console.log(this.outOfStock)
-      console.log(this.Product)
-      this.productsAmount = this.Product.length
-     // var out:any = this.Product.filter(e=>e.Quantity==0)
-      
-      this.outOfStockAmount = this.outOfStock.length
-      this.rejectAmount = this.rejected.length
-    })
-   
-
-    console.log(this.sales)
-*/
+  
     this.Products = this.prodServ.getAllproduct()
       .subscribe(
         // data=>{this.result=data}
@@ -217,7 +182,7 @@ delOrders: OrderData[]=[]
 
           });
 
-          console.log(this.Product)
+         
 
           /*          this.prodServ.getAllproduct()
             
@@ -230,20 +195,20 @@ delOrders: OrderData[]=[]
             
             if(this.decide == 'Ar'){
               this.name=e.NameAr
-              console.log(this.name)
+         
             } else if(this.decide == "En"){
               this.name = e.Name
-              console.log(this.name)
+             
             }
               
             if (this.prods.Quantity != 0) {
               this.activeProd.push(this.prods)
-              console.log(this.prods)
+            
             } else if (this.prods.Quantity == 0) {
               this.outOfStock.push(this.prods)
             }
           })
-          console.log(this.prods)
+         
           this.productsAmount = this.activeProd.length
           // var out:any = this.Product.filter(e=>e.Quantity==0)
 
@@ -325,6 +290,9 @@ delOrders: OrderData[]=[]
       this.activProds = this.lang.activeEn;
       this.outStock = this.lang.outEn;
       this.sellNow = this.lang.sellEn;
+      this.morning=this.lang.morningEn
+      this.after = this.lang.afterEn
+      this.evening = this.lang.eveningEn
       if (styled.length != 0) {
         for (let i = 0; i <= styled.length; i++) {
           styled[i].style.direction = 'ltr'
@@ -347,6 +315,9 @@ delOrders: OrderData[]=[]
       this.activProds = this.lang.activeAr;
       this.outStock = this.lang.outAr;
       this.sellNow = this.lang.sellAr;
+      this.morning=this.lang.morningAr
+      this.after = this.lang.afterAr
+      this.evening = this.lang.eveningAr
       if (styled.length != 0) {
         for (let i = 0; i <= styled.length; i++) {
           styled[i].style.direction = 'rtl'

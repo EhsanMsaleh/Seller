@@ -46,7 +46,7 @@ langDet:boolean=false
       statusEN:'Status',
       totalEN:'Total',
   
-      orderAR:'طلبات',
+      orderAR:'الطلبات',
       buyerAR:'المشتري',
       prodnameAR:'اسم المنتج',
       dateAR:'التاريخ',

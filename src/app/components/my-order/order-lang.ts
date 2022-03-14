@@ -5,7 +5,7 @@ export interface OrderLang {
     dateEN:string,
     statusEN:string,
     totalEN:string,
-
+    
     orderAR:string,
     buyerAR:string,
     prodnameAR:string,

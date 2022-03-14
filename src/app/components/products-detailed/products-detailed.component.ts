@@ -156,13 +156,7 @@ startState:boolean=true;
           
   })
 
-    this.wordStr.subscribe((res) => {
-    this.prodServ.searchByName(res).subscribe((res) => {
-      this.ProductsMo = res;
-      console.log(res)
-    })
-
-  })
+    
 
   this.decide = localStorage.getItem('lang')
   console.log(this.decide)
@@ -191,34 +185,8 @@ deleteprod(prod: IProduct) {
 
 }
 //في حاجه غلط في السيررررررررررش
-search(){
-  if (this.InputSearch === "") {
-    this.prodServ.getAllproduct()
-    this.prodServ.prod.subscribe((res) => {
-   //3yzen n3ml if condition tw2f al push fil array lw fih nfs 3dd alproducts
-   this.ProductsMo=[];
-
-     this.prods = res
-     console.log(res)
-   //  if(this.Products.length != this.searchProducts.length){
-      //مع كل تغييره هنجيب ال all , نشوف لو مش موجود ال input نجيبه تاني products
-
-       this.ProductsMo.push(this.prods);
-    // }
-
-    })
 
 
-  }
-  if (this.InputSearch != "") {
-    //if(this.Products.length != this.searchProducts.length){
-   //   this.Products=[]
-    this.word.next(this.InputSearch)
-    console.log(this.InputSearch)
-  //  }
-  }
-
-}
 
 
 switchHandle() {
@@ -254,6 +222,37 @@ switchHandle() {
       }
     }
   }
+}
+
+search(){
+  console.log(this.InputSearch)
+
+  if (this.InputSearch == '') {
+    this.Products=this.prodServ.getAllproduct()
+.subscribe(
+  data =>{   this.activeProd=data.map((el)=>{
+
+    return{
+      id:el.payload.doc.id,
+      ...(el.payload.doc.data() as IProduct)
+
+    }
+  }); 
+    })
+    console.log('this.InputSearch')
+  }
+  else if (this.InputSearch != "") {
+   
+    this.word.next(this.InputSearch)
+  //  }
+  }
+  this.wordStr.subscribe((res) => {
+    this.prodServ.searchByName(res).subscribe((res) => {
+      this.activeProd = res;
+      console.log(res)
+    })
+
+  })
 }
 }
 
