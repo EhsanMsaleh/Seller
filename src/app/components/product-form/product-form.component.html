@@ -28,7 +28,7 @@
 
 <label for="basic-url" class="form-label">{{prodQuant}}</label>
 <div class="input-group mb-3">
-  <input  #prdQuantity="ngModel" min=5 [(ngModel)]="NewProd.Quantity" type="number"  class="form-control" name="Quantity"  placeholder={{enterQuant}} required>
+  <input  #prdQuantity="ngModel" min=5 [(ngModel)]="NewProd.Quantity" type="number"  class="form-control" name="Quantity"  placeholder={{enterQuant}} id="img" >
 </div>
 <div class="alert alert-danger" [hidden]="prdQuantity.valid || prdQuantity.untouched" >
   <small *ngIf="prdQuantity.errors?.['required']" > Quantity is required</small>
@@ -47,7 +47,7 @@
 <label for="basic-url" class="form-label">{{prodLink}}</label>
 <div class="input-group mb-3">
   <!-- <input type="text" #prdImg="ngModel"  [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder={{enterLink}} required> -->
-  <input (change)="onFileSelected($event)" type="file" #prdImg="ngModel" accept="image/*" [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder="Enter Link Image" required>
+  <input (change)="onFileSelected($event)" type="file" #prdImg="ngModel" accept="image/*" [(ngModel)]="NewProd.Image" class="form-control" name="Image" placeholder="Enter Link Image" >
 </div>
 <div class="alert alert-danger" [hidden]="prdImg.valid || prdImg.untouched" >
   <small *ngIf="prdImg.errors?.['required']"> Image is required</small>

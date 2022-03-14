@@ -64,8 +64,6 @@ searchProducts:IProduct[]=[]
   }
 
   ngOnInit(): void {
-
-
     this.decide = localStorage.getItem('lang')
     console.log(this.decide)
     if (this.decide == null) {
@@ -150,8 +148,6 @@ search(){
   if (this.InputSearch == '') {
     this.Product=this.prodServ.getAllproduct()
 .subscribe(
-// data=>{this.result=data}
-//this.prod.next(e); this.result=e; this.resarr.push(this.result);
   data =>{   this.ProductsMo=data.map((el)=>{
 
     return{
@@ -159,15 +155,9 @@ search(){
       ...(el.payload.doc.data() as IProduct)
 
     }
-   
-  }); //console.log(this.ProductsMo)
-    }
-    
-    )
+  }); 
+    })
     console.log('this.InputSearch')
-
- 
-
   }
   else if (this.InputSearch != "") {
    

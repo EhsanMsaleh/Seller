@@ -2,7 +2,7 @@ import { DocumentReference } from "@angular/fire/compat/firestore";
 
 export interface IProduct {
  
-  id?: string,
+    id?: string,
     Name?: string,
     NameAr?:string,
     Description?:string,

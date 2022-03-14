@@ -19,7 +19,12 @@ export interface Lang {
             outAr:string,
             sellEn:string,
             sellAr:string
-
+            morningAr:string,
+            morningEn:string,
+            afterAr:string,
+            afterEn:string,
+            eveningAr:string,
+            eveningEn:string,
 
             salesEn:string,
              salesAr:string,

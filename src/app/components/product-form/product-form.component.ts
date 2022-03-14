@@ -74,6 +74,9 @@ export class ProductFormComponent implements OnInit {
   decide: string = '';
   addEdit: string = '';
   langDet: boolean = false;
+  prodID:string =""
+  prodwid:IProduct
+  
   constructor(
     private router: Router,
     private ActivatedRoute: ActivatedRoute,
@@ -86,7 +89,7 @@ export class ProductFormComponent implements OnInit {
     private storage: AngularFireStorage
   ) {
     this.lang = {
-      addProdEn: 'Add Product',
+      addProdEn: 'Add\Edit Product',
       prodNameEn: 'Product Name in English ',
       enterProdNameEn: 'Enter Product Name In English ',
       prodQuantEn: 'Product Quantity',
@@ -98,7 +101,7 @@ export class ProductFormComponent implements OnInit {
       prodLinkEn: 'Product Image',
       enterLinkEn: 'Enter Product Image',
       availSizeEn: 'Avalible Sizes',
-      dimensionsEn: 'Enter Avalible Sizes',
+      dimensionsEn: 'Enter Avalible dimensions',
       EndescriptionEn: 'English Description',
       enterEnDescEn: 'Enter English Description',
       ArdescriptionEn: 'Arabic Description',
@@ -106,7 +109,7 @@ export class ProductFormComponent implements OnInit {
       EnprodCatEn: 'Product Category in English',
       ArProdCatEn: 'Product Category in Arabic',
       addEditEn: 'Add/Edit',
-      addProdAr: 'إضافة منتج',
+      addProdAr: 'إضافة/تعديل منتج',
       prodNameAr: ' أسم المنتج بالأنجليزية',
       enterProdNameAr: 'ادخل أسم المنتج بالأنجليزية',
       prodQuantAr: 'كمية المنتج',
@@ -146,6 +149,7 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit() {
     /**language */
+    
     this.decide = localStorage.getItem('lang');
     console.log(this.decide);
     if (this.decide == null) {
@@ -191,6 +195,12 @@ export class ProductFormComponent implements OnInit {
     }
 
     this.switchHandle();
+    this.prodID=this.ActivatedRoute.snapshot.params['pid']
+    console.log(this.prodID)
+    var el = document.getElementById('img')
+    if(!this.prodID){
+      el.setAttribute('required', '')
+    }
   }
 
   sea(name: string) {
@@ -218,7 +228,7 @@ export class ProductFormComponent implements OnInit {
 
       this.prodServ.updateProd(this.NewProd).then(() => {
         form.reset();
-        alert('Done');
+        alert('Product Updated');
         this.location.back();
       });
     } else {

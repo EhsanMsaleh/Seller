@@ -60,194 +60,12 @@ export class OrdersService {
     this.Order = collectionData(collectionseller);
    }
 
-   /*getLength(){
-    this.id=this.sellerServ.getSellerId().toString()
-    console.log(this.id)
-   this.loggedToken=this.id
-    console.log(this.loggedToken)
-    const q = collection(this.firestore, 'Orders')
-    
-    const allOrders = collectionData(q) as Observable<Orders[]>
- 
-   return  allOrders.subscribe(e=>e.map((e)=>{
-     
-
-
-     e.Product.map(e=>{
-       /**quantity 
-       let quant = e.Product_Quntity
-
-       let stat =e.Seller_ID
-       console.log(stat)
-     if(stat = this.loggedToken){
-       /**quantity & date 
-       this.quantity=quant
-
-       this.arra.push(this.quantity)
-      this.arrlength = this.arra.length
-    }  
-    console.log(this.arrlength)
-      return this.arrlength
-     
-   })
-      }))
-   }*/
-
-  /* getBuyerName(){
-
-    let id=this.sellerServ.getSellerId()
-
-    this.loggedToken=id
-    const q = collection(this.firestore, 'Orders')
-    
-    const allOrders = collectionData(q) as Observable<Orders[]>
-    
-   return  allOrders.subscribe(e=>e.map((e)=>{
-    
-      console.log(this.pend)
-     e?.Product.map((e)=>{
-       
-      let stat =e?.Seller_ID
-
-      
-     if(stat == this.loggedToken){
-      
-     // this.buyer=buyer
-
-      
-     }
-   })
-      }))
-   }
-
-  /* getNotDelivered(){
-    this.loggedToken='CQ2voW1BMJjMI7FT6KLV'
-    const q = collection(this.firestore, 'Orders')
-    
-    const allOrders = collectionData(q) as Observable<Orders[]>
-    
-   return  allOrders.subscribe(e=>e.map((e)=>{
-    
-     this.pend = e.status
-    console.log(e.status)
-     if(this.pend == false){
-        e?.Product.map((e)=>{
-       
-      let stat =e?.Seller_ID
-        console.log(e.Seller_ID)
-     if(stat == this.loggedToken){
-      
-     
-     }
-   })
-  }
-      })
-      )}
    
-   getDelivered(){
-    this.loggedToken='CQ2voW1BMJjMI7FT6KLV'
-    const q = collection(this.firestore, 'Orders')
-    
-    const allOrders = collectionData(q) as Observable<Orders[]>
-    
-   return  allOrders.subscribe(e=>e.map((e)=>{
-    
-     this.deliver = e.status
-     if(this.deliver == true){
-     e?.Product.map((e)=>{
-       
-      let stat =e?.Seller_ID
-        console.log(e.Seller_ID)
-     if(stat == this.loggedToken){
-      this.delivered.next(this.deliver)
-     
-     }
-   })
-  }
-      })
-      )}
-   */
-
-  /*const collectionseller:any = collection(this.firestore, 'Orders');
-   this. Order = collectionData(collectionseller);
-   return this. Order
-   
-   : Observable<Orders[]>
-   */
-
-  /* return this.db.collection<Orders>('Orders')
-   .doc('1CkOPEtNtUVewwzVA8Of').get().subscribe((res)=>{
-     var res2 = res.data();
-     res2?.Product?.map((el)=>{el.Product_Id.get().then((prd)=>{
-      this.orderSeller.next(prd.data() as IProduct)
-     })
-  })
-   })*/
-  /* getAllOrders(){
-    this.id=this.sellerServ.getSellerId().toString()
-    console.log(this.id)
-   this.loggedToken=this.id
-    console.log(this.loggedToken)
-    const q = collection(this.firestore, 'Orders')
-    
-    const allOrders = collectionData(q) as Observable<Orders[]>
- 
-   return  allOrders.subscribe(e=>e.map((e)=>{
-     /**date 
-     let date = e.date
-     /**name & status 
-     let buyer = e.buyer.id
-     this.pend = e.status
-
-     e.Product.map(e=>{
-       /**quantity 
-       let quant = e.Product_Quntity
-
-       let stat =e.Seller_ID
-       console.log(stat)
-     if(stat = this.loggedToken){
-       /**quantity & date 
-       this.quantity.next(quant)
-       console.log(date)
-       this.orderDate.next(date)
-
-       /**status check 
-       if(this.pend == true){
-         console.log(this.pend, "when true")
-         this.delivered.next(1)
-         console.log(this.deliver)
-       } else if (this.pend==false){
-         this.pending.next(0)
-         console.log(this.pend, "whenfasle")
-         console.log(this.pending)
-       }
-       /**get buyer name 
-       let final =  this.db.collection<ISeller>('users')
-     .doc(`${buyer}`).get().subscribe((res)=>{
-       var res2 = res.data();
-      this.buyer = res2?.FirstName
-        this.orderBuyer.next(this.buyer)
-
-       
-       return final
-     })
-
-      let prodIds = e.Product_Id.id
- 
-      this.db.collection<IProduct>('Products').doc(`${prodIds}`).get().subscribe(
-        (d)=>{let d2 = d.data(); this.price.next(d2.Price*quant)
-           this.prodName.next(d2.Name)
-           this.prodNameAr.next(d2.NameAr)
-       }
-      )
-     }
-   })
-      }))*/
       getAllOrders(){
      this.id=this.sellerServ.getSellerId()
-     console.log(this.id)
+   
     this.loggedToken=this.id
-     console.log(this.loggedToken)
+    
      const q = collection(this.firestore, 'Orders')
      
      const allOrders = collectionData(q) as Observable<Orders[]>
@@ -268,30 +86,20 @@ export class OrdersService {
       if( this.loggedToken==stat ){
         /**quantity & date */
         this.quantity=quant
-        console.log(date)
+   
         this.orderDate=date
-        console.log(buyer)
-       /* *status check 
-        if(this.pend == true){
-          console.log(this.pend, "when true")
-          this.delivered=true
-          console.log(this.deliver)
-        } else if (this.pend==false){
-          this.pending=false
-          console.log(this.pend, "whenfasle")
-          console.log(this.pending)
-        }*/
+        
+      
         /**get buyer name */
           this.db.collection<ISeller>('users')
       .doc(`${buyer}`).get().subscribe((res)=>{
         var res2 = res.data();
        this.buyer = res2.firstname
          let name =this.buyer
-        console.log(this.orderBuyer)
+   
        
        // return final
-      
-        console.log(pend)
+
         //this.pending.next(this.pend)
        let prodIds = e.Product_Id.id
    
@@ -302,7 +110,7 @@ export class OrdersService {
          (d)=>{let d2 = d.data(); this.price=d2.Price*quant
             this.prodName=d2.Name
             this.prodNameAr=d2.NameAr
-            console.log(this.pend)
+       
           
             
             let data: OrderData = {
@@ -322,23 +130,7 @@ export class OrdersService {
         }
       })
     }))
-        /*.map((el)=>{
-        const hopa: any=  el.Product_Id.id.toString()
-        this.prodsId.push(hopa)
-        console.log(allOrders)
-        this.prodsId.map((e)=>{let prodID=e;
-        this.db.collection<IProduct>('Products').doc(`${prodID}`).get().subscribe(
-          (res)=>{var res2:any = res.data();
-            this.arr.push(res2)
-          res2.SellerID?.get().then((usr)=>{this.ordrslr.next(usr.data() as ISeller)
-            
-            });
-          console.log(this.ordrslr, res2.Name)
-        })})Plus90+90
-        })
-        }
-        //this.db.collection<IProduct>('Products').doc(
-        ))*/
+       
     
   }
 
