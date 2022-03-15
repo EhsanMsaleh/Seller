@@ -16,6 +16,7 @@ import { Seller } from 'src/app/ViewModel/seller';
 import { ISeller } from 'src/app/ViewModel/user';
 import {MatTableDataSource} from '@angular/material/table'
 import { LoginService } from 'src/app/Service/login.service';
+import { throws } from 'assert';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -104,7 +105,9 @@ delOrders: OrderData[]=[]
 
  async ngOnInit() {
  this.decide = localStorage.getItem('lang')
-    console.log(this.decide)
+
+ console.log(this.decide)
+
     if (this.decide == null) {
       this.mysales = this.lang.salesEn
       this.waitingShip = this.lang.waitingEn;
@@ -122,23 +125,31 @@ delOrders: OrderData[]=[]
       this.evening = this.lang.eveningEn
       
     }
-    
+    console.log(this.after)
+     
   let date=new Date()
   let time = date.getHours()
-  console.log(time)
+  console.log(this.lang.afterAr)
 
   if (0<= time && time <12){
-
+    if(this.decide=="EN"){
       this.greet = "Good Morning, "
-
+    } else {
+      this.greet = "صباح الخير، "
+    }
   } else if(12<= time && time <16){
-    
-    this.greet = "Good Afternoon, "
+    if(this.decide=="EN"){
+      this.greet = "Good Afternoon, "
+    } else {
+      this.greet = "مساء الخير، "
+    }
     
   }else if( 16<= time && time <24){
-  
+    if(this.decide=="EN"){
      this.greet="Good Evening, "
- 
+    } else {
+      this.greet = "مساء الخير، "
+    }
     }
   
       this.nameServ.getSeller().subscribe(e=>{
@@ -161,7 +172,7 @@ delOrders: OrderData[]=[]
 
 
 
-   
+    
 
     /**/
       
@@ -221,8 +232,8 @@ delOrders: OrderData[]=[]
           this.prices.map(e=>console.log(e))
         })
    
-    this.switchHandle()
-
+    
+        this.switchHandle() 
   }
   //)}
   async getSales(){
@@ -298,10 +309,6 @@ delOrders: OrderData[]=[]
           styled[i].style.direction = 'ltr'
         }
       }
-
-
-
-
     } else if (this.decide == 'AR') {
       let styled = document.getElementsByTagName('div')
       this.mysales = this.lang.salesAr
