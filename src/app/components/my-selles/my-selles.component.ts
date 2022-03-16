@@ -121,9 +121,7 @@ export class MySellesComponent implements OnInit {
             this.total.push(this.sets[i])
           }
         }
-        this.total..sort((a, b) => {
-    return a.salesDate- b.salesDate;
-});
+        
         console.log(this.total)})
         salesData.pop()
         
