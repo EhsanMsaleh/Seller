@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
   passwordLang:string='';
   lang:LoginLang;
   decide:string='';
-  seller:any
+  seller:any;
+  IsActive:boolean;
+  IsNew:boolean;
   constructor(
     private authseller: AuthSellerService,
     private fb: FormBuilder,
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
     private as: AuthService,
 private sellerserv:SellerService
  
-  ) {
+  ) { 
     this.lang={
       loginEn:"Login",
       loginAr:"تسجيل الدخول",
@@ -69,21 +71,42 @@ private sellerserv:SellerService
       if(this.as.Seller){
        
        this.sellerserv.checkSeller(this.as.userID).subscribe((e)=>{
+         console.log(e)
+         
          if(e.length>0)
          {
+           e.map((e:any)=>{
+             this.IsActive=e.IsActive
+             this.IsNew=e.IsNew
+           })
           let id=this.as.userID;
           let email=this.as.userEmail;
           localStorage.setItem('id',JSON.stringify(id))
-         
-          this.router.navigate(['/Home']);
-          window.location.reload()
+          if( this.IsActive==false )
+          {
+           
+              alert("wating for admin to accept your account...")
+            }
+            else if(this.IsNew==true)
+            {
+              alert("you are a new seller , wating for admin to change your state...")  
+            }
+          else if( this.IsActive==true && this.IsNew==false  ){
+
+            this.router.navigate(['/Home']);
+
+            window.location.reload()
+          }
+          
+
          }
          else if(e.length=0){
           alert('you are not a seller , please sign up in jumia website to be one !!!')
          }
        })
        
-        }else
+        }
+        else
         {
           this.errorMes=this.as.errorMsg;
 

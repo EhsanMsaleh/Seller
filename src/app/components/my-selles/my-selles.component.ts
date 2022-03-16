@@ -62,7 +62,7 @@ export class MySellesComponent implements OnInit {
       this.saleslang=this.lang.salesEN
       this.searchplace=this.lang.searchplaceEN
     }
-    
+
      // await this.groupBy(list, keyGetter)
       
      /*this.orderServ.salesDataArr.subscribe(async e=>{
@@ -121,6 +121,9 @@ export class MySellesComponent implements OnInit {
             this.total.push(this.sets[i])
           }
         }
+        this.total..sort((a, b) => {
+    return a.salesDate- b.salesDate;
+});
         console.log(this.total)})
         salesData.pop()
         
@@ -187,6 +190,7 @@ export class MySellesComponent implements OnInit {
           //const sets = groupBy(this.salesData, saled => saled.Date)
           // console.log(sets.get(this.date))
           this.switchHandle()
+
         }
         
         
