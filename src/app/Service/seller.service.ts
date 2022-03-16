@@ -15,6 +15,7 @@ export class SellerService {
   Seller!: Observable<Seller[]>;
   User: Observable<Seller[]>;
   Name= new BehaviorSubject('')
+  IsActive:boolean
   constructor(private firestore: Firestore, private db: AngularFirestore, private sellerServ: AuthSellerService) { 
     const collectionseller:any = collection(firestore, 'Seller');
     this.Seller = collectionData(collectionseller);
@@ -84,5 +85,16 @@ getdetails(){
     //fir to see ids
   return  this.db.collection('Seller' , ref=>ref.where(fir.default.firestore.FieldPath.documentId(), '==' , id)).valueChanges();
   }
+  ISActive() 
+{
+  let idl = localStorage.getItem('id');
+  let id= JSON.parse(idl)
+  this.db.collection<Seller>('Seller').doc(id).valueChanges().subscribe((e) => {
+    console.log(e);
+    this.IsActive= e.IsActive;
+  });
+
+ return this.IsActive;
+}
 }
  

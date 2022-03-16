@@ -7,53 +7,53 @@
       </div>
       <hr>
       <div class="row justify-content-center">
-          <div class="col box justify-content-start">
-             <img [src]="product?.Image"> 
+          <div class="col  justify-content-start">
+             <img class="box" [src]="product?.Image"> 
               
           </div>
           <div class="col justify-content-end">
            <br>
             <div>
              <!-- nameProd -->
-             <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'EN'">
-                <b>{{name}}</b> {{product?.Name}}
+             <ng-template class=" col fs-6 justify-content-start" [ngIf]="this.decide == 'EN'">
+                <b class="fs-6">{{name}}</b> {{product?.Name}}
            </ng-template>
-           <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'AR'">
-            <b>{{name}}</b> {{product?.NameAr}}
+           <ng-template class="  col fs-6 justify-content-start" [ngIf]="this.decide == 'AR'">
+            <b class="fs-6">{{name}}</b> {{product?.NameAr}}
        </ng-template>
              
          </div>
-         <div class="row justify-content-center">
+         <div class="row justify-content-start">
              <!-- description -->
-             <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'EN'">
-                <b>{{description}}</b> {{product?.Description}}
+             <ng-template class=" col fs-6 justify-content-start" [ngIf]="this.decide == 'EN'">
+                <b class="fs-6">{{description}}</b> {{product?.Description}}
            </ng-template>
-           <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'AR'">
-            <b>{{description}}</b> {{product?.DescriptionAr}}
+           <ng-template class="  col fs-6 justify-content-start" [ngIf]="this.decide == 'AR'">
+            <b class="fs-6">{{description}}</b> {{product?.DescriptionAr}}
        </ng-template>
              
          </div>
-         <div class="row justify-content-center">
+         <div class="row justify-content-start">
            <!-- Quantity -->
-           <p class=" col  justify-content-start" ><b>{{quant}}</b> {{product?.Quantity}}</p>
+           <p class=" col fs-6 justify-content-start" ><b class="fs-6">{{quant}}</b> {{product?.Quantity}}</p>
            
        </div>
-       <div class="row justify-content-center">
+       <div class="row justify-content-start">
            <!-- price -->
-           <p class=" col  justify-content-start" ><b>{{price}}</b> {{product?.Price}}</p>
+           <p class=" col fs-6 justify-content-start" ><b class="fs-6">{{price}}</b> {{product?.Price}}</p>
            
        </div>
-       <div class="row justify-content-center">
+       <div class="row justify-content-start">
            <!-- category -->
-           <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'EN'">
-            <b>{{cat}}</b> {{product?.Category}}       </ng-template>
-       <ng-template class=" col justify-content-start" [ngIf]="this.decide == 'AR'">
-        <b>{{cat}}</b> {{product?.CategoryAr}}   </ng-template>
+           <ng-template class=" col fs-6 justify-content-start" [ngIf]="this.decide == 'EN'">
+            <b class="fs-6">{{cat}}</b> {{product?.Category}}       </ng-template>
+       <ng-template class="  col fs-6 justify-content-start" [ngIf]="this.decide == 'AR'">
+        <b class="fs-6">{{cat}}</b> {{product?.CategoryAr}}   </ng-template>
            
        </div>
-       <div class="row justify-content-center">
+       <div class="row justify-content-start">
            <!-- size -->
-           <p class=" col  justify-content-start" ><b>{{sizeDim}}</b> {{product?.Size}} {{product?.Diemention}}</p>
+           <p class=" col fs-6  justify-content-start" ><b>{{sizeDim}}</b> {{product?.Size}} {{product?.Diemention}}</p>
            
        </div>
       

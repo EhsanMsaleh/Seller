@@ -62,7 +62,6 @@ export class MySellesComponent implements OnInit {
       this.saleslang=this.lang.salesEN
       this.searchplace=this.lang.searchplaceEN
     }
-    this.switchHandle()
      // await this.groupBy(list, keyGetter)
       
      /*this.orderServ.salesDataArr.subscribe(async e=>{
@@ -186,6 +185,8 @@ export class MySellesComponent implements OnInit {
           
           //const sets = groupBy(this.salesData, saled => saled.Date)
           // console.log(sets.get(this.date))
+          this.switchHandle()
+
           
         }
         

@@ -221,16 +221,20 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (this.ActivatedRoute.snapshot.params['pid']) {
+      console.log(this.NewProd.Image)
       this.NewProd = {
         ...this.NewProd,
         searchKey: this.sea(this.NewProd.Name!),
       };
+      console.log(this.NewProd.Image)
 
       this.prodServ.updateProd(this.NewProd).then(() => {
         form.reset();
         alert('Product Updated');
         this.location.back();
       });
+      console.log(this.NewProd.Image)
+
     } else {
       this.sellerServ.getSellerById().subscribe((e) => {
         this.seller = e;
