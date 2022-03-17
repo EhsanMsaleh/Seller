@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router,ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthSellerService} from '../Service/authSeller.service';
+import Swal from 'sweetalert2/src/sweetalert2.js'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +21,12 @@ export class AuthSellerGuard implements CanActivate, CanActivateChild, CanDeacti
       else
       {
         //we won't need this cause he will never see any page without login first
-        alert ('please LOGIN first so you can Join our world..');
+        Swal.fire({
+          icon: 'error',
+          title: 'please LOGIN first so you can Join our world..',
+        
+        })
+      //  alert ('please LOGIN first so you can Join our world..');
         this.router.navigate(['/Login']);
         return false
       }

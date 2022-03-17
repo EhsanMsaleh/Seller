@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators, 
   FormArray,
 } from '@angular/forms';
 import { ISeller } from '../../ViewModel/user';
@@ -13,6 +13,7 @@ import { AuthSellerService } from '../../Service/authSeller.service';
 import{AuthService} from '../../Service/Auth/Auth.service';
 import { LoginLang } from './login-lang';
 import {SellerService} from '../../Service/seller.service';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 @Component({
   selector: 'app-Login',
   templateUrl: './Login.component.html',
@@ -85,31 +86,52 @@ private sellerserv:SellerService
           if( this.IsActive==false )
           {
            
-              alert("wating for admin to accept your account...")
+            Swal.fire({
+              icon: 'info',
+              title: 'Waiting',
+              text: 'for admin to accept your account...',
+              footer: '<a href="">Hope to see you soon</a>'
+            })
+
+              // alert("wating for admin to accept your account...");
+              localStorage.removeItem('id');
             }
             else if(this.IsNew==true)
             {
-              alert("you are a new seller , wating for admin to change your state...")  
+              Swal.fire({
+                icon: 'info',
+                title: 'Waiting',
+                text: 'you are a new seller , wating for admin to change your state...',
+                footer: '<a href="">Hope to see you soon</a>'
+              })
+              // alert("you are a new seller , wating for admin to change your state...")  
             }
           else if( this.IsActive==true && this.IsNew==false  ){
+            window.location.replace('/Home')
+            // this.router.navigate(['/Home']);
 
-            this.router.navigate(['/Home']);
-
-            window.location.reload()
+          
           }
           
 
          }
          else if(e.length=0){
-          alert('you are not a seller , please sign up in jumia website to be one !!!')
+           
+          Swal.fire({
+            icon: 'error',
+            title: 'not a seller',
+            text: 'please sign up in jumia website to be one !!!',
+            footer: '<a href="">Hope to see you soon</a>'
+          })
+         // alert('you are not a seller , please sign up in jumia website to be one !!!')
          }
        })
        
         }
         else
         {
+          
           this.errorMes=this.as.errorMsg;
-
         }
      
     })
@@ -150,19 +172,4 @@ private sellerserv:SellerService
       }
   }
 
-  // login(form: any) {
-  //   let data = form.value;
-
-  //   return this.as.login(data.email, data.password).subscribe(() => {
-  //     if (this.as.user) {
-  //       let id = this.as.userID;
-  //       let email = this.as.userEmail;
-  //       localStorage.setItem(JSON.stringify(email), JSON.stringify(id));
-
-  //       this.router.navigate(['/Products']);
-  //     } else {
-  //       this.errorMes = this.as.errorMsg;
-  //     }
-  //   });
-  // }
 }
