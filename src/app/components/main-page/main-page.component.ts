@@ -129,18 +129,43 @@ delOrders: OrderData[]=[]
 
   if (0<= time && time <12){
 
+    if(this.decide=="EN"){
+
       this.greet = "Good Morning, "
 
+    } else {
+
+      this.greet = "صباح الخير، "
+
+    }
+
   } else if(12<= time && time <16){
-    
-    this.greet = "Good Afternoon, "
-    
+
+    if(this.decide=="EN"){
+
+      this.greet = "Good Afternoon, "
+
+    } else {
+
+      this.greet = "مساء الخير، "
+
+    }
+
+   
+
   }else if( 16<= time && time <24){
-  
+
+    if(this.decide=="EN"){
+
      this.greet="Good Evening, "
+
+    } else {
+
+      this.greet = "مساء الخير، "
  
     }
-  
+
+    }
       this.nameServ.getSeller().subscribe(e=>{
         this.name = e.payload.data().FirstName
       })
