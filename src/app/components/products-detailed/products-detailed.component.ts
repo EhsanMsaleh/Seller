@@ -8,6 +8,7 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Lang } from 'src/app/ViewModel/lang';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdsDetLang } from './prods-det-lang';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
 @Component({
   selector: 'app-products-detailed',
@@ -176,14 +177,30 @@ startState:boolean=true;
   }
 
 
-deleteprod(prod: IProduct) {
-  if (confirm('Are you sure to delete this record ?') == true) {
-    this.prodServ.deleteProd(prod).then(() =>
-      console.log('delete successful'));
+  deleteprod(prod: IProduct) {
+    Swal.fire({
+      title: `Are you sure you want to delete ${prod.Name} ?`,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Don't delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.prodServ.deleteProd(prod).then(() =>
+     
+        console.log('delete successful'));
+        Swal.fire('Deleted', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+    // if (confirm(`Are you sure you want to delete ${prod.Name} ?`) == true) {
+    //   this.prodServ.deleteProd(prod).then(() =>
+     
+    //     console.log('delete successful'));
+    // }
   }
-
-
-}
 //في حاجه غلط في السيررررررررررش
 
 

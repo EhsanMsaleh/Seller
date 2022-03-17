@@ -8,6 +8,7 @@ import {  Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit , OnDestroy{
   title='Seller';
+  lang:string;
   private subscriptions: Subscription[] = [];
 
  
@@ -19,7 +20,13 @@ export class AppComponent implements OnInit , OnDestroy{
     throw new Error('Method not implemented.');
   }
  
-  ngOnInit() {
+  ngOnInit() { 
+if(!localStorage.getItem('lang'))
+{
+  localStorage.setItem('lang','EN')
+}
+   
+
     let observerAds = {
       next: (ads: string) => {
         this.ads=ads;

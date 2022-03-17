@@ -15,6 +15,8 @@ import {
   where,
   setDoc,
 } from '@angular/fire/firestore';
+import Swal from 'sweetalert2/src/sweetalert2.js'
+
 import { IProduct } from '../../ViewModel/product';
 import { AuthSellerService } from 'src/app/Service/authSeller.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -230,7 +232,12 @@ export class ProductFormComponent implements OnInit {
 
       this.prodServ.updateProd(this.NewProd).then(() => {
         form.reset();
-        alert('Product Updated');
+        Swal.fire({
+          icon: 'success',
+          title: 'Product Updated Successfully',
+          
+        })
+       // alert('Product Updated Successfully');
         this.location.back();
       });
       console.log(this.NewProd.Image)
@@ -251,27 +258,7 @@ export class ProductFormComponent implements OnInit {
         this.sea(this.NewProd.NameAr!)
       );
 
-      //no duplicate
-      // var filePath = `${this.NewProd.Category}/${
-      //   this.NewProd.Image
-      // }_${new Date().getTime()}`;
-      // var metadata = { cotentType: 'image/jpeg', };
-      // const fileref = this.storage.ref(filePath)
-      // this.storage
-      //   .upload(filePath, this.NewProd.Image)
-      //   .snapshotChanges()
-      //   .pipe(
-      //     finalize(() => {
-      //       fileref.getDownloadURL().subscribe((url) => {
-      //         this.NewProd.Image = url;
-              
-      //         console.log(url);
-      //         console.log(this.NewProd.Image);
-      //       });
-      //     })
-      //   )
-      //   .subscribe();
-      ////////////////////
+   
       this.NewProd = {
         ...this.NewProd,
         searchKey: seaarr,
@@ -280,14 +267,22 @@ export class ProductFormComponent implements OnInit {
       };
 
       // this.seller.Products.push({Product_Id:doc(this.firestore,'Products',this.NewProd.id)})
-      this.prodServ.addNewprod(this.NewProd).then(() => form.reset());
+      this.prodServ.addNewprod(this.NewProd).then(() => {
+        form.reset();
+       // alert('Product added Successfully');
+        Swal.fire({
+          icon: 'success',
+          title: 'Product added Successfully',
+          
+        })
+        this.location.back();
+      });
 
       this.seller.Products.push({
         Product_Id: doc(this.firestore, 'Products', this.NewProd.id),
       });
-      console.log(this.NewProd, '----', this.NewProd.id);
 
-      //نحط هنا ال id في product[] في ال seller
+      
     }
   }
 
@@ -310,7 +305,7 @@ export class ProductFormComponent implements OnInit {
       this.dimensions = this.lang.dimensionsEn;
       this.Endescription = this.lang.EndescriptionEn;
       this.enterEnDesc = this.lang.enterEnDescEn;
-      this.Ardescription = this.lang.ArdescriptionEn;
+      this.Ardescription = this.lang.ArdescriptionEn; 
       this.enterArDesc = this.lang.enterArDescEn;
       this.EnprodCat = this.lang.EnprodCatEn;
       this.ArProdCat = this.lang.ArProdCatEn;

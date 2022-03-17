@@ -10,6 +10,8 @@ import {
   Firestore, addDoc, collection, collectionData,
   doc, docData, deleteDoc, updateDoc, DocumentReference,where, setDoc
 } from '@angular/fire/firestore';
+import Swal from 'sweetalert2/src/sweetalert2.js'
+
 @Component({
   selector: 'app-seller_register',
   templateUrl: './Seller_Form.component.html',
@@ -95,7 +97,12 @@ this.lang={
 
     this.SellerServ.updateSeller(this.currSell).then(() => {
         Seller.reset();
-        alert("Done")
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+        
+        })
+       // alert("Done")
         this.location.back();
       })
   }

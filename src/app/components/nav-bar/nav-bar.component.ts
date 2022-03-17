@@ -80,6 +80,7 @@ langDet:boolean=false
   logout()
   {
    this.authSel.Logout();
+   localStorage.removeItem('id')
    this.router.navigateByUrl('/Login')
    window.location.reload()
 
