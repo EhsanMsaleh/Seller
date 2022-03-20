@@ -39,7 +39,7 @@ langDet:boolean=false
       nameAR: 'الاسم',
       emailAR: 'ايميل',
       rateAR: 'التقييم',
-      ActiveAR: 'الحالة',
+      ActiveAR: 'نشط',
       changeAR: 'تغيير',
       CompanyNameAR: 'اسم الشركة',
       PhoneAR: 'رقم الهاتف',

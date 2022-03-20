@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { Location } from '@angular/common';
 import { ProdDetLang } from '../product-details/prod-det-lang';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',

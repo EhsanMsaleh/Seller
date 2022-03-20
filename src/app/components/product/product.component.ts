@@ -7,7 +7,8 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Lang } from 'src/app/ViewModel/lang';
 import { ProdLang } from './prod-lang';
- 
+import Swal from 'sweetalert2/src/sweetalert2.js'
+
 @Component({ 
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -63,7 +64,7 @@ searchProducts:IProduct[]=[]
     }
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.decide = localStorage.getItem('lang')
     console.log(this.decide)
     if (this.decide == null) {
@@ -136,10 +137,28 @@ this.Product=this.prodServ.getAllproduct()
 
 
 deleteprod(prod: IProduct) {
-  if (confirm('Are you sure to delete this record ?') == true) {
-    this.prodServ.deleteProd(prod).then(() =>
+  Swal.fire({
+    title: `Are you sure you want to delete ${prod.Name} ?`,
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Delete',
+    denyButtonText: `Don't delete`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      this.prodServ.deleteProd(prod).then(() =>
+   
       console.log('delete successful'));
-  }
+      Swal.fire('Deleted', '', 'success')
+    } else if (result.isDenied) {
+      Swal.fire('Changes are not saved', '', 'info')
+    }
+  })
+  // if (confirm(`Are you sure you want to delete ${prod.Name} ?`) == true) {
+  //   this.prodServ.deleteProd(prod).then(() =>
+   
+  //     console.log('delete successful'));
+  // }
 }
 //في حاجه غلط في السيررررررررررش
 search(){
